@@ -1,4 +1,4 @@
-# Created by https://www.gitignore.io/api/node,windows,angular,phpstorm,webstorm
+# Created by https://www.gitignore.io/api/node,windows,angular,webstorm
 
 ### Angular ###
 ## Angular ##
@@ -92,7 +92,7 @@ typings/
 .env
 
 
-### PhpStorm ###
+### WebStorm ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -146,47 +146,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-### PhpStorm Patch ###
-# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
-
-# *.iml
-# modules.xml
-# .idea/misc.xml
-# *.ipr
-
-# Sonarlint plugin
-.idea/sonarlint
-
-### WebStorm ###
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
-
-# User-specific stuff:
-
-# Sensitive or high-churn files:
-
-# Gradle:
-
-# CMake
-
-# Mongo Explorer plugin:
-
-## File-based project format:
-
-## Plugin-specific files:
-
-# IntelliJ
-
-# mpeltonen/sbt-idea plugin
-
-# JIRA plugin
-
-# Cursive Clojure plugin
-
-# Ruby plugin and RubyMine
-
-# Crashlytics plugin (for Android Studio and IntelliJ)
-
 ### WebStorm Patch ###
 # Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
 
@@ -196,6 +155,7 @@ fabric.properties
 # *.ipr
 
 # Sonarlint plugin
+.idea/sonarlint
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -219,4 +179,4 @@ $RECYCLE.BIN/
 *.lnk
 
 
-# End of https://www.gitignore.io/api/node,windows,angular,phpstorm,webstorm
+# End of https://www.gitignore.io/api/node,windows,angular,webstorm
