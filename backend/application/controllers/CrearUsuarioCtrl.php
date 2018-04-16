@@ -6,48 +6,52 @@
  * Time: 9:43 PM
  */
 
-class IniciarSesionCtrl extends MY_Controller
+class CrearUsuarioCtrl extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('usuarioDB');
         $this->load->library('ion_auth');
     }
 
     public function index_post()
     {
         $tipo = $this->post('tipo');
-        $response = array('usuarioLogueado' => false);
+        $response = array('usuarioCreado' => false);
         if ($tipo != null ){
             $nombreUsuario = $this->post('nombreUsuario');
             $clave = $this->post('clave');
             switch($tipo){
                 case 1://Jugador
                     $tipo = Usuario::TIPO_JUGADOR;
+                    $url = "/jugador/homeJugadorVista.jsp";
                     break;
                 case 2://Arbitro
                     $tipo = Usuario::TIPO_ARBITRO;
+                    $url = "/arbitro/homeArbitroVista.jsp";
                     break;
                 case 3://Administrador
                     $tipo = Usuario::TIPO_ADMINISTRADOR;
+                    $url = "/admin/homeAdminVista.jsp";
                     break;
                 case 4://Apostador
                     $tipo = Usuario::TIPO_APOSTADOR;
+                    $url = "/apostador/homeApostadorVista.jsp";
                     break;
                 default:
                     break;
             }
-            $validLogin = $this->ion_auth->login($nombreUsuario, $clave);
-            if ($validLogin){
-                $usuario = $this->usuarioDB->buscarUsuario($nombreUsuario, $clave, $tipo);
-                if ($usuario instanceof Usuario){
-                    $this->session->set_userdata("usuarioLogueado", $usuario);
-                    $response['usuarioLogueado'] = true;
-                } else {
-                    $this->ion_auth->set_errors('login_unsuccessful');
-                    $response['error'] = $this->ion_auth->errors();
-                }
+            $additionalInfo = array(
+                'nombre' => $this->post('nombre'),
+                'apellido' => $this->post('apellido'),
+                'cedula' => $this->post('nombreUsuario'),
+                'tipo' => $tipo,
+                'telefono' => $this->post('telefono'),
+                'fechaNacimiento' => $this->post('fechaNacimiento')
+            );
+            $idCreatedUser = $this->ion_auth->register($nombreUsuario, $clave, null, $additionalInfo);
+            if ($idCreatedUser){
+                $response['usuarioCreado'] = $idCreatedUser;
             } else {
                 $response['error'] = $this->ion_auth->errors();
             }

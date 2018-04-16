@@ -5,7 +5,7 @@
  * Date: 28/02/2018
  * Time: 8:19 PM
  */
-
+require_once APPPATH . 'modelo/Estructura.php';
 class Arbol extends Estructura
 {
     /**

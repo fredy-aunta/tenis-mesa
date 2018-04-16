@@ -6,13 +6,13 @@
  * Time: 9:11 PM
  */
 
-class TorneoDB
+class TorneoDB extends CI_Model
 {
-    const TABLE_NAME = "Usuario";
+    const TABLE_NAME = "Torneo";
 
     public function insert(Torneo $torneo)
     {
-        $this->db->insert(self::TABLE_NAME, $torneo);
+        $this->db->insert(self::TABLE_NAME, $torneo->getObjectDatabase(true));
         /**
          * Obtiene el id del torneo que se acabo de insertar
          */

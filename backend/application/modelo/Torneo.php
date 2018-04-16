@@ -8,12 +8,12 @@
 
 class Torneo
 {
-    private $idTorneo;
-    private $nombre;
-    private $estructura;
-    private $cantidadJugadores;
-    private $cantidadMesas;
-    private $partidos;
+    public $idTorneo;
+    public$nombre;
+    public $estructura;
+    public $cantidadJugadores;
+    public $cantidadMesas;
+    public $partidos;
 
     /**
      * @return mixed
@@ -56,7 +56,7 @@ class Torneo
     }
 
     /**
-     * @param mixed $estructura
+     * @param Estructura $estructura
      */
     public function setEstructura($estructura)
     {
@@ -111,5 +111,16 @@ class Torneo
         $this->partidos = $partidos;
     }
 
-
+    public function getObjectDatabase($exludeId = false)
+    {
+        $obj = new stdClass();
+        if (!$exludeId) {
+            $obj->idTorneo = $this->getIdTorneo();
+        }
+        $obj->nombre = $this->getNombre();
+        $obj->idEstructura = $this->getEstructura()->getIdEstructura();
+        $obj->cantidadJugadores = $this->getCantidadJugadores();
+        $obj->cantidadMesas = $this->getCantidadMesas();
+        return $obj;
+    }
 }

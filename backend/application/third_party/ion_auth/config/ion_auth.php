@@ -97,7 +97,7 @@ $config['site_title']                 = "tenis-mesa.com";       // Site Title, e
 $config['admin_email']                = "admin@example.com"; // Admin Email, admin@example.com
 $config['default_group']              = 'jugador';           // Default group, use name
 $config['admin_group']                = 'admin';             // Default administrators group, use name
-$config['identity']                   = 'nombreUsuario';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
+$config['identity']                   = 'username';             // You can use any unique column in your table as identity column. The values in this column, alongside password, will be used for login purposes
 $config['min_password_length']        = 6;                   // Minimum Required Length of Password
 $config['max_password_length']        = 16;                  // Maximum Allowed Length of Password
 $config['email_activation']           = FALSE;               // Email Activation for registration
@@ -193,5 +193,5 @@ $config['store_salt']  = FALSE;
 $config['delimiters_source']       = 'config'; 	// "config" = use the settings defined here, "form_validation" = use the settings defined in CI's form validation library
 $config['message_start_delimiter'] = '<p>'; 	// Message start delimiter
 $config['message_end_delimiter']   = '</p>'; 	// Message end delimiter
-$config['error_start_delimiter']   = '<p>';		// Error message start delimiter
-$config['error_end_delimiter']     = '</p>';	// Error message end delimiter
+$config['error_start_delimiter']   = '';		// Error message start delimiter
+$config['error_end_delimiter']     = '';	// Error message end delimiter

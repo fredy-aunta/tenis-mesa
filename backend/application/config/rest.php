@@ -101,7 +101,7 @@ $config['rest_realm'] = 'REST API';
 |           authorization key
 |
 */
-$config['rest_auth'] = "session";
+$config['rest_auth'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | REST Login Source
@@ -298,7 +298,7 @@ $config['rest_keys_table'] = 'keys';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_keys'] = TRUE;
+$config['rest_enable_keys'] = FALSE;
 /*
 |--------------------------------------------------------------------------
 | REST Table Key Column Name
@@ -513,13 +513,13 @@ $config['check_cors'] = FALSE;
 | If using CORS checks, set the allowable headers here
 |
 */
-$config['allowed_cors_headers'] = [
+$config['allowed_cors_headers'] = array(
     'Origin',
     'X-Requested-With',
     'Content-Type',
     'Accept',
     'Access-Control-Request-Method'
-];
+);
 /*
 |--------------------------------------------------------------------------
 | CORS Allowable Methods
@@ -528,14 +528,14 @@ $config['allowed_cors_headers'] = [
 | If using CORS checks, you can set the methods you want to be allowed
 |
 */
-$config['allowed_cors_methods'] = [
+$config['allowed_cors_methods'] = array(
     'GET',
     'POST',
     'OPTIONS',
     'PUT',
     'PATCH',
     'DELETE'
-];
+);
 /*
 |--------------------------------------------------------------------------
 | CORS Allow Any Domain
@@ -545,7 +545,7 @@ $config['allowed_cors_methods'] = [
 | source domain
 |
 */
-$config['allow_any_cors_domain'] = FALSE;
+$config['allow_any_cors_domain'] = TRUE;
 /*
 |--------------------------------------------------------------------------
 | CORS Allowable Domains
@@ -557,7 +557,7 @@ $config['allow_any_cors_domain'] = FALSE;
 | e.g. $config['allowed_origins'] = ['http://www.example.com', 'https://spa.example.com']
 |
 */
-$config['allowed_cors_origins'] = [];
+$config['allowed_cors_origins'] = array();
 /*
 |--------------------------------------------------------------------------
 | CORS Forced Headers

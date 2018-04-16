@@ -12,16 +12,30 @@ class Usuario
     const TIPO_JUGADOR = "Jugador";
     const TIPO_ARBITRO = "Arbitro";
     const TIPO_APOSTADOR = "Apostador";
-    private $apellido;
-    private $cedula;
+    public $apellido;
+    public $cedula;
     private $clave;
-    private $estado;
-    private $idUsuario;
-    private $nombre;
-    private $nombreUsuario;
-    private $tipo;
-    private $telefono;
-    private $fechaNacimiento;
+    public $estado;
+    public $idUsuario;
+    public $nombre;
+    public $nombreUsuario;
+    public $tipo;
+    public $telefono;
+    public $fechaNacimiento;
+
+    public function __construct($usuario_db = null)
+    {
+        if (!is_null($usuario_db)) {
+            if (!is_array($usuario_db)) {
+                $usuario_db = (array) $usuario_db;
+            }
+            foreach ($usuario_db as $item => $value) {
+                if (property_exists($this,$item)) {
+                    $this->{$item} = $value;
+                }
+            }
+        }
+    }
 
     /**
      * @return mixed

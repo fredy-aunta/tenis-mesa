@@ -203,22 +203,22 @@ class ArbolEstructura
         return $this->altura;
     }
 
-    public function imprimirNivel($pivote = null, $nivel2 = null)
-    {
-        if ($pivote != null) {
-            $this->niveles[$nivel2] = $pivote->getDato() . ", " . (($this->niveles[$nivel2] != null) ? $this->niveles[$nivel2] : "");
-            $this->imprimirNivel($pivote->getDer(), $nivel2 + 1);
-            $this->imprimirNivel($pivote->getIzq(), $nivel2 + 1);
-        } else {
-            $this->niveles = new String[$this->altura + 1];
-
-            $this->imprimirNivel($this->raiz, 0);
-            for ($i = 0; $i < count($this->niveles); $i++) {
-                log_message('info', $this->niveles[$i] . " En nivel: " . $i);
-            }
-        }
-
-    }
+//    public function imprimirNivel($pivote = null, $nivel2 = null)
+//    {
+//        if ($pivote != null) {
+//            $this->niveles[$nivel2] = $pivote->getDato() . ", " . (($this->niveles[$nivel2] != null) ? $this->niveles[$nivel2] : "");
+//            $this->imprimirNivel($pivote->getDer(), $nivel2 + 1);
+//            $this->imprimirNivel($pivote->getIzq(), $nivel2 + 1);
+//        } else {
+//            $this->niveles = new String[$this->altura + 1];
+//
+//            $this->imprimirNivel($this->raiz, 0);
+//            for ($i = 0; $i < count($this->niveles); $i++) {
+//                log_message('info', $this->niveles[$i] . " En nivel: " . $i);
+//            }
+//        }
+//
+//    }
 
     /**
      * @param Nodo $nodo

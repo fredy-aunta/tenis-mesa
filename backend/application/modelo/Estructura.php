@@ -8,8 +8,8 @@
 
 abstract class Estructura
 {
-    private $idEstructura;
-    private $nombre;
+    public $idEstructura;
+    public $nombre;
 
     function __construct()
     {
