@@ -1,0 +1,23 @@
+ul, ol {
+  list-style: none;
+}
+
+.nav li a{
+  display: block;
+}
+
+.nav li a:hover{
+  background-color:beige;
+}
+
+.nav > li {
+  float:left;
+}
+
+.nav li ul {
+  display:none;
+}
+
+.nav li:hover > ul{
+  display: block;
+}

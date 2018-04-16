@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('tenis-mesa-angular App', () => {
+describe('tenis-mesa App', () => {
   let page: AppPage;
 
   beforeEach(() => {
