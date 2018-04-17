@@ -6,18 +6,18 @@
  * Time: 9:43 PM
  */
 
-class ConsultarUsuariosCtrl extends MY_Controller
+class ConsultarTorneosCtrl extends MY_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('usuarioDB');
+        $this->load->model('torneoDB');
     }
 
     public function index_get()
     {
         $response = array(
-            'usuarios' => $this->usuarioDB->getAllUsuarios()
+            'torneos' => $this->torneoDB->getAllTorneos()
         );
         $this->response($response, REST_Controller::HTTP_OK);
     }

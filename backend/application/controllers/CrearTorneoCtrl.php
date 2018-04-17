@@ -16,7 +16,7 @@ class CrearTorneoCtrl extends MY_Controller
 
     public function index_post()
     {
-        $response = array();
+        $response = array('torneoCreado' => false);
         $nombre = $this->post("nombre");
         $tipoEstructura = $this->post("estructura");
         $cantidadJugadores = $this->post("numeroJugadores");
@@ -35,8 +35,9 @@ class CrearTorneoCtrl extends MY_Controller
 
         if ($idTorneo > 0) {
             $torneo->setIdTorneo($idTorneo);
-            $response["torneoSession"] = $torneo;
-            $response["fechaHoraTorneoSession"] = $fechaHora;
+            $this->session->set_userdata('torneoSession', $torneo);
+            $this->session->set_userdata('fechaHoraTorneoSession', $fechaHora);
+            $response["torneoCreado"] = true;
         }
         $this->response($response, REST_Controller::HTTP_OK);
     }
