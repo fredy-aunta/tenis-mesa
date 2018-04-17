@@ -43,7 +43,7 @@ class UsuarioDB extends CI_Model
         $query = $this->db->get(self::TABLE_NAME);
         $usuarioDb = $query->row();
         $usuario = new Usuario();
-        $usuario->setIdUsuario($usuarioDb->id);
+        $usuario->setId($usuarioDb->id);
         $usuario->setNombre($usuarioDb->nombre);
         $usuario->setApellido($usuarioDb->apellido);
         $usuario->setCedula($usuarioDb->cedula);
@@ -64,7 +64,7 @@ class UsuarioDB extends CI_Model
         $query = $this->db->get(self::TABLE_NAME);
         foreach ($query->result() as $row) {
             $usuario = new Usuario();
-            $usuario->setIdUsuario($row->id);
+            $usuario->setId($row->id);
             $usuario->setNombre($row->nombre);
             $usuario->setApellido($row->apellido);
             $usuario->setCedula($row->cedula);
@@ -86,7 +86,7 @@ class UsuarioDB extends CI_Model
         $query = $this->db->get(self::TABLE_NAME);
         $usuarioDb = $query->row();
         $usuario = new Usuario();
-        $usuario->setIdUsuario($usuarioDb->id);
+        $usuario->setId($usuarioDb->id);
         $usuario->setNombre($usuarioDb->nombre);
         $usuario->setApellido($usuarioDb->apellido);
         $usuario->setCedula($usuarioDb->cedula);
@@ -104,9 +104,9 @@ class UsuarioDB extends CI_Model
         $this->db->set('nombre', $usuario->getNombre());
         $this->db->set('apellido', $usuario->getApellido());
         $this->db->set('username', $usuario->getNombreUsuario());
-        $this->db->set('password', $usuario->getClave());
+//        $this->db->set('password', $usuario->getClave());
         $this->db->set('telefono', $usuario->getTelefono());
-        $this->db->where('id', $usuario->getIdUsuario());
+        $this->db->where('id', $usuario->getId());
         $this->db->update(self::TABLE_NAME);
         $affected_rows = $this->db->affected_rows();
         return ($affected_rows > 0);
@@ -120,7 +120,7 @@ class UsuarioDB extends CI_Model
         $query = $this->db->get(self::TABLE_NAME);
         foreach ($query->result() as $row) {
             $usuario = new Usuario();
-            $usuario->setIdUsuario($row->id);
+            $usuario->setId($row->id);
             $usuario->setNombre($row->nombre);
             $usuario->setApellido($row->apellido);
             $usuario->setCedula($row->cedula);
@@ -143,7 +143,7 @@ class UsuarioDB extends CI_Model
         $query = $this->db->get(self::TABLE_NAME);
         foreach ($query->result() as $row) {
             $usuario = new Usuario();
-            $usuario->setIdUsuario($row->id);
+            $usuario->setId($row->id);
             $usuario->setNombre($row->nombre);
             $usuario->setApellido($row->apellido);
             $usuario->setCedula($row->cedula);
