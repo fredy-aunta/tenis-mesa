@@ -37,7 +37,7 @@ import {HttpClientModule} from '@angular/common/http';
         component: ConsultarUsuariosComponent
       },
       {
-        path: 'ConsultarUsuario',
+        path: 'ConsultarUsuario/:id',
         component: ConsultarUsuarioComponent
       }
       /*{

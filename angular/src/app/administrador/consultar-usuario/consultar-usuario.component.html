@@ -1,3 +1,14 @@
-<p>
-  consultar-usuario works!
-</p>
+<div align="center" *ngIf="user">
+  <div>
+    {{user.id}}
+  </div>
+  <div>
+    <h6>{{user.id}}</h6>
+    <h6>Nombre: {{user.nombre}}</h6>
+    <h6>Apellido: {{user.apellido}}</h6>
+    <h6>Cedula: {{user.cedula}}</h6>
+    <h6>Telefono: {{user.telefono}}</h6>
+    <h6>Tipo: {{user.tipo}}</h6>
+    <h6>Estado: {{user.estado}}</h6>
+  </div>
+</div>
