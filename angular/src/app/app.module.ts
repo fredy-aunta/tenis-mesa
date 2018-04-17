@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router';
 import { ConsultarUsuariosComponent } from './administrador/consultar-usuarios/consultar-usuarios.component';
 import { ConsultarUsuarioComponent } from './administrador/consultar-usuario/consultar-usuario.component';
 import {UserService} from './_services/user.service';
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {UserService} from './_services/user.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: 'CrearUsuario',

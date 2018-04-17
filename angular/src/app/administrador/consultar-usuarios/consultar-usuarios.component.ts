@@ -10,7 +10,7 @@ import {User} from '../../_model/User';
 })
 export class ConsultarUsuariosComponent implements OnInit {
 
-  public users: Array<User>;
+  public users;
 
   constructor(
     private userService: UserService
@@ -18,9 +18,12 @@ export class ConsultarUsuariosComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userService.getUsers().then( users => {
-      this.users = users;
-    });
+    this.userService.getUsers()
+      .subscribe(
+        data => this.users = data['usuarios'],
+        error => console.error(error)
+        // this.users = data
+      );
 
   }
 

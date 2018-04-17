@@ -1,5 +1,4 @@
-export class User {
-
+export interface User {
   apellido: string;
   cedula: string;
   clave: string;

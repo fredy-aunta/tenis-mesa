@@ -504,7 +504,7 @@ $config['rest_language'] = 'english';
 | will access it through a browser
 |
 */
-$config['check_cors'] = FALSE;
+$config['check_cors'] = TRUE;
 /*
 |--------------------------------------------------------------------------
 | CORS Allowable Headers
@@ -518,7 +518,8 @@ $config['allowed_cors_headers'] = array(
     'X-Requested-With',
     'Content-Type',
     'Accept',
-    'Access-Control-Request-Method'
+    'Access-Control-Request-Method',
+    'Access-Control-Allow-Origin'
 );
 /*
 |--------------------------------------------------------------------------
@@ -557,7 +558,7 @@ $config['allow_any_cors_domain'] = TRUE;
 | e.g. $config['allowed_origins'] = ['http://www.example.com', 'https://spa.example.com']
 |
 */
-$config['allowed_cors_origins'] = array();
+$config['allowed_cors_origins'] = array('');
 /*
 |--------------------------------------------------------------------------
 | CORS Forced Headers

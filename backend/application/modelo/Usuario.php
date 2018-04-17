@@ -16,7 +16,7 @@ class Usuario
     public $cedula;
     private $clave;
     public $estado;
-    public $idUsuario;
+    public $id;
     public $nombre;
     public $nombreUsuario;
     public $tipo;
@@ -104,17 +104,17 @@ class Usuario
     /**
      * @return mixed
      */
-    public function getIdUsuario()
+    public function getId()
     {
-        return $this->idUsuario;
+        return $this->id;
     }
 
     /**
-     * @param mixed $idUsuario
+     * @param mixed $id
      */
-    public function setIdUsuario($idUsuario)
+    public function setId($id)
     {
-        $this->idUsuario = $idUsuario;
+        $this->id = $id;
     }
 
     /**

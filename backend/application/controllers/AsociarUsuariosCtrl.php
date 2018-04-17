@@ -42,7 +42,7 @@ class AsociarUsuariosCtrl extends MY_Controller
             $partido->setIdPartidoTorneo($idPartidosTorneo);
             $arbitro = $arbitros[rand(0, count($arbitros))];
             if ($arbitro instanceof Usuario) {
-                $partido->setIdArbitro($arbitro->getIdUsuario());
+                $partido->setIdArbitro($arbitro->getId());
             }
             if ($torneo instanceof Torneo) {
                 $idNewPartido = $this->partidoDB->insert($partido, $torneo->getIdTorneo());
