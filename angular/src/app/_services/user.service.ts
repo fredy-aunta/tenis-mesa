@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import {User} from '../_model/User';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http} from '@angular/http';
@@ -8,6 +9,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class UserService {
 
   httpOptions: any;
+  private userUrl: string = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl'
 
   constructor(private http: HttpClient) {
     this.httpOptions = {
