@@ -1,7 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-
 import { AppComponent } from './app.component';
 import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.component';
 import { AdministradorComponent } from './administrador/administrador.component';
@@ -13,6 +11,8 @@ import { ConsultarUsuarioComponent } from './administrador/consultar-usuario/con
 import {UserService} from './_services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NavBarComponent} from './_shared/header/nav-bar/nav-bar.component';
+import {AuthenticationRouterOutletComponent} from './authentication/authentication-router-outlet.component';
 
 
 @NgModule({
@@ -23,7 +23,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MenuComponent,
     CrearUsuarioComponent,
     ConsultarUsuariosComponent,
-    ConsultarUsuarioComponent
+    ConsultarUsuarioComponent,
+    NavBarComponent,
+    AuthenticationRouterOutletComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -41,6 +43,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
       {
         path: 'ConsultarUsuario/:id',
         component: ConsultarUsuarioComponent
+      },
+      {
+        path: 'IniciarSesion',
+        component: IniciarSesionComponent
       }
       /*{
         path: '**',

@@ -1,0 +1,97 @@
+<div class="row middle-xs bg-panel">
+    <div class="col-xs-12 col-sm-8 center-block">
+        <div class="box-panel">
+			<div class="row">
+				<div class="col-md-8 fields-panel">
+				
+					<beitech-authentication-button-with-facebook></beitech-authentication-button-with-facebook>
+
+					<div class="row row-flat sub-divider">
+						<div class="col-xs-12">
+							<div class="text">
+								<span>o ingrese con su usuario y contraseña</span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="alert alert-danger alert-one-check" *ngIf="wrongUserOrPassword">
+                          		<i class="fa fa-times" aria-hidden="true"></i>
+                          		<span>El usuario o la contraseña son incorrectos, por favor inténtalo de nuevo</span>
+                          	</div>
+                          	
+                          	<div class="alert alert-danger alert-one-check" *ngIf="expiredSession">
+                          		<i class="fa fa-times" aria-hidden="true"></i>
+                          		<span>Tu sesión ha expirado, Ingresa de nuevo para continuar</span>
+                          	</div>
+                          	
+					<form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm.value, loginForm.valid)" novalidate>
+						<!-- Email Component -->
+						<div class="form-group" [ngClass]="{ 'has-error': loginForm.get('email').errors && (loginForm.get('email').dirty || submitted)}">
+							<label class="control-label">Ingrese su email</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</span>
+								<input
+									type="email"
+									class="form-control input-lg"
+									id="inputEmail"
+									placeholder="email"
+									formControlName="email">
+							</div>
+							<div class="text-danger small" *ngIf="loginForm.get('email').errors && (loginForm.get('email').dirty || submitted)">
+									<i class="fa fa-times" aria-hidden="true"></i>
+									<span *ngIf="loginForm.get('email').errors['required']">Este campo es obligatorio</span> 
+									<span *ngIf="loginForm.get('email').errors['validateEmail'] 
+										&& (loginForm.get('email').errors['validateEmail'].valid 
+										|| !loginForm.get('email').errors['required'])">El email debe tener un formato correcto</span>
+							</div>
+						</div>
+						<!-- Password Component -->
+						<div class="form-group" [ngClass]="{ 'has-error': loginForm.get('password').errors && (loginForm.get('password').dirty || submitted)}">
+							<label class="control-label">Ingrese su contraseña</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+								</span>
+								<input
+									type="password"
+									class="form-control input-lg"
+									id="inputPassword"
+									placeholder="password"
+									formControlName="password">
+							</div>
+							<div class="text-danger small" *ngIf="loginForm.get('password').errors && (loginForm.get('password').dirty || submitted)">
+								<i class="fa fa-times" aria-hidden="true"></i>
+								<span *ngIf="loginForm.get('password').errors['required']" class="control-label text-danger small">Este campo es requerido</span>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-primary btn-lg btn-block">
+							<i class="fa fa-sign-in" aria-hidden="true"></i> Ingresar
+						</button>
+						<div *ngIf="requestInProgress" class="row center-xs">
+							<beitech-loading size="XS"></beitech-loading>
+						</div>
+						
+					</form>
+
+				</div>
+				<div class="col-md-4 info-panel">
+					<h3 class="box-title">&nbsp;</h3>
+					<div class="item-info">
+						<p>¿Aún no tiene una cuenta?</p>
+						<p><a [routerLink]="['/auth/registration']">Cree su cuenta aquí</a></p>
+					</div>
+					<div class="item-info">
+						<p>¿Olvidó su clave?</p>
+						<p><a [routerLink]="['/auth/forgot-password']">Recupere su contraseña aquí</a></p>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+
+

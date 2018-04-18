@@ -1,0 +1,68 @@
+<div class="row middle-xs bg-panel h-auto">
+    <div class="col-xs-12 col-sm-8 col-lg-6 center-block">
+        <div class="box-panel">
+						<div class="row">
+							<div class="col-xs-12 col-md-8 fields-panel">
+								<h3 class="box-title" [textContent]="">Completa tu registro con facebook</h3>
+
+
+								<form [formGroup]="taxpayerUserForm" (ngSubmit)="submitTaxpayerUserForm(taxpayerUserForm.value, taxpayerUserForm.valid)" novalidate>
+									
+									<!-- Dni last two digits Component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('lastIdDigits').errors && (taxpayerUserForm.get('lastIdDigits').dirty  || submitted)}">
+										<label class="control-label">2 últimos digitos del documento de identidad</label>
+										<input
+											type="text"
+											class="form-control input-lg"
+											id="lastNumberDni"
+											placeholder="2 últimos digitos del documento de identidad"
+											formControlName="lastIdDigits">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('lastIdDigits').errors && (taxpayerUserForm.get('lastIdDigits').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['required']">Este campo es obligatorio</span>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['maxlength'] || taxpayerUserForm.get('lastIdDigits').errors['minlength']">Debes ingresar los dos últimos digitos de la cédula</span>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['invalid'] && !taxpayerUserForm.get('lastIdDigits').errors['maxlength'] && !taxpayerUserForm.get('lastIdDigits').errors['minlength']">Debes ingresar los dos últimos digitos de la cédula</span>
+										</div>
+
+									</div>
+
+									<!-- Cellphone component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('cellphone').errors && (taxpayerUserForm.get('cellphone').dirty  || submitted)}">
+										<label class="control-label">Celular</label>
+										<input
+											type="text"
+											class="form-control input-lg"
+											id="cellphone"
+											placeholder="Celular"
+											formControlName="cellphone">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('cellphone').errors && (taxpayerUserForm.get('cellphone').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('cellphone').errors['required']">Este campo es obligatorio</span>
+												<span *ngIf="taxpayerUserForm.get('cellphone').errors['maxlength']">Ingresa tu número de celular</span>
+										</div>
+									</div>
+                  <div class="checkbox" [ngClass]="{ 'has-error': taxpayerUserForm.get('termsAndConditions').errors && (taxpayerUserForm.get('termsAndConditions').dirty  || submitted)}">
+                    <label>
+                      <input formControlName="termsAndConditions" type="checkbox"> Aceptar términos y condiciones
+                    </label>
+                    <a (click)="modalService.show('DOCUMENT', 'MODAL_TERMS_AND_CONDITIONS')">ver términos y condiciones</a>
+                    <div class="text-danger small" *ngIf="taxpayerUserForm.get('termsAndConditions').errors && (taxpayerUserForm.get('termsAndConditions').dirty  || submitted)">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <span *ngIf="taxpayerUserForm.get('termsAndConditions').errors['isOnlyTrue']">No puedes registrarte si no aceptas los términos y condiciones</span>
+                    </div>
+                  </div>
+
+									<button type="submit" [disabled]="requestInProgress" class="btn btn-primary btn-lg btn-block">
+										<i *ngIf="!requestInProgress" class="fa fa-sign-in" aria-hidden="true"></i> Completar Registro
+									</button>
+									<div *ngIf="requestInProgress" class="row center-xs">
+										<beitech-loading size="XS"></beitech-loading>
+									</div>
+								</form>
+							</div>
+							
+						</div>
+        </div>
+    </div>
+</div>
+

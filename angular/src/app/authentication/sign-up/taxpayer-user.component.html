@@ -1,0 +1,136 @@
+<div class="row middle-xs bg-panel h-auto">
+    <div class="col-xs-12 col-sm-8 col-lg-6 center-block">
+        <div class="box-panel">
+						<div class="row">
+							<div class="col-xs-12 col-md-8 fields-panel">
+								<h3 class="box-title">Regístrate y obtendrás información valiosa sobre la nueva Reforma Tributaria</h3>
+
+                <beitech-authentication-button-with-facebook></beitech-authentication-button-with-facebook>
+
+                <div class="row row-flat sub-divider">
+                  <div class="col-xs-12">
+                    <div class="text"><span>o crea una cuenta</span></div>
+                  </div>
+                </div>
+
+								<form [formGroup]="taxpayerUserForm" (ngSubmit)="submitTaxpayerUserForm(taxpayerUserForm.value, taxpayerUserForm.valid)" novalidate>
+									<!-- Full Name Component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('fullName').errors && (taxpayerUserForm.get('fullName').dirty  || submitted)}">
+										<label class="control-label">Nombre Completo</label>
+										<input
+											type="text"
+											class="form-control input-lg"
+											id="FullName"
+											placeholder="nombre completo"
+											formControlName="fullName">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('fullName').errors && (taxpayerUserForm.get('fullName').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('fullName').errors && (taxpayerUserForm.get('fullName').dirty  || submitted)">Este campo es obligatorio</span>
+										</div>
+									</div>
+									<!-- Email Component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('email').errors && (taxpayerUserForm.get('email').dirty  || submitted)}">
+										<label class="control-label">Email</label>
+										<input
+											type="email"
+											class="form-control input-lg"
+											id="inputEmail"
+											placeholder="email"
+											formControlName="email">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('email').errors && (taxpayerUserForm.get('email').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('email').errors['required']">Este campo es obligatorio</span>
+												<span *ngIf="taxpayerUserForm.get('email').errors['validateEmail'] && !taxpayerUserForm.get('email').errors['validateEmail'].valid">El email debe tener un formato correcto</span>
+												<span *ngIf="taxpayerUserForm.get('email').errors['emailAlreadyExist']">El correo eléctronico usado ya se encuentra registrado en nuestros sistema</span>
+										</div>
+									</div>
+									<!-- Password Component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('password').errors && (taxpayerUserForm.get('password').dirty  || submitted)}">
+										<label class="control-label">Contraseña</label>
+										<input
+											type="password"
+											class="form-control input-lg"
+											id="inputPassword"
+											placeholder="password"
+											formControlName="password">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('password').errors && (taxpayerUserForm.get('password').dirty  || submitted)">
+											<i class="fa fa-times" aria-hidden="true"></i>
+											<span *ngIf="taxpayerUserForm.get('password').errors['required']" class="control-label text-danger small">Este campo es requerido</span>
+										</div>
+									</div>
+									<!-- Dni last two digits Component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('lastIdDigits').errors && (taxpayerUserForm.get('lastIdDigits').dirty  || submitted)}">
+										<label class="control-label">2 últimos digitos del documento de identidad</label>
+										<input
+											type="text"
+											class="form-control input-lg"
+											id="lastNumberDni"
+											placeholder="2 últimos digitos del documento de identidad"
+											formControlName="lastIdDigits">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('lastIdDigits').errors && (taxpayerUserForm.get('lastIdDigits').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['required']">Este campo es obligatorio</span>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['maxlength'] || taxpayerUserForm.get('lastIdDigits').errors['minlength']">Debes ingresar los dos últimos digitos de la cédula</span>
+												<span *ngIf="taxpayerUserForm.get('lastIdDigits').errors['invalid'] && !taxpayerUserForm.get('lastIdDigits').errors['maxlength'] && !taxpayerUserForm.get('lastIdDigits').errors['minlength']">Debes ingresar los dos últimos digitos de la cédula</span>
+										</div>
+
+									</div>
+
+									<!-- Cellphone component -->
+									<div class="form-group" [ngClass]="{ 'has-error': taxpayerUserForm.get('cellphone').errors && (taxpayerUserForm.get('cellphone').dirty  || submitted)}">
+										<label class="control-label">Celular</label>
+										<input
+											type="text"
+											class="form-control input-lg"
+											id="cellphone"
+											placeholder="Celular"
+											formControlName="cellphone">
+										<div class="text-danger small" *ngIf="taxpayerUserForm.get('cellphone').errors && (taxpayerUserForm.get('cellphone').dirty  || submitted)">
+												<i class="fa fa-times" aria-hidden="true"></i>
+												<span *ngIf="taxpayerUserForm.get('cellphone').errors['required']">Este campo es obligatorio</span>
+												<span *ngIf="taxpayerUserForm.get('cellphone').errors['maxlength']">Ingresa tu número de celular</span>
+										</div>
+									</div>
+                  <div class="checkbox" [ngClass]="{ 'has-error': taxpayerUserForm.get('termsAndConditions').errors && (taxpayerUserForm.get('termsAndConditions').dirty  || submitted)}">
+                    <label>
+                      <input formControlName="termsAndConditions" type="checkbox"> Aceptar términos y condiciones
+                    </label>
+                    <a (click)="modalService.show('DOCUMENT', 'MODAL_TERMS_AND_CONDITIONS')">ver términos y condiciones</a>
+                    <div class="text-danger small" *ngIf="taxpayerUserForm.get('termsAndConditions').errors && (taxpayerUserForm.get('termsAndConditions').dirty  || submitted)">
+                      <i class="fa fa-times" aria-hidden="true"></i>
+                      <span *ngIf="taxpayerUserForm.get('termsAndConditions').errors['isOnlyTrue']">No puedes registrarte si no aceptas los términos y condiciones</span>
+                    </div>
+                  </div>
+
+									<button type="submit" [disabled]="requestInProgress" class="btn btn-primary btn-lg btn-block">
+										<i *ngIf="!requestInProgress" class="fa fa-sign-in" aria-hidden="true"></i> Crear Cuenta
+									</button>
+									<div *ngIf="requestInProgress" class="row center-xs">
+										<beitech-loading size="XS"></beitech-loading>
+									</div>
+								</form>
+							</div>
+							<div class="col-xs-12 col-md-4 info-panel mg-t-20-xs">
+								<h3 class="box-title">¿Por qué elegirnos?</h3>
+								<div class="item-info">
+									<p><i class="fa fa-check" aria-hidden="true"></i> Realizar tu declaración a tu ritmo </p>
+								</div>
+								<div class="item-info">
+									<p><i class="fa fa-check" aria-hidden="true"></i> Obtener los mayores descuentos posibles en tu declaración</p>
+								</div>
+								<div class="item-info">
+									<p><i class="fa fa-check" aria-hidden="true"></i> Tener asistencia en todo momento</p>
+								</div>
+								<div class="item-info">
+									<p><i class="fa fa-check" aria-hidden="true"></i> Su información está segura </p>
+								</div>
+								<br/>
+								<div class="cover-image">
+						            <div class="icon-cover-man"></div>
+						          </div>
+							</div>
+						</div>
+        </div>
+    </div>
+</div>
+
