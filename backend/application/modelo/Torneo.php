@@ -9,7 +9,7 @@
 class Torneo
 {
     public $idTorneo;
-    public$nombre;
+    public $nombre;
     public $estructura;
     public $cantidadJugadores;
     public $cantidadMesas;

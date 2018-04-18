@@ -16,10 +16,11 @@ export class ConsultarUsuarioComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    /*const id = this.route.snapshot.paramMap.get('id');
-    this.userService.getUser(id).subscribe(user = > {
-      this.user = user;
-    })*/
+    const id = this.route.snapshot.paramMap.get('id');
+    this.userService.getUser(id).subscribe(data =>
+      this.user = data['usuario'],
+      error => console.error(error)
+    );
   }
 
 }

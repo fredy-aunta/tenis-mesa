@@ -12,6 +12,7 @@ import { ConsultarUsuariosComponent } from './administrador/consultar-usuarios/c
 import { ConsultarUsuarioComponent } from './administrador/consultar-usuario/consultar-usuario.component';
 import {UserService} from './_services/user.service';
 import {HttpClientModule} from '@angular/common/http';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
     ConsultarUsuarioComponent
   ],
   imports: [
+    NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([

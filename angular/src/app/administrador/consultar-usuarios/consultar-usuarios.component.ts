@@ -10,7 +10,7 @@ import {User} from '../../_model/User';
 })
 export class ConsultarUsuariosComponent implements OnInit {
 
-  public users;
+  public users: Array<User>;
 
   constructor(
     private userService: UserService

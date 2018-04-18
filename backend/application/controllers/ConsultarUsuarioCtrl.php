@@ -14,9 +14,9 @@ class ConsultarUsuarioCtrl extends MY_Controller
         $this->load->model('usuarioDB');
     }
 
-    public function index_get()
+    public function index_get($idUsuario = null)
     {
-        $idUsuario = $this->get('idUsuario');
+        //$idUsuario = $this->get('idUsuario');
         $usuario = null;
         if (is_numeric($idUsuario) && $idUsuario > 0) {
             $usuario = $this->usuarioDB->buscarUsuarioById($idUsuario);

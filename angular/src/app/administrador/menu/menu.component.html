@@ -1,19 +1,57 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Usuarios<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/CrearUsuario">Crear Usuario</a></li>
+            <li><a routerLink="/ConsultarUsuarios">Colsultar Usuarios</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Torneos<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/CrearUsuario">Crear Torneo</a></li>
+            <li><a routerLink="/ConsultarUsuarios">Editar Torneo</a></li>
+            <li><a routerLink="/ConsultarTorneo">Colsultar Torneo</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="#">Cerrar Sesion</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!--
 <div id = menu align="left">
   <ul class="nav">
-    <li><a href="">Inicio</a></li>
-    <li><a href="">Administrar Usuarios</a>
+    <li><a routerLink="">Inicio</a></li>
+    <li><a routerLink="">Administrar Usuarios</a>
       <ul>
         <li><a routerLink="/CrearUsuario">Crear Usuario</a></li>
         <li><a routerLink="/ConsultarUsuarios">Colsultar Usuarios</a></li>
       </ul>
     </li>
-    <li><a href="">Administrar Torneos</a>
+    <li><a routerLink="">Administrar Torneos</a>
       <ul>
-        <li><a href="">Crear Torneo</a></li>
-        <li><a href="">Editar Torneo</a></li>
-        <li><a href="">Colsultar Torneo</a></li>
+        <li><a routerLink="">Crear Torneo</a></li>
+        <li><a routerLink="">Editar Torneo</a></li>
+        <li><a routerLink="">Colsultar Torneo</a></li>
       </ul>
     </li>
-    <li><a href="">Cerrar Sesion</a></li>
+    <li><a routerLink="">Cerrar Sesion</a></li>
   </ul>
 </div>
+-->
