@@ -1,0 +1,16 @@
+<div align="center" *ngIf="user">
+  <div>
+    {{user.id}}
+  </div>
+  <div>
+    <h6>{{user.id}}</h6>
+    Nombre Usuario: <input type="text" value="{{user.nombreUsuario}}">
+    Nombre: <input type="text" value="{{user.nombre}}">
+    Apellido: <input type="text" value="{{user.apellido}}">
+    <h6>Cedula: {{user.cedula}}</h6>
+    Telefono: <input type="text" value="{{user.telefono}}">
+    <h6>Tipo: {{user.tipo}}</h6>
+    <h6>Estado: {{user.estado}}</h6><br>
+    <button class="btn-lg">Crear</button>
+  </div>
+</div>

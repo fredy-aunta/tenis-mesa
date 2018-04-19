@@ -23,11 +23,10 @@
         <td>{{user.tipo}}</td>
         <td>{{user.estado}}</td>
         <td>
-          <a [routerLink]="['/ConsultarUsuario',user.id]">Consultar</a>
-          <a >Editar</a>
+          <button class="btn-sm bg-info"><a [routerLink]="['/',user.id]">Consultar</a></button>
+          <button class="btn-sm bg-danger"><a [routerLink]="['/EditarUsuario',user.id]">Editar</a></button>
         </td>
       </tr>
     </tbody>
   </table>
-
 </div>

@@ -13,6 +13,10 @@ import { ConsultarUsuarioComponent } from './administrador/consultar-usuario/con
 import {UserService} from './_services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { EditarUsuarioComponent } from './administrador/editar-usuario/editar-usuario.component';
+import { CrearTorneoComponent } from './administrador/crear-torneo/crear-torneo.component';
+import { DefinirJugadoresComponent } from './administrador/definir-jugadores/definir-jugadores.component';
+import { ConsultarTorneosComponent } from './administrador/consultar-torneos/consultar-torneos.component';
 
 
 @NgModule({
@@ -23,7 +27,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MenuComponent,
     CrearUsuarioComponent,
     ConsultarUsuariosComponent,
-    ConsultarUsuarioComponent
+    ConsultarUsuarioComponent,
+    EditarUsuarioComponent,
+    CrearTorneoComponent,
+    DefinirJugadoresComponent,
+    ConsultarTorneosComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -35,12 +43,24 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         component: CrearUsuarioComponent
       },
       {
+        path: 'ConsultarUsuario/:id',
+        component: ConsultarUsuarioComponent
+      },
+      {
         path: 'ConsultarUsuarios',
         component: ConsultarUsuariosComponent
       },
       {
-        path: 'ConsultarUsuario/:id',
-        component: ConsultarUsuarioComponent
+        path: 'EditarUsuario',
+        component: EditarUsuarioComponent
+      },
+      {
+        path: 'CrearTorneo',
+        component: CrearTorneoComponent
+      },
+      {
+        path: 'ConsultarTorneos',
+        component: ConsultarTorneosComponent
       }
       /*{
         path: '**',
