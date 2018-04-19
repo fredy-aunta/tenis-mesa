@@ -1,0 +1,27 @@
+<div>Torneos</div><br>
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>Id Torneo</td>
+      <td>Nombre</td>
+      <td>Cantidad de Jugadores</td>
+      <td>Modalidad</td>
+      <td>Estructura</td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody *ngIf="torneos">
+    <tr *ngFor="let torneo of torneos">
+      <td>{{torneo.idTorneo}}</td>
+      <td>{{torneo.nombre}}</td>
+      <td>{{torneo.cantidadJugadores}}</td>
+      <td>Modalidad</td>
+      <td>Estructura</td>
+      <td>
+        <button class="btn-sm bg-info"><a [routerLink]="['/ConsultarTorneo',torneo.idTorneo]">Consultar</a></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
