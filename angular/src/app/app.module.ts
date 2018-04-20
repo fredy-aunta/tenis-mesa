@@ -25,6 +25,8 @@ import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usua
 import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
 import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
 import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
+import {ConsultarTorneoComponent} from './administrador/consultar-torneo/consultar-torneo.component';
+import {TorneoService} from './_services/torneo.service';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consu
     EditarUsuarioComponent,
     CrearTorneoComponent,
     DefinirJugadoresComponent,
-    ConsultarTorneosComponent
+    ConsultarTorneosComponent,
+    ConsultarTorneoComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -81,7 +84,8 @@ import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consu
     RestServiceUtil,
     FormBuilder,
     {provide: APP_CONFIG, useValue: TM_APP_CONFIG},
-    CookieService
+    CookieService,
+    TorneoService
   ],
   bootstrap: [AppComponent]
 })

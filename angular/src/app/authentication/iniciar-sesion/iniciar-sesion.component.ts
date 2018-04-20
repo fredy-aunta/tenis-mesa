@@ -4,6 +4,7 @@ import {User} from '../../_model/User';
 import {FormDataUtil} from '../../_services/form-data-util.service';
 import {UserService} from '../../_services/user.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-iniciar-sesion',
@@ -22,7 +23,8 @@ export class IniciarSesionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private formDataUtil: FormDataUtil,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {
   }
 
@@ -51,9 +53,9 @@ export class IniciarSesionComponent implements OnInit {
     if (isValid) {
       this.requestInProgress = true;
       this.userService.loginUser(this.user)
-        .then(loggedIn => {
+        .then(loggedInUser => {
           this.requestInProgress = false;
-          // this.authenticationService.registerLoginData(taxpayerUserLoggedInResponse);
+          this.authenticationService.registerLoginData(loggedInUser);
           // const url = this.authenticationService.getRedirectUrl('taxpayer');
           const url = '';
           this.router.navigate([url]);

@@ -18,7 +18,7 @@ class IniciarSesionCtrl extends MY_Controller
     public function index_post()
     {
         $tipo = $this->post('tipo');
-        $response = array('usuarioLogueado' => false);
+        $response = array('usuarioLogueado' => null);
         if ($tipo != null ){
             $nombreUsuario = $this->post('nombreUsuario');
             $clave = $this->post('clave');
@@ -43,7 +43,7 @@ class IniciarSesionCtrl extends MY_Controller
                 $usuario = $this->usuarioDB->buscarUsuario($nombreUsuario, $clave, $tipo);
                 if ($usuario instanceof Usuario){
                     $this->session->set_userdata("usuarioLogueado", $usuario);
-                    $response['usuarioLogueado'] = true;
+                    $response['usuarioLogueado'] = $usuario;
                 } else {
                     $this->ion_auth->set_errors('login_unsuccessful');
                     $response['error'] = $this->ion_auth->errors();

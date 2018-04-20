@@ -34,7 +34,6 @@ export const ProtectedRoutes: Routes = [
     {
         path: 'home',
         component: AdministradorComponent,
-        canActivate: []
       },
       {
         path: 'CrearUsuario',
