@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {TorneoService} from '../../_services/torneo.service';
+import {Torneo} from '../../_model/Torneo';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-consultar-torneo',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsultarTorneoComponent implements OnInit {
 
-  constructor() { }
+  public tournament: Torneo;
+
+  constructor(
+    private route: ActivatedRoute,
+    private tournamentService: TorneoService
+  ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.tournamentService.getTorneo(id)
+      .then(
+        data => this.tournament = data['torneo'],
+      ).catch(error => console.error(error));
   }
 
 }

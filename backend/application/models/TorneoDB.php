@@ -27,8 +27,9 @@ class TorneoDB extends CI_Model
 
     public function getAllTorneos()
     {
-        $this->db->select('t.*,e.nombre');
-        $this->db->join('estructura e', 'e.idEstructura = t.idEstructura');
+        $torneos = array();
+        $this->db->select('torneo.*,e.nombre');
+        $this->db->join('estructura e', 'e.idEstructura = torneo.idEstructura');
         $query = $this->db->get(self::TABLE_NAME);
         foreach ($query->result() as $row) {
             $torneo = new Torneo();

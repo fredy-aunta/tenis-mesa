@@ -6,20 +6,18 @@
       <td>Id Torneo</td>
       <td>Nombre</td>
       <td>Cantidad de Jugadores</td>
-      <td>Modalidad</td>
       <td>Estructura</td>
       <td></td>
     </tr>
     </thead>
-    <tbody *ngIf="torneos">
-    <tr *ngFor="let torneo of torneos">
-      <td>{{torneo.idTorneo}}</td>
-      <td>{{torneo.nombre}}</td>
-      <td>{{torneo.cantidadJugadores}}</td>
-      <td>Modalidad</td>
-      <td>Estructura</td>
+    <tbody *ngIf="tournaments">
+    <tr *ngFor="let tournament of tournaments">
+      <td>{{tournament.idTorneo}}</td>
+      <td>{{tournament.nombre}}</td>
+      <td>{{tournament.cantidadJugadores}}</td>
+      <td>{{tournament.estructura.nombre}}</td>
       <td>
-        <button class="btn-sm bg-info"><a [routerLink]="['/ConsultarTorneo',torneo.idTorneo]">Consultar</a></button>
+        <button class="btn-sm bg-info"><a [routerLink]="['/ConsultarTorneo',tournament.idTorneo]">Consultar</a></button>
       </td>
     </tr>
     </tbody>

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Torneo} from '../_model/Torneo';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {User} from '../_model/User';
 
 @Injectable()
 export class TorneoService {
@@ -19,13 +20,22 @@ export class TorneoService {
     };
   }
 
-  getTorneos() {
+  getTorneos(): Promise<Array<Torneo>> {
     const url = 'http://dev.tenis-mesa.com/ConsultarTorneosCtrl';
-    return this.http.get<Array<Torneo>>(url);
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response as Array<Torneo>;
+        }
+      );
   }
 
-  getTorneo(id: string) {
+  getTorneo(id: string): Promise<Torneo> {
     const url = 'http://dev.tenis-mesa.com/ConsultarTorneoCtrl/' + id;
-    return this.http.get<Torneo>(url);
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+        return response as Torneo;
+      });
   }
 }

@@ -20,6 +20,7 @@ export class UserService {
   }
 
   getUsers(): Promise<Array<User>> {
+
     const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl';
     return this.http.get(url)
       .toPromise()
@@ -40,12 +41,12 @@ export class UserService {
     );
   }
 
-  loginUser(user: User): Promise<boolean> {
+  loginUser(user: User): Promise<User> {
     const url = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl/';
     return this.http.get(url)
       .toPromise()
       .then(response => {
-          return response as boolean;
+          return response as User;
         }
 
       );

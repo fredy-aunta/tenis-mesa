@@ -47,16 +47,16 @@ export class AuthenticationService {
   // }
 
 
-  // registerLoginData(taxpayerUserLoggedInResponse: TaxpayerUserLoggedInResponse) {
-  //   const expirationDate = new Date(taxpayerUserLoggedInResponse.expirationTime);
-  //   taxpayerUserLoggedInResponse.expirationTime = null;
-  //
-  //   this.cookieService.delete(this.modules['taxpayer']['cookieName']);
-  //   this.cookieService.set(this.modules['taxpayer']['cookieName'], JSON.stringify(taxpayerUserLoggedInResponse),
-  //     expirationDate, this.modules['taxpayer']['path']);
-  //
-  //   this.initLoginData(taxpayerUserLoggedInResponse);
-  // }
+  registerLoginData(user: User) {
+    const expirationDate = new Date(2020, 12, 31);
+    // taxpayerUserLoggedInResponse.expirationTime = null;
+
+    this.cookieService.delete(this.modules[user.tipo]['cookieName']);
+    this.cookieService.set(this.modules[user.tipo]['cookieName'], JSON.stringify(user),
+      expirationDate, this.modules[user.tipo]['path']);
+
+    this.initLoginData(user);
+  }
 
 
  loadCookieData(moduleName: string): boolean {
