@@ -19,14 +19,36 @@ export class UserService {
     };
   }
 
-  getUsers() {
+  getUsers(): Promise<Array<User>> {
     const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl';
-    return this.http.get<Array<User>>(url);
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response as Array<User>;
+        }
+      );
   }
 
-  getUser(id: string) {
+  getUser(id: string): Promise<User> {
     const url = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl/' + id;
-    return this.http.get<User>(url);
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+        return response as User;
+      }
+
+    );
+  }
+
+  loginUser(user: User): Promise<boolean> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl/';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response as boolean;
+        }
+
+      );
   }
 }
 
