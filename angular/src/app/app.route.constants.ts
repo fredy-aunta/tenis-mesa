@@ -1,28 +1,35 @@
-import {IniciarSesionComponent} from './iniciar-sesion/iniciar-sesion.component';
+import {IniciarSesionComponent} from './authentication/iniciar-sesion/iniciar-sesion.component';
 import {Routes} from '@angular/router';
 import {AuthenticationRouterOutletComponent} from './authentication/authentication-router-outlet.component';
+import {AdministradorRouterOutletComponent} from './administrador/administrador-router-outlet.component';
+import {AdministradorComponent} from './administrador/administrador.component';
 
 export const AuthRoutes: Routes = [
-  { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
   {path: 'auth', component: AuthenticationRouterOutletComponent,  children: [
       {
         path: '',
-        redirectTo: '/login',
+        redirectTo: 'iniciar-sesion',
         pathMatch: 'full'
       },
       {
-        path: 'login',
+        path: 'iniciar-sesion',
         component: IniciarSesionComponent
       }
     ]}
 ];
 export const ProtectedRoutes: Routes = [
-  { path: 'profile', component: WizardPayerRouterOutletComponent, canActivate: [AuthenticationGuardService], children: [
+  { path: 'admin', component: AdministradorRouterOutletComponent, canActivate: [], children: [
       {
-        path: 'welcome',
-        component: TaxPayerProfileComponent,
-        canActivate: [AuthenticationGuardService]
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
       },
+    {
+        path: 'home',
+        component: AdministradorComponent,
+        canActivate: []
+      }/*,
       {
         path: 'wizard',
         component: WizardPageComponent,
@@ -35,9 +42,9 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'next-date-for-tax-payment',
         component: NextDateForTaxPaymentComponent
-      }
-    ]},
-  {path: 'taxpayer', component: TaxPayerRouterOutletComponent, canActivate: [AuthenticationGuardService], children: [
+      }*/
+    ]}/*,
+  {path: 'arbitro', component: TaxPayerRouterOutletComponent, canActivate: [AuthenticationGuardService], children: [
       {
         path: 'dashboard',
         component: IndexDashboardComponent
@@ -46,5 +53,5 @@ export const ProtectedRoutes: Routes = [
         path: 'previous-years',
         component: TaxpayerPreviousYearsDashboardComponent
       }
-    ]}
+    ]}*/
 ];

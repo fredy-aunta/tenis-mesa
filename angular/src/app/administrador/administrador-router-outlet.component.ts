@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-authentication-router-outlet',
+  selector: 'app-administrador-router-outlet',
   template: `
+    <app-menu></app-menu>
     <router-outlet></router-outlet>
   `
 })
-export class AuthenticationRouterOutletComponent implements OnInit {
+export class AdministradorRouterOutletComponent implements OnInit {
 
   constructor() { }
 
