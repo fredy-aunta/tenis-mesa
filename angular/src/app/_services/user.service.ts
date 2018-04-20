@@ -7,7 +7,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class UserService {
 
   httpOptions: any;
-  private userUrl = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl'
 
   constructor(private http: HttpClient) {
     this.httpOptions = {

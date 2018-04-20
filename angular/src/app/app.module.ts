@@ -1,12 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { IniciarSesionComponent } from './authentication/iniciar-sesion/iniciar-sesion.component';
-import { AdministradorComponent } from './administrador/administrador.component';
-import { MenuComponent } from './administrador/menu/menu.component';
-import { CrearUsuarioComponent } from './administrador/crear-usuario/crear-usuario.component';
-import { ConsultarUsuariosComponent } from './administrador/consultar-usuarios/consultar-usuarios.component';
-import { ConsultarUsuarioComponent } from './administrador/consultar-usuario/consultar-usuario.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppComponent} from './app.component';
+import {IniciarSesionComponent} from './authentication/iniciar-sesion/iniciar-sesion.component';
+import {AdministradorComponent} from './administrador/administrador.component';
+import {MenuComponent} from './administrador/menu/menu.component';
+import {CrearUsuarioComponent} from './administrador/crear-usuario/crear-usuario.component';
+import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/consultar-usuarios.component';
+import {ConsultarUsuarioComponent} from './administrador/consultar-usuario/consultar-usuario.component';
 import {UserService} from './_services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +21,10 @@ import {RestServiceUtil} from './_services/rest-service-util.service';
 import {FormBuilder} from '@angular/forms';
 import {APP_CONFIG, TM_APP_CONFIG} from './app.config';
 import {CookieService} from 'ng2-cookies';
+import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usuario.component';
+import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
+import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
+import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
 
 
 @NgModule({
@@ -35,7 +39,11 @@ import {CookieService} from 'ng2-cookies';
     NavBarComponent,
     AuthenticationRouterOutletComponent,
     AdministradorRouterOutletComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    EditarUsuarioComponent,
+    CrearTorneoComponent,
+    DefinirJugadoresComponent,
+    ConsultarTorneosComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -46,6 +54,10 @@ import {CookieService} from 'ng2-cookies';
       {
         path: 'CrearUsuario',
         component: CrearUsuarioComponent
+      },
+      {
+        path: 'ConsultarUsuario/:id',
+        component: ConsultarUsuarioComponent
       },
       {
         path: 'ConsultarUsuarios',
@@ -68,9 +80,10 @@ import {CookieService} from 'ng2-cookies';
     FormDataUtil,
     RestServiceUtil,
     FormBuilder,
-    { provide: APP_CONFIG, useValue: TM_APP_CONFIG },
+    {provide: APP_CONFIG, useValue: TM_APP_CONFIG},
     CookieService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

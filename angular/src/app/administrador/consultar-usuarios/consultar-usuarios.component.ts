@@ -17,7 +17,6 @@ export class ConsultarUsuariosComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.userService.getUsers()
       .then(
         data => this.users = data['usuarios']

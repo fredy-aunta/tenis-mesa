@@ -3,6 +3,12 @@ import {Routes} from '@angular/router';
 import {AuthenticationRouterOutletComponent} from './authentication/authentication-router-outlet.component';
 import {AdministradorRouterOutletComponent} from './administrador/administrador-router-outlet.component';
 import {AdministradorComponent} from './administrador/administrador.component';
+import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usuario.component';
+import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
+import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
+import {CrearUsuarioComponent} from './administrador/crear-usuario/crear-usuario.component';
+import {ConsultarUsuarioComponent} from './administrador/consultar-usuario/consultar-usuario.component';
+import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/consultar-usuarios.component';
 
 export const AuthRoutes: Routes = [
   { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
@@ -29,6 +35,30 @@ export const ProtectedRoutes: Routes = [
         path: 'home',
         component: AdministradorComponent,
         canActivate: []
+      },
+      {
+        path: 'CrearUsuario',
+        component: CrearUsuarioComponent
+      },
+      {
+        path: 'ConsultarUsuario/:id',
+        component: ConsultarUsuarioComponent
+      },
+      {
+        path: 'ConsultarUsuarios',
+        component: ConsultarUsuariosComponent
+      },
+      {
+        path: 'EditarUsuario',
+        component: EditarUsuarioComponent
+      },
+      {
+        path: 'CrearTorneo',
+        component: CrearTorneoComponent
+      },
+      {
+        path: 'ConsultarTorneos',
+        component: ConsultarTorneosComponent
       }/*,
       {
         path: 'wizard',
