@@ -18,7 +18,7 @@ import {PageNotFoundComponent} from './_core/page-not-found/page-not-found.compo
 import {AuthenticationService} from './_services/authentication.service';
 import {FormDataUtil} from './_services/form-data-util.service';
 import {RestServiceUtil} from './_services/rest-service-util.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_CONFIG, TM_APP_CONFIG} from './app.config';
 import {CookieService} from 'ng2-cookies';
 import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usuario.component';
@@ -27,6 +27,8 @@ import {DefinirJugadoresComponent} from './administrador/definir-jugadores/defin
 import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
 import {ConsultarTorneoComponent} from './administrador/consultar-torneo/consultar-torneo.component';
 import {TorneoService} from './_services/torneo.service';
+import {AlertService} from './_services/alert.service';
+import {AlertComponent} from './_core/alert/alert.component';
 
 
 @NgModule({
@@ -46,13 +48,16 @@ import {TorneoService} from './_services/torneo.service';
     CrearTorneoComponent,
     DefinirJugadoresComponent,
     ConsultarTorneosComponent,
-    ConsultarTorneoComponent
+    ConsultarTorneoComponent,
+    AlertComponent
   ],
   imports: [
     NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule/*,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule/*,
     RouterModule.forRoot([
       {
         path: 'CrearUsuario',
@@ -85,7 +90,10 @@ import {TorneoService} from './_services/torneo.service';
     FormBuilder,
     {provide: APP_CONFIG, useValue: TM_APP_CONFIG},
     CookieService,
-    TorneoService
+    TorneoService,
+    FormsModule,
+    ReactiveFormsModule,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

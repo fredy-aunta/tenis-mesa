@@ -1,0 +1,6 @@
+<div 
+    *ngIf="message" 
+    [@alertState]="state" 
+    [ngClass]="{ 'alert float': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error', 'alert-warning': message.type === 'warning' }">
+    <i *ngIf="icon" class="fa {{icon}}" aria-hidden="true"></i> {{message.text}}
+</div>

@@ -1,0 +1,288 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+Example usage in HTML:
+
+`display: block` sprite:
+<div class="icon-home"></div>
+
+To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+
+// CSS
+.icon {
+  display: inline-block;
+}
+
+// HTML
+<i class="icon icon-home"></i>
+*/
+.icon-a-anteriores {
+  background-image: url(icons.png);
+  background-position: -256px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-acciones {
+  background-image: url(icons.png);
+  background-position: -160px -336px;
+  width: 80px;
+  height: 80px;
+}
+.icon-afc {
+  background-image: url(icons.png);
+  background-position: 0px -96px;
+  width: 80px;
+  height: 80px;
+}
+.icon-ahorro-cooperativa {
+  background-image: url(icons.png);
+  background-position: -80px -96px;
+  width: 80px;
+  height: 80px;
+}
+.icon-ahorros {
+  background-image: url(icons.png);
+  background-position: -176px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-alquiler-propuiedad {
+  background-image: url(icons.png);
+  background-position: -176px -80px;
+  width: 80px;
+  height: 80px;
+}
+.icon-automobile {
+  background-image: url(icons.png);
+  background-position: -160px -496px;
+  width: 64px;
+  height: 64px;
+}
+.icon-bienes-en-moneda-extrangera {
+  background-image: url(icons.png);
+  background-position: -80px -176px;
+  width: 80px;
+  height: 80px;
+}
+.icon-bienes {
+  background-image: url(icons.png);
+  background-position: -160px -176px;
+  width: 80px;
+  height: 80px;
+}
+.icon-calendar {
+  background-image: url(icons.png);
+  background-position: 0px 0px;
+  width: 96px;
+  height: 96px;
+}
+.icon-cdt {
+  background-image: url(icons.png);
+  background-position: -256px -80px;
+  width: 80px;
+  height: 80px;
+}
+.icon-cesantias {
+  background-image: url(icons.png);
+  background-position: -256px -160px;
+  width: 80px;
+  height: 80px;
+}
+.icon-credito-vehiculo {
+  background-image: url(icons.png);
+  background-position: 0px -256px;
+  width: 80px;
+  height: 80px;
+}
+.icon-credito-vivienda {
+  background-image: url(icons.png);
+  background-position: -80px -256px;
+  width: 80px;
+  height: 80px;
+}
+.icon-cuentas-por-cobrar {
+  background-image: url(icons.png);
+  background-position: -160px -256px;
+  width: 80px;
+  height: 80px;
+}
+.icon-cuentas {
+  background-image: url(icons.png);
+  background-position: -240px -256px;
+  width: 80px;
+  height: 80px;
+}
+.icon-deducciones {
+  background-image: url(icons.png);
+  background-position: -336px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-dependientes {
+  background-image: url(icons.png);
+  background-position: -336px -80px;
+  width: 80px;
+  height: 80px;
+}
+.icon-deudas-b {
+  background-image: url(icons.png);
+  background-position: -336px -160px;
+  width: 80px;
+  height: 80px;
+}
+.icon-deudas {
+  background-image: url(icons.png);
+  background-position: -336px -240px;
+  width: 80px;
+  height: 80px;
+}
+.icon-dividendos {
+  background-image: url(icons.png);
+  background-position: 0px -336px;
+  width: 80px;
+  height: 80px;
+}
+.icon-donaciones {
+  background-image: url(icons.png);
+  background-position: -80px -336px;
+  width: 80px;
+  height: 80px;
+}
+.icon-empleada-domestica {
+  background-image: url(icons.png);
+  background-position: -96px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-era-empleado {
+  background-image: url(icons.png);
+  background-position: -240px -336px;
+  width: 80px;
+  height: 80px;
+}
+.icon-era-pensionado {
+  background-image: url(icons.png);
+  background-position: -320px -336px;
+  width: 80px;
+  height: 80px;
+}
+.icon-herencia {
+  background-image: url(icons.png);
+  background-position: -416px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-honorarios {
+  background-image: url(icons.png);
+  background-position: -416px -80px;
+  width: 80px;
+  height: 80px;
+}
+.icon-ingresos {
+  background-image: url(icons.png);
+  background-position: -416px -160px;
+  width: 80px;
+  height: 80px;
+}
+.icon-liquidacion-conyugal {
+  background-image: url(icons.png);
+  background-position: -416px -240px;
+  width: 80px;
+  height: 80px;
+}
+.icon-loteria {
+  background-image: url(icons.png);
+  background-position: -416px -320px;
+  width: 80px;
+  height: 80px;
+}
+.icon-medicina-prepagada {
+  background-image: url(icons.png);
+  background-position: 0px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-negocios {
+  background-image: url(icons.png);
+  background-position: -80px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-pensiones-voluntarias {
+  background-image: url(icons.png);
+  background-position: -160px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-recibi-intereses-down {
+  background-image: url(icons.png);
+  background-position: -240px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-recibi-intereses-up {
+  background-image: url(icons.png);
+  background-position: -320px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-seguros-b {
+  background-image: url(icons.png);
+  background-position: -400px -416px;
+  width: 80px;
+  height: 80px;
+}
+.icon-seguros {
+  background-image: url(icons.png);
+  background-position: -496px 0px;
+  width: 80px;
+  height: 80px;
+}
+.icon-tarjetas-de-credito {
+  background-image: url(icons.png);
+  background-position: -496px -80px;
+  width: 80px;
+  height: 80px;
+}
+.icon-tenia_negocios {
+  background-image: url(icons.png);
+  background-position: -496px -160px;
+  width: 80px;
+  height: 80px;
+}
+.icon-validaciones {
+  background-image: url(icons.png);
+  background-position: -496px -240px;
+  width: 80px;
+  height: 80px;
+}
+.icon-vehiculos {
+  background-image: url(icons.png);
+  background-position: -496px -320px;
+  width: 80px;
+  height: 80px;
+}
+.icon-vendi-acciones {
+  background-image: url(icons.png);
+  background-position: -496px -400px;
+  width: 80px;
+  height: 80px;
+}
+.icon-vendi-mi-casa {
+  background-image: url(icons.png);
+  background-position: 0px -496px;
+  width: 80px;
+  height: 80px;
+}
+.icon-venta-otro-inmueble {
+  background-image: url(icons.png);
+  background-position: 0px -176px;
+  width: 80px;
+  height: 80px;
+}
+.icon-venta-otros-bienes {
+  background-image: url(icons.png);
+  background-position: -80px -496px;
+  width: 80px;
+  height: 80px;
+}

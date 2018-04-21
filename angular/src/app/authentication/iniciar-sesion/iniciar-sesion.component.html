@@ -1,12 +1,95 @@
-<div class="login">
-    <h1>Login</h1>
-    <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm.value, loginForm.valid)" novalidate>
-      <input type="text" name="nombreUsuario" required="required" placeholder="Nombre de Usuario" formControlName="clave"><br>
-      <input type="password" name="clave" required="required" placeholder="Contraseña" formControlName="clave"><br>
-      <input type="radio" name="tipo" value="3"> Administrador
-      <input type="radio" name="tipo" value="1"> Jugador
-      <input type="radio" name="tipo" value="2"> Arbitro<br>
-      <button type="submit" class="btn btn-primary btn-block btn-large">Iniciar Sesion</button>
-    </form>
-</div>
+<div class="row middle-xs bg-panel">
+  <div class="col-xs-12 col-sm-8 center-block">
+    <div class="box-panel">
+      <div class="row">
+        <div class="col-md-8 fields-panel">
+          <div class="row row-flat sub-divider">
+            <div class="col-xs-12">
+              <div class="text">
+                <span>Ingrese con su usuario y contraseña</span>
+              </div>
+            </div>
+          </div>
+          <form [formGroup]="loginForm" (ngSubmit)="submitLoginForm(loginForm.value, loginForm.valid)" novalidate>
 
+            <!-- Email Component -->
+            <div class="form-group" [ngClass]="{ 'has-error': loginForm.get('nombreUsuario').errors && (loginForm.get('nombreUsuario').dirty || submitted)}">
+              <label class="control-label">Ingrese su nombre de usuario</label>
+              <div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-envelope" aria-hidden="true"></i>
+								</span>
+                <input
+                  type="text"
+                  class="form-control input-lg"
+                  id="inputNombreUsuario"
+                  placeholder="Nombre de Usuario"
+                  formControlName="nombreUsuario">
+              </div>
+              <div class="text-danger small" *ngIf="loginForm.get('nombreUsuario').errors && (loginForm.get('nombreUsuario').dirty || submitted)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <span *ngIf="loginForm.get('nombreUsuario').errors['required']">Este campo es obligatorio</span>
+              </div>
+            </div>
+            <!-- Password Component -->
+            <div class="form-group" [ngClass]="{ 'has-error': loginForm.get('clave').errors && (loginForm.get('clave').dirty || submitted)}">
+              <label class="control-label">Ingrese su contraseña</label>
+              <div class="input-group">
+								<span class="input-group-addon">
+									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
+								</span>
+                <input
+                  type="password"
+                  class="form-control input-lg"
+                  id="inputClave"
+                  placeholder="Contraseña"
+                  formControlName="clave">
+              </div>
+              <div class="text-danger small" *ngIf="loginForm.get('clave').errors && (loginForm.get('clave').dirty || submitted)">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                <span *ngIf="loginForm.get('clave').errors['required']" class="control-label text-danger small">Este campo es requerido</span>
+              </div>
+            </div>
+            <div class="funkyradio">
+              <div class="funkyradio-success mg-t-10">
+                <div class="row row-flat middle-xs">
+                  <div class="col-xs-9 row-flat ">
+                    <input (change)="setModelCheck(userTypes.ADMIN.key)" value="3" type="radio" name="radio" id="radio1" />
+                    <label for="radio1">Administrador</label>
+                  </div>
+                  <div class="col-xs-3">
+                    <!--<i class="fa fa-question-circle icon-big vertical-top" (click)="modalService.show('INCAPACITYWORK_INCAPACITYREASON_GENERAL_ILLNESS_HELP')"></i>-->
+                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                  </div>
+                </div>
+              </div>
+              <div class="funkyradio-success mg-t-10">
+                <div class="row row-flat middle-xs">
+                  <div class="col-xs-9 row-flat ">
+                    <input (change)="setModelCheck(userTypes.JUGADOR.key)" value="1" type="radio" name="radio" id="radio2"/>
+                    <label for="radio2">Jugador</label>
+                  </div>
+                  <div class="col-xs-3">
+                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                  </div>
+                </div>
+              </div>
+              <div class="funkyradio-success mg-t-10">
+                <div class="row row-flat middle-xs">
+                  <div class="col-xs-9 row-flat ">
+                    <input (change)="setModelCheck(userTypes.ARBITRO.key)" value="2" type="radio" name="radio" id="radio3" />
+                    <label for="radio3">Arbitro</label>
+                  </div>
+                  <div class="col-xs-3">
+                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg btn-block">Iniciar Sesion</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
