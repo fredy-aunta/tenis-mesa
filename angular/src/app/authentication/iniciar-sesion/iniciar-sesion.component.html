@@ -29,6 +29,8 @@
               <div class="text-danger small" *ngIf="loginForm.get('nombreUsuario').errors && (loginForm.get('nombreUsuario').dirty || submitted)">
                 <i class="fa fa-times" aria-hidden="true"></i>
                 <span *ngIf="loginForm.get('nombreUsuario').errors['required']">Este campo es obligatorio</span>
+                <span *ngIf="loginForm.get('nombreUsuario').errors['maxlength']">El email debe tener un formato correcto</span>
+                <span *ngIf="loginForm.get('nombreUsuario').errors['minlength']">El email debe tener un formato correcto</span>
               </div>
             </div>
             <!-- Password Component -->

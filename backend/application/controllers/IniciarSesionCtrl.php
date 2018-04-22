@@ -49,12 +49,15 @@ class IniciarSesionCtrl extends MY_Controller
                     $response['usuarioLogueado'] = $usuario;
                     $responseCode = REST_Controller::HTTP_OK;
                 } else {
-                    $this->ion_auth->set_errors('login_unsuccessful');
-                    $response['error'] = $this->ion_auth->errors();
-                    $responseCode = REST_Controller::HTTP_BAD_REQUEST;
+                    $this->ion_auth->set_model_error('login_unsuccessful');
+                    $response['error'] = $this->ion_auth->model_errors();
+                    $response['nom'] = $nombreUsuario;
+                    $response['clave'] = $clave;
+                    $response['tipo'] = $tipo;
+                    $responseCode = REST_Controller::HTTP_UNAUTHORIZED;
                 }
             } else {
-                $response['error'] = $this->ion_auth->errors();
+                $response['error'] = $this->ion_auth->model_errors();
                 $responseCode = REST_Controller::HTTP_BAD_REQUEST;
             }
         }

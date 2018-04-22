@@ -1,4 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {IniciarSesionComponent} from './authentication/iniciar-sesion/iniciar-sesion.component';
@@ -56,6 +57,7 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     AsociarJugadoresComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
