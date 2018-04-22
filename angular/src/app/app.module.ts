@@ -52,7 +52,7 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     DefinirJugadoresComponent,
     ConsultarTorneosComponent,
     ConsultarTorneoComponent,
-    AlertComponent
+    AlertComponent,
     CommonComponent,
     EditarTorneoComponent,
     AsociarJugadoresComponent
