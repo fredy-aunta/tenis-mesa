@@ -8,7 +8,11 @@
   </div>
   <div>
     <h3>Estructura</h3>
-    Estructura: <input type="text" name="tipoModalidad" required="required" placeholder="Estructura"><br>
+    <select name="estructura" id="estructura">
+      <option value="">--</option>
+      <option value="1">Arbol</option>
+      <option value="2">Cuadros</option>
+    </select><br>
   </div><br>
-  <button class="btn-lg">Crear</button>
+  <button class="btn-lg"><a routerLink="/admin/DefinirJugadores">Crear</a></button>
 </div>

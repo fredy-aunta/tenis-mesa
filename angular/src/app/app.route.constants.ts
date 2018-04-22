@@ -3,12 +3,16 @@ import {Routes} from '@angular/router';
 import {AuthenticationRouterOutletComponent} from './authentication/authentication-router-outlet.component';
 import {AdministradorRouterOutletComponent} from './administrador/administrador-router-outlet.component';
 import {AdministradorComponent} from './administrador/administrador.component';
-import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usuario.component';
+import {EditarUsuarioComponent} from './_common/editar-usuario/editar-usuario.component';
 import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
-import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
+import {ConsultarTorneosComponent} from './_common/consultar-torneos/consultar-torneos.component';
 import {CrearUsuarioComponent} from './administrador/crear-usuario/crear-usuario.component';
-import {ConsultarUsuarioComponent} from './administrador/consultar-usuario/consultar-usuario.component';
+import {ConsultarUsuarioComponent} from './_common/consultar-usuario/consultar-usuario.component';
 import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/consultar-usuarios.component';
+import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
+import {AsociarJugadoresComponent} from './administrador/asociar-jugadores/asociar-jugadores.component';
+import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-torneo.component';
+import {EditarTorneoComponent} from './administrador/editar-torneo/editar-torneo.component';
 
 export const AuthRoutes: Routes = [
   { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
@@ -58,6 +62,22 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'ConsultarTorneos',
         component: ConsultarTorneosComponent
+      },
+      {
+        path: 'DefinirJugadores',
+        component: DefinirJugadoresComponent
+      },
+      {
+        path: 'asociarJugadores',
+        component: AsociarJugadoresComponent
+      },
+      {
+        path: 'ConsultarTorneo',
+        component: ConsultarTorneoComponent
+      },
+      {
+        path: 'EditarTorneo',
+        component: EditarTorneoComponent
       }/*,
       {
         path: 'wizard',
