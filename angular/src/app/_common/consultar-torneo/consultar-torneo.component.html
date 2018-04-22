@@ -1,14 +1,17 @@
 <div align="center" *ngIf="tournament">
   <div>
-    {{tournament.id}}
+    {{tournament.idTorneo}}
   </div>
   <div>
     <h6>{{tournament.idTorneo}}</h6>
     <h6>Nombre: {{tournament.nombre}}</h6>
     <h6>Cantidad Jugadores: {{tournament.cantidadJugadores}}</h6>
-    <h6>estructura: {{tournament.estructura.nombre}}</h6>
-    <h6>Telefono: {{tournament.telefono}}</h6>
-    <h6>Tipo: {{tournament.tipo}}</h6>
-    <h6>Estado: {{tournament.estado}}</h6>
+    <h6>estructura: {{tournament.estructura}}</h6>
+    <!--<h4>Partidos</h4>
+    <div *ngFor="let partido of partidos">
+      <h6>partido.idPartido</h6>
+      <h6>partido.fechaHora</h6>
+    </div>-->
+
   </div>
 </div>

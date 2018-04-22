@@ -72,11 +72,11 @@ export const ProtectedRoutes: Routes = [
         component: AsociarJugadoresComponent
       },
       {
-        path: 'ConsultarTorneo',
+        path: 'ConsultarTorneo/:id',
         component: ConsultarTorneoComponent
       },
       {
-        path: 'EditarTorneo',
+        path: 'EditarTorneo/:id',
         component: EditarTorneoComponent
       }/*,
       {

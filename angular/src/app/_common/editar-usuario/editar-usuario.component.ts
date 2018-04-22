@@ -20,9 +20,9 @@ export class EditarUsuarioComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.userService.getUser(id)
       .then(data =>
-        this.user = data['usuario']
+        this.user = data['usuario'],
+        error => console.error(error)
       )
       .catch(error => console.error(error));
   }
-
 }
