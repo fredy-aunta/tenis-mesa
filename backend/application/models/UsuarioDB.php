@@ -41,6 +41,9 @@ class UsuarioDB extends CI_Model
 //        $this->db->where('password', $clave);
         $this->db->where('tipo', $tipo);
         $query = $this->db->get(self::TABLE_NAME);
+        if ($query->num_rows() != 1) {
+            return $usuario;
+        }
         $usuarioDb = $query->row();
         $usuario = new Usuario();
         $usuario->setId($usuarioDb->id);

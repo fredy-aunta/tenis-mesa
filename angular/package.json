@@ -8,7 +8,8 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "predeploy": "ng build -prod -aot"
   },
   "private": true,
   "dependencies": {
@@ -22,9 +23,21 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
+    "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
+    "circular-json": "^0.3.3",
     "core-js": "^2.4.1",
+    "enhanced-resolve": "^3.3.0",
+    "flexboxgrid": "^6.3.1",
+    "gulp": "^3.9.1",
+    "gulp.spritesmith": "^6.5.1",
+    "moment": "^2.18.1",
+    "mydaterangepicker": "^4.1.9",
+    "ng2-archwizard": "^1.7.0",
     "ng2-cookies": "^1.0.12",
+    "ngx-bootstrap": "^1.8.0",
+    "ngx-facebook": "^2.4.0",
+    "ngx-mydatepicker": "^2.1.0",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"
   },

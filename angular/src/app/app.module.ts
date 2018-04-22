@@ -18,7 +18,7 @@ import {PageNotFoundComponent} from './_core/page-not-found/page-not-found.compo
 import {AuthenticationService} from './_services/authentication.service';
 import {FormDataUtil} from './_services/form-data-util.service';
 import {RestServiceUtil} from './_services/rest-service-util.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_CONFIG, TM_APP_CONFIG} from './app.config';
 import {CookieService} from 'ng2-cookies';
 import {EditarUsuarioComponent} from './_common/editar-usuario/editar-usuario.component';
@@ -27,6 +27,8 @@ import {DefinirJugadoresComponent} from './administrador/definir-jugadores/defin
 import {ConsultarTorneosComponent} from './_common/consultar-torneos/consultar-torneos.component';
 import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-torneo.component';
 import {TorneoService} from './_services/torneo.service';
+import {AlertService} from './_services/alert.service';
+import {AlertComponent} from './_core/alert/alert.component';
 import { CommonComponent } from './-common/-common.component';
 import { EditarTorneoComponent } from './administrador/editar-torneo/editar-torneo.component';
 import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/asociar-jugadores.component';
@@ -50,6 +52,7 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     DefinirJugadoresComponent,
     ConsultarTorneosComponent,
     ConsultarTorneoComponent,
+    AlertComponent
     CommonComponent,
     EditarTorneoComponent,
     AsociarJugadoresComponent
@@ -58,7 +61,9 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     NgbModule.forRoot(),
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule/*,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule/*,
     RouterModule.forRoot([
       {
         path: 'CrearUsuario',
@@ -91,7 +96,10 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     FormBuilder,
     {provide: APP_CONFIG, useValue: TM_APP_CONFIG},
     CookieService,
-    TorneoService
+    TorneoService,
+    FormsModule,
+    ReactiveFormsModule,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })

@@ -17,11 +17,14 @@ class IniciarSesionCtrl extends MY_Controller
 
     public function index_post()
     {
+        $userLogin = $this->post('userLogin');
         $tipo = $this->post('tipo');
         $response = array('usuarioLogueado' => null);
-        if ($tipo != null ){
-            $nombreUsuario = $this->post('nombreUsuario');
-            $clave = $this->post('clave');
+        $responseCode = REST_Controller::HTTP_BAD_REQUEST;
+        if ($userLogin){
+            $tipo = $userLogin['tipo'];
+            $nombreUsuario = $userLogin['nombreUsuario'];
+            $clave = $userLogin['clave'];
             switch($tipo){
                 case 1://Jugador
                     $tipo = Usuario::TIPO_JUGADOR;
@@ -44,14 +47,17 @@ class IniciarSesionCtrl extends MY_Controller
                 if ($usuario instanceof Usuario){
                     $this->session->set_userdata("usuarioLogueado", $usuario);
                     $response['usuarioLogueado'] = $usuario;
+                    $responseCode = REST_Controller::HTTP_OK;
                 } else {
                     $this->ion_auth->set_errors('login_unsuccessful');
                     $response['error'] = $this->ion_auth->errors();
+                    $responseCode = REST_Controller::HTTP_BAD_REQUEST;
                 }
             } else {
                 $response['error'] = $this->ion_auth->errors();
+                $responseCode = REST_Controller::HTTP_BAD_REQUEST;
             }
         }
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->response($response, $responseCode);
     }
 }
