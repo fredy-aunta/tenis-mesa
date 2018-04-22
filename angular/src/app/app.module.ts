@@ -29,7 +29,6 @@ import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-tor
 import {TorneoService} from './_services/torneo.service';
 import {AlertService} from './_services/alert.service';
 import {AlertComponent} from './_core/alert/alert.component';
-import { CommonComponent } from './-common/-common.component';
 import { EditarTorneoComponent } from './administrador/editar-torneo/editar-torneo.component';
 import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/asociar-jugadores.component';
 
@@ -53,7 +52,6 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     ConsultarTorneosComponent,
     ConsultarTorneoComponent,
     AlertComponent,
-    CommonComponent,
     EditarTorneoComponent,
     AsociarJugadoresComponent
   ],
