@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../_model/User';
 import {FormDataUtil} from '../../_services/form-data-util.service';
 import {UserService} from '../../_services/user.service';
@@ -67,9 +67,9 @@ export class IniciarSesionComponent implements OnInit {
       this.userService.loginUser({userLogin: this.user})
         .then(loggedInUser => {
           this.requestInProgress = false;
-          this.authenticationService.registerLoginData(loggedInUser);
-          // const url = this.authenticationService.getRedirectUrl('taxpayer');
-          const url = '';
+          // this.authenticationService.registerLoginData(loggedInUser);
+          const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
+          // const url = '';
           this.router.navigate([url]);
         }).catch(response => {
         this.requestInProgress = false;
@@ -78,7 +78,6 @@ export class IniciarSesionComponent implements OnInit {
           this.alertService.showFormError();
           this.wrongUserOrPassword = true;
         }
-
         // TODO: Mostrar error
         this.alertService.showFormError();
       });

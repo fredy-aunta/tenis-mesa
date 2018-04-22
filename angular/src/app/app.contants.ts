@@ -3,8 +3,8 @@
  * @type {{ADMIN: {value: string; key: string}; JUGADOR: {value: string; key: string}; ARBITRO: {value: string; key: string}}}
  */
 export const USER_TYPES = {
-  ADMIN: {value: 'Administrador', key: '1'},
-  JUGADOR: {value: 'Jugador', key: '3'},
+  ADMIN: {value: 'Administrador', key: '3'},
+  JUGADOR: {value: 'Jugador', key: '1'},
   ARBITRO: {value: 'Arbitro', key: '2'},
 };
 

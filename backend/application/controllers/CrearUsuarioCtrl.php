@@ -17,7 +17,7 @@ class CrearUsuarioCtrl extends MY_Controller
     public function index_post()
     {
         $tipo = $this->post('tipo');
-        $response = array('usuarioCreado' => false);
+        $response = array();
         if ($tipo != null ){
             $nombreUsuario = $this->post('nombreUsuario');
             $clave = $this->post('clave');

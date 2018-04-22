@@ -17,11 +17,11 @@ export class AuthenticationService {
   public user: User;
   // public token: string;
   //
-  // public redirectUrl: string = null;
+  public redirectUrl: string = null;
   //
-  private modules = {administrador: {path: '/', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin'},
-    jugador: {path: '/', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador'},
-    arbitro: {path: '/', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro'}};
+  private modules = {administrador: {path: '/', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
+    jugador: {path: '/', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador/home'},
+    arbitro: {path: '/', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}};
   //
   private loginSubject = new Subject<User>();
   //
@@ -94,17 +94,17 @@ export class AuthenticationService {
     return Promise.resolve(this.user != null);
   }
 
-  // public getRedirectUrl(moduleName) {
-  //   if (this.redirectUrl === null) {
-  //     return this.getDefaultRedirectUrl(moduleName);
-  //   } else {
-  //     return this.redirectUrl;
-  //   }
-  // }
+  public getRedirectUrl(moduleName) {
+    if (this.redirectUrl === null) {
+      return this.getDefaultRedirectUrl(moduleName.toLowerCase());
+    } else {
+      return this.redirectUrl;
+    }
+  }
 
-  // public getDefaultRedirectUrl(moduleName): string {
-  //   return this.modules[moduleName]['defaultUrl'];
-  // }
+  public getDefaultRedirectUrl(moduleName): string {
+    return this.modules[moduleName]['defaultUrl'];
+  }
 
 
   // public getFirstName() {
@@ -124,8 +124,8 @@ export class AuthenticationService {
   //   return this.taxpayerUser;
   // }
 
-    // onLogin(): Observable<TaxpayerUser> {
-    //     return this.loginSubject.asObservable();
-    // }
+    onLogin(): Observable<User> {
+        return this.loginSubject.asObservable();
+    }
 
 }

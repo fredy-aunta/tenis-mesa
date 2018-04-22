@@ -548,4 +548,13 @@ class Ion_auth
 		return $check_all;
 	}
 
+    public function set_model_error($error)
+    {
+        $this->set_error($error);
+    }
+
+    public function model_errors()
+    {
+        return $this->errors();
+    }
 }
