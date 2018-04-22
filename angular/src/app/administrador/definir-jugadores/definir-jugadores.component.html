@@ -1,3 +1,19 @@
-<div>
+      <div>
+        <div class="form-group" *ngIf="players">
+          <select name="jugadores" id="jugadores" multiple *ngFor="let player of players">
+              <option value="{{players.id}}">{{player.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="button" id="agregarJugador" class="btn btn-success">Agregar Jugador</button>
+          <button type="button" id="removerJugador" class="btn btn-success">Remover Jugador</button>
+        </div>
+        <div class="form-group">
+          <select name="jugadoresSeleccionados" class="form-control" multiple id="jugadoresSeleccionados">
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="button" id="confirmarJugadores" class="btn btn-success"><a routerLink="/admin/asociarJugadores">Confirmar Jugadores</a></button>
+        </div>
 
-</div>
+      </div>

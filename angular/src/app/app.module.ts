@@ -6,7 +6,7 @@ import {AdministradorComponent} from './administrador/administrador.component';
 import {MenuComponent} from './administrador/menu/menu.component';
 import {CrearUsuarioComponent} from './administrador/crear-usuario/crear-usuario.component';
 import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/consultar-usuarios.component';
-import {ConsultarUsuarioComponent} from './administrador/consultar-usuario/consultar-usuario.component';
+import {ConsultarUsuarioComponent} from './_common/consultar-usuario/consultar-usuario.component';
 import {UserService} from './_services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -21,14 +21,17 @@ import {RestServiceUtil} from './_services/rest-service-util.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_CONFIG, TM_APP_CONFIG} from './app.config';
 import {CookieService} from 'ng2-cookies';
-import {EditarUsuarioComponent} from './administrador/editar-usuario/editar-usuario.component';
+import {EditarUsuarioComponent} from './_common/editar-usuario/editar-usuario.component';
 import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
 import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
-import {ConsultarTorneosComponent} from './administrador/consultar-torneos/consultar-torneos.component';
-import {ConsultarTorneoComponent} from './administrador/consultar-torneo/consultar-torneo.component';
+import {ConsultarTorneosComponent} from './_common/consultar-torneos/consultar-torneos.component';
+import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-torneo.component';
 import {TorneoService} from './_services/torneo.service';
 import {AlertService} from './_services/alert.service';
 import {AlertComponent} from './_core/alert/alert.component';
+import { CommonComponent } from './-common/-common.component';
+import { EditarTorneoComponent } from './administrador/editar-torneo/editar-torneo.component';
+import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/asociar-jugadores.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import {AlertComponent} from './_core/alert/alert.component';
     ConsultarTorneosComponent,
     ConsultarTorneoComponent,
     AlertComponent
+    CommonComponent,
+    EditarTorneoComponent,
+    AsociarJugadoresComponent
   ],
   imports: [
     NgbModule.forRoot(),
