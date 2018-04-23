@@ -16,11 +16,13 @@ class CrearUsuarioCtrl extends MY_Controller
 
     public function index_post()
     {
-        $tipo = $this->post('tipo');
+		$userCreate = $this->post('userCreate');
+        $tipo = $userCreate['tipo'];
         $response = array();
-        if ($tipo != null ){
-            $nombreUsuario = $this->post('nombreUsuario');
-            $clave = $this->post('clave');
+		$responseCode = REST_Controller::HTTP_NOT_FOUND;
+        if ($userCreate){
+            $nombreUsuario = $userCreate['nombreUsuario'];
+            $clave = $userCreate['clave'];
             switch($tipo){
                 case 1://Jugador
                     $tipo = Usuario::TIPO_JUGADOR;
@@ -42,20 +44,22 @@ class CrearUsuarioCtrl extends MY_Controller
                     break;
             }
             $additionalInfo = array(
-                'nombre' => $this->post('nombre'),
-                'apellido' => $this->post('apellido'),
-                'cedula' => $this->post('nombreUsuario'),
+                'nombre' => $userCreate['nombre'],
+                'apellido' => $userCreate['apellido'],
+                'cedula' => $userCreate['nombreUsuario'],
                 'tipo' => $tipo,
-                'telefono' => $this->post('telefono'),
-                'fechaNacimiento' => $this->post('fechaNacimiento')
+                'telefono' => $userCreate['telefono'],
+                'fechaNacimiento' => $userCreate['fechaNacimiento']
             );
-            $idCreatedUser = $this->ion_auth->register($nombreUsuario, $clave, null, $additionalInfo);
-            if ($idCreatedUser){
-                $response['usuarioCreado'] = $idCreatedUser;
+            $createdUser = $this->ion_auth->register($nombreUsuario, $clave, null, $additionalInfo);
+            if ($createdUser){
+                $response['usuarioCreado'] = $createdUser;
+				$responseCode = REST_Controller::HTTP_OK;
             } else {
-                $response['error'] = $this->ion_auth->errors();
+                $response['error'] = $this->ion_auth->model_errors();
+				$responseCode = REST_Controller::HTTP_BAD_REQUEST;
             }
         }
-        $this->response($response, REST_Controller::HTTP_OK);
+        $this->response($response, $responseCode);
     }
 }

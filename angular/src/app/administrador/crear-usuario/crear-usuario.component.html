@@ -1,17 +1,256 @@
-<div align="left" class="group">
-  <h1>Crear Usuario</h1>
-  <div class="input-group">
-    <input type="radio" name="tipo" value="3" required="required"> Administrador
-    <input type="radio" name="tipo" value="1" required="required"> Jugador
-    <input type="radio" name="tipo" value="2" required="required"> Arbitro<br>
-  </div>
-  Nombre de Usuario: <input type="text" name="nombreUsuario" required="required" placeholder="Nombre de Usuario"> <br>
-  Clave: <input type="text" name="clave" required="required" placeholder="Clave"><br>
-  Nombre: <input type="text" name="nombre" required="required" placeholder="Nombre"><br>
-  Apellido: <input type="text" name="apellido" required="required" placeholder="Apellido"> <br>
-  Cedula: <input type="number" name="cedula" required="required" placeholder="Cedula"> <br>
-  Telefono: <input type="number" name="telefono" required="required" placeholder="Telefono"> <br>
-  Fecha de Nacimiento: <input type="date" name="fechaNacimiento" required="required" placeholder="Fecha de Nacimiento"> <br><br>
-  <button class="btn-lg">Crear</button>
-</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-2 col-sm-12 col-md-10">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-12 fields-panel col-sm-12">
+                <h3 class="box-title">Crear Usuario</h3>
+                <p></p>
+                <form [formGroup]="createUserForm" (ngSubmit)="submitCreateUserForm(createUserForm.value, createUserForm.valid)" novalidate>
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('tipo').errors && (createUserForm.get('tipo').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Tipo</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <div class="funkyradio">
+                              <div class="funkyradio-success mg-t-10">
+                                <div class="row row-flat middle-xs">
+                                  <div class="col-xs-9 row-flat ">
+                                    <input (change)="setModelCheck(userTypes.ADMIN.key)" value="userTypes.ADMIN.key" type="radio" name="radio" id="radio1" />
+                                    <label for="radio1">Administrador</label>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <!--<i class="fa fa-question-circle icon-big vertical-top" (click)="modalService.show('INCAPACITYWORK_INCAPACITYREASON_GENERAL_ILLNESS_HELP')"></i>-->
+                                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="funkyradio-success mg-t-10">
+                                <div class="row row-flat middle-xs">
+                                  <div class="col-xs-9 row-flat ">
+                                    <input (change)="setModelCheck(userTypes.JUGADOR.key)" value="userTypes.JUGADOR.key" type="radio" name="radio" id="radio2"/>
+                                    <label for="radio2">Jugador</label>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="funkyradio-success mg-t-10">
+                                <div class="row row-flat middle-xs">
+                                  <div class="col-xs-9 row-flat ">
+                                    <input (change)="setModelCheck(userTypes.ARBITRO.key)" value="userTypes.ARBITRO.key" type="radio" name="radio" id="radio3" />
+                                    <label for="radio3">Arbitro</label>
+                                  </div>
+                                  <div class="col-xs-3">
+                                    <!--<i class="fa fa-question-circle icon-big vertical-top"></i>-->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
 
+                            <div class="text-danger small" *ngIf="createUserForm.get('tipo').errors && (createUserForm.get('tipo').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('tipo').errors['required']">Este campo es obligatorio</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+                  <!-- nombre usuario Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('nombreUsuario').errors && (createUserForm.get('nombreUsuario').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Nombre de usuario</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputNombreUsuario"
+                              placeholder="Nombre de Usuario"
+                              formControlName="nombreUsuario">
+                            <div class="text-danger small" *ngIf="createUserForm.get('nombreUsuario').errors && (createUserForm.get('nombreUsuario').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('nombreUsuario').errors['required']">Este campo es obligatorio</span>
+                              <span *ngIf="createUserForm.get('nombreUsuario').errors['minLength']">Minimo</span>
+                              <span *ngIf="createUserForm.get('nombreUsuario').errors['maxLength']">Maximo</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                      <!-- clave Control -->
+                      <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('clave').errors && (createUserForm.get('clave').dirty  || submitted)}">
+                        <div class="row middle-xs">
+                          <div class="col-xs-12 col-sm-2">
+                            <label class="control-label">Contraseña</label>
+                          </div>
+                          <div class="col-xs-12 row-flat col-sm-10">
+                            <div class="row row-flat middle-xs">
+                              <div class="col-xs-9 col-sm-10">
+                                <input
+                                  type="password"
+                                  class="form-control input-lg"
+                                  id="inputclave"
+                                  placeholder="Contraseña"
+                                  formControlName="clave">
+                                <div class="text-danger small" *ngIf="createUserForm.get('clave').errors && (createUserForm.get('clave').dirty  || submitted)">
+                                  <i class="fa fa-times" aria-hidden="true"></i>
+                                  <span *ngIf="createUserForm.get('clave').errors['required']">Este campo es obligatorio</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                  <!-- nombre Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('nombre').errors && (createUserForm.get('nombre').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Nombre</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputnombre"
+                              placeholder="Nombre"
+                              formControlName="nombre">
+                            <div class="text-danger small" *ngIf="createUserForm.get('nombre').errors && (createUserForm.get('nombre').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('nombre').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- apellido Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('apellido').errors && (createUserForm.get('apellido').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Apellido</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputapellido"
+                              placeholder="Apellido"
+                              formControlName="apellido">
+                            <div class="text-danger small" *ngIf="createUserForm.get('apellido').errors && (createUserForm.get('apellido').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('apellido').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- cedula Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('cedula').errors && (createUserForm.get('cedula').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Cedula</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputcedula"
+                              placeholder="Cedula"
+                              formControlName="cedula">
+                            <div class="text-danger small" *ngIf="createUserForm.get('cedula').errors && (createUserForm.get('cedula').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('cedula').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- telefono Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('telefono').errors && (createUserForm.get('telefono').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Telefono</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputtelefono"
+                              placeholder="Telefono"
+                              formControlName="telefono">
+                            <div class="text-danger small" *ngIf="createUserForm.get('telefono').errors && (createUserForm.get('telefono').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('telefono').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- fechaNacimiento Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createUserForm.get('fechaNacimiento').errors && (createUserForm.get('fechaNacimiento').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Fecha de nacimiento</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputfechaNacimiento"
+                              placeholder="Fecha de nacimiento"
+                              formControlName="fechaNacimiento">
+                            <div class="text-danger small" *ngIf="createUserForm.get('fechaNacimiento').errors && (createUserForm.get('fechaNacimiento').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createUserForm.get('fechaNacimiento').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Usuario</button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -16,11 +16,11 @@ import {AlertService} from '../../_services/alert.service';
 export class IniciarSesionComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public userTypes = USER_TYPES;
   public user: User;
   public submitted: boolean;
-  public userTypes = USER_TYPES;
-  private requestInProgress: boolean;
-  private wrongUserOrPassword: boolean;
+  // private requestInProgress: boolean;
+  // private wrongUserOrPassword: boolean;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,20 +63,20 @@ export class IniciarSesionComponent implements OnInit {
     this.user = this.formDataUtil.copyFormToObject(user, this.user, User.classMetadata);
     this.submitted = true;
     if (isValid) {
-      this.requestInProgress = true;
+      // this.requestInProgress = true;
       this.userService.loginUser({userLogin: this.user})
         .then(loggedInUser => {
-          this.requestInProgress = false;
+          // this.requestInProgress = false;
           // this.authenticationService.registerLoginData(loggedInUser);
           const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
           // const url = '';
           this.router.navigate([url]);
         }).catch(response => {
-        this.requestInProgress = false;
+        // this.requestInProgress = false;
         if (response.status === 404) {
           // TODO: Mostrar error
           this.alertService.showFormError();
-          this.wrongUserOrPassword = true;
+          // this.wrongUserOrPassword = true;
         }
         // TODO: Mostrar error
         this.alertService.showFormError();
