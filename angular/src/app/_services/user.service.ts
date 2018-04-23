@@ -51,5 +51,15 @@ export class UserService {
 
       );
   }
+
+  createUser(params): Promise<User> {
+    const url = 'http://dev.tenis-mesa.com/CrearUsuarioCtrl/';
+    return this.http.post(url, params)
+      .toPromise()
+      .then(response => {
+          return response['usuarioCreado'] as User;
+        }
+      );
+  }
 }
 
