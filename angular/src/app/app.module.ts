@@ -30,7 +30,7 @@ import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-tor
 import {TorneoService} from './_services/torneo.service';
 import {AlertService} from './_services/alert.service';
 import {AlertComponent} from './_core/alert/alert.component';
-import { EditarTorneoComponent } from './administrador/editar-torneo/editar-torneo.component';
+import { EditarTorneoComponent } from './_common/editar-torneo/editar-torneo.component';
 import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/asociar-jugadores.component';
 import { ConsultarPartidosComponent } from './_common/consultar-partidos/consultar-partidos.component';
 import {PartidoService} from './_services/partido.service';

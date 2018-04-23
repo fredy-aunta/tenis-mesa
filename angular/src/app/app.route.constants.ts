@@ -12,7 +12,7 @@ import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/con
 import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
 import {AsociarJugadoresComponent} from './administrador/asociar-jugadores/asociar-jugadores.component';
 import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-torneo.component';
-import {EditarTorneoComponent} from './administrador/editar-torneo/editar-torneo.component';
+import {EditarTorneoComponent} from './_common/editar-torneo/editar-torneo.component';
 import {ConsultarPartidosComponent} from './_common/consultar-partidos/consultar-partidos.component';
 import {ConsultarPartidoComponent} from './_common/consultar-partido/consultar-partido.component';
 
@@ -89,6 +89,15 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'ConsultarTorneo/:id',
         component: ConsultarTorneoComponent
+      },
+      {
+        path: 'EditarTorneo',
+        children: [
+          {
+            path: 'ConsultarPartido/:id',
+            component: ConsultarPartidoComponent
+          }
+        ]
       },
       {
         path: 'EditarTorneo/:id',
