@@ -18,7 +18,13 @@ class ConsultarPartidosTorneoCtrl extends MY_Controller
     {
         $partidos = $this->partidoDB->getAllPartidos($idTorneo);
 
-        $response["partidos"] = $partidos;
-        $this->response($response, REST_Controller::HTTP_OK);
+		if (!empty($partidos)) {
+			$response["partidos"] = $partidos;
+			$responseCode = REST_Controller::HTTP_OK;
+		} else {
+			$response["error"] = "Partidos no encontrados";
+			$responseCode = REST_Controller::HTTP_NOT_FOUND;
+		}
+        $this->response($response, $responseCode);
     }
 }

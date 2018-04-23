@@ -49,8 +49,12 @@ class TorneoDB extends CI_Model
     {
         $this->db->select('torneo.*,e.nombre');
         $this->db->join('estructura e', 'e.idEstructura = torneo.idEstructura');
+		$this->db->where('torneo.idTorneo', $idTorneo);
         $query = $this->db->get(self::TABLE_NAME);
         $torneoDb = $query->row();
+		if ($query->num_rows() != 1) {
+			return null;
+		}
         $torneo = new Torneo();
         $torneo->setIdTorneo($torneoDb->idTorneo);
         $torneo->setNombre($torneoDb->nombre);

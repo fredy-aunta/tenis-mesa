@@ -8,17 +8,17 @@
 
 class Partido
 {
-    private $idPartido;
+    public $idPartido;
     /**
      * @var DateTime
      */
-    private $fechaHora;
-    private $idPartidoTorneo;
-    private $idJugador1;
-    private $idJugador2;
-    private $resultado1;
-    private $resultado2;
-    private $idArbitro;
+    public $fechaHora;
+    public $idPartidoTorneo;
+    public $idJugador1;
+    public $idJugador2;
+    public $resultado1;
+    public $resultado2;
+    public $idArbitro;
 
     public function __construct($partido_db = null)
     {
@@ -26,13 +26,15 @@ class Partido
             $this->setIdPartido($partido_db->idPartido);
             $this->setFechaHora($partido_db->fechaHora);
             $this->setIdPartidoTorneo($partido_db->idPartidoTorneo);
-            list($resultado1,$resultado2) = explode(' ',$partido_db->resultados);
-            list($idJugador1,$idJugador2,$idArbitro) = explode(' ',$partido_db->usuarios);
-            $this->setIdJugador1($idJugador1);
-            $this->setIdJugador2($idJugador2);
-            $this->setResultado1($resultado1);
-            $this->setResultado2($resultado2);
-            $this->setIdArbitro($idArbitro);
+            $idsUsuariosPartido = $this->getIdsUsuarios($partido_db->usuarios, $partido_db->tipos);
+			$this->setIdJugador1($idsUsuariosPartido['idJugador1']);
+                $this->setIdJugador2($idsUsuariosPartido['idJugador2']);
+			    $this->setIdArbitro($idsUsuariosPartido['idArbitro']);
+			if (!empty($partido_db->resultados)) {
+				list($resultado1,$resultado2) = explode(' ',$partido_db->resultados);
+				$this->setResultado1($resultado1);
+                $this->setResultado2($resultado2);
+			}
         }
     }
 
@@ -201,4 +203,25 @@ class Partido
         }
         return 0;
     }
+	
+	private function getIdsUsuarios($idsUsuarios, $tiposUsuarios) {
+		$idsUsuarios = explode(' ',$idsUsuarios);
+		$tiposUsuarios = explode(' ',$tiposUsuarios);
+		$usuariosPartido = [
+		    'idJugador1' => null,
+		    'idJugador2' => null,
+		    'idArbitro' => null,
+		];
+		for ($i = 0 ; $i < count($idsUsuarios) ; $i++) {
+				$tipo = $tiposUsuarios[$i];
+				if ($tipo == Usuario::TIPO_JUGADOR && is_null($usuariosPartido['idJugador1'])) {
+					$usuariosPartido['idJugador1'] = $idsUsuarios[$i];
+				} else if ($tipo == Usuario::TIPO_JUGADOR && is_null($usuariosPartido['idJugador2'])) {
+					$usuariosPartido['idJugador2'] = $idsUsuarios[$i];
+				} else if ($tipo == Usuario::TIPO_ARBITRO && is_null($usuariosPartido['idArbitro'])) {
+					$usuariosPartido['idArbitro'] = $idsUsuarios[$i];
+				}
+			}
+			return $usuariosPartido;
+	}
 }
