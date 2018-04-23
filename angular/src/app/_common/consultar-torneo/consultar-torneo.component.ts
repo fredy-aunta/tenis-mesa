@@ -21,7 +21,7 @@ export class ConsultarTorneoComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     this.tournamentService.getTorneo(id)
       .then(
-        data => this.tournament = data['torneo'],
+        data => this.tournament = data['torneo']
       ).catch(error => console.error(error));
   }
 

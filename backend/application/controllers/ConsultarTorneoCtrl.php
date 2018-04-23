@@ -14,15 +14,9 @@ class ConsultarTorneoCtrl extends MY_Controller
         $this->load->model('torneoDB');
     }
 
-    public function index_get()
+    public function index_get($idTorneo)
     {
-        $idTorneo = $this->get("idTorneo");
-        $usuario = $this->session->userdata('usuarioLogueado');
         $response = array('torneo' => null, 'tipo' => null);
-        if ($usuario instanceof Usuario) {
-            $tipo = $usuario->getTipo();
-            $response["tipo"] = $tipo;
-        }
 
         if (is_numeric($idTorneo) && $idTorneo > 0) {
             $torneo = $this->torneoDB->buscarTorneo($idTorneo);

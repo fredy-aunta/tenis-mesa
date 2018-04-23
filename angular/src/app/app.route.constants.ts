@@ -13,6 +13,8 @@ import {DefinirJugadoresComponent} from './administrador/definir-jugadores/defin
 import {AsociarJugadoresComponent} from './administrador/asociar-jugadores/asociar-jugadores.component';
 import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-torneo.component';
 import {EditarTorneoComponent} from './administrador/editar-torneo/editar-torneo.component';
+import {ConsultarPartidosComponent} from './_common/consultar-partidos/consultar-partidos.component';
+import {ConsultarPartidoComponent} from './_common/consultar-partido/consultar-partido.component';
 
 export const AuthRoutes: Routes = [
   { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
@@ -70,6 +72,19 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'asociarJugadores',
         component: AsociarJugadoresComponent
+      },
+      {
+        path: 'ConsultarTorneo',
+        children: [
+          {
+            path: 'ConsultarPartidos/:id',
+            component: ConsultarPartidosComponent
+          },
+          {
+            path: 'ConsultarPartido/:id',
+            component: ConsultarPartidoComponent
+          }
+        ]
       },
       {
         path: 'ConsultarTorneo/:id',

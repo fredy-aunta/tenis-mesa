@@ -1,14 +1,11 @@
-<div align="center" *ngIf="tournaments">
+<div align="center" *ngIf="tournament">
   <div>
-    {{tournament.id}}
+    {{tournament.idTorneo}}
   </div>
   <div>
     <h6>{{tournament.idTorneo}}</h6>
     <h6>Nombre: {{tournament.nombre}}</h6>
     <h6>Cantidad Jugadores: {{tournament.cantidadJugadores}}</h6>
     <h6>estructura: {{tournament.estructura.nombre}}</h6>
-    <h6>Telefono: {{tournament.telefono}}</h6>
-    <h6>Tipo: {{tournament.tipo}}</h6>
-    <h6>Estado: {{tournament.estado}}</h6>
   </div>
 </div>

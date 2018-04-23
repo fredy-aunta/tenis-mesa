@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Torneo} from '../_model/Torneo';
+import {Partido} from '../_model/Partido';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
-export class TorneoService {
+export class PartidoService {
 
   httpOptions: any;
 
@@ -19,22 +19,24 @@ export class TorneoService {
     };
   }
 
-  getTorneos(): Promise<Array<Torneo>> {
-    const url = 'http://dev.tenis-mesa.com/ConsultarTorneosCtrl';
+  getPartidosTorneo(id: string): Promise<Array<Partido>> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarPartidosTorneoCtrl/' + id;
     return this.http.get(url)
       .toPromise()
       .then(response => {
-          return response as Array<Torneo>;
+          return response as Array<Partido>;
         }
       );
   }
 
-  getTorneo(id: string): Promise<Torneo> {
-    const url = 'http://dev.tenis-mesa.com/ConsultarTorneoCtrl/' + id;
+  getPartido(id: string): Promise<Partido> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarPartidoCtrl/' + id;
     return this.http.get(url)
       .toPromise()
       .then(response => {
-        return response as Torneo;
-      });
+          return response as Partido;
+        }
+      );
   }
+
 }

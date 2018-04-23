@@ -47,8 +47,8 @@ class TorneoDB extends CI_Model
 
     public function buscarTorneo($idTorneo)
     {
-        $this->db->select('t.*,e.nombre');
-        $this->db->join('estructura e', 'e.idEstructura = t.idEstructura');
+        $this->db->select('torneo.*,e.nombre');
+        $this->db->join('estructura e', 'e.idEstructura = torneo.idEstructura');
         $query = $this->db->get(self::TABLE_NAME);
         $torneoDb = $query->row();
         $torneo = new Torneo();

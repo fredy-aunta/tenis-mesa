@@ -32,6 +32,9 @@ import {AlertService} from './_services/alert.service';
 import {AlertComponent} from './_core/alert/alert.component';
 import { EditarTorneoComponent } from './administrador/editar-torneo/editar-torneo.component';
 import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/asociar-jugadores.component';
+import { ConsultarPartidosComponent } from './_common/consultar-partidos/consultar-partidos.component';
+import {PartidoService} from './_services/partido.service';
+import { ConsultarPartidoComponent } from './_common/consultar-partido/consultar-partido.component';
 
 
 @NgModule({
@@ -54,7 +57,9 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     ConsultarTorneoComponent,
     AlertComponent,
     EditarTorneoComponent,
-    AsociarJugadoresComponent
+    AsociarJugadoresComponent,
+    ConsultarPartidosComponent,
+    ConsultarPartidoComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -99,7 +104,8 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
     TorneoService,
     FormsModule,
     ReactiveFormsModule,
-    AlertService
+    AlertService,
+    PartidoService
   ],
   bootstrap: [AppComponent]
 })

@@ -14,9 +14,8 @@ class ConsultarPartidosTorneoCtrl extends MY_Controller
         $this->load->model('partidoDB');
     }
 
-    public function index_get()
+    public function index_get($idTorneo)
     {
-        $idTorneo = $this->get("idTorneo");
         $partidos = $this->partidoDB->getAllPartidos($idTorneo);
 
         $response["partidos"] = $partidos;

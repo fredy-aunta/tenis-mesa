@@ -19,7 +19,7 @@ export class ConsultarTorneosComponent implements OnInit {
   ngOnInit() {
     this.tournamentService.getTorneos()
       .then(
-        data => this.tournaments = data['torneos'],
+        data => this.tournaments = data['torneos']
       ).catch(error => console.error(error));
   }
 

@@ -1,0 +1,31 @@
+<div>
+  <table>
+    <thead>
+    <tr>
+      <td>Id Partido</td>
+      <td>Fecha-Hora</td>
+      <td>idJugador1</td>
+      <td>idJugador2</td>
+      <td>idJugador2</td>
+      <td>resultado1</td>
+      <td>resultado2</td>
+      <td>idArbitro</td>
+      <td></td>
+    </tr>
+    </thead>
+    <tbody *ngIf="games">
+    <tr *ngFor="let game of games">
+      <td>{{game.idPartido}}</td>
+      <td>{{game.fechaHora}}</td>
+      <td>{{game.idJugador1}}</td>
+      <td>{{game.idJugador2}}</td>
+      <td>{{game.resultado1}}</td>
+      <td>{{game.resultado2}}</td>
+      <td>{{game.idArbitro}}</td>
+      <td>
+        <button class="btn-info"><a [routerLink]="['/admin/ConsultarTorneo/ConsultarPartido/',game.idPartido]"> Ver Partidos</a></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

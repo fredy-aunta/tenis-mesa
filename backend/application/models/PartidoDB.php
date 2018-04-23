@@ -40,7 +40,7 @@ class PartidoDB extends CI_Model
             " group_concat(u.tipo order by p.idPartidoTorneo ASC, u.tipo ASC SEPARATOR ' ') tipos" .
             " FROM " . self::TABLE_NAME_PARTIDO . " p" .
             " join usuarioPartido up on up.idPartido = p.idPartido" .
-            " join usuario u on u.idUsuario = up.idUsuario" .
+            " join usuario u on u.id = up.idUsuario" .
             " where p.idTorneo = " . $idTorneo .
             " group by p.idPartido");
 
