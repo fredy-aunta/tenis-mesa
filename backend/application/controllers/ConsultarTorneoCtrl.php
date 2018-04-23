@@ -20,8 +20,13 @@ class ConsultarTorneoCtrl extends MY_Controller
 
         if (is_numeric($idTorneo) && $idTorneo > 0) {
             $torneo = $this->torneoDB->buscarTorneo($idTorneo);
-            $response['torneo'] = $torneo;
-            $response_code = REST_Controller::HTTP_OK;
+			if ($torneo) {
+				$response['torneo'] = $torneo;
+				$response_code = REST_Controller::HTTP_OK;
+			} else {
+			    $response['error'] = "Torneo no existe";
+                $response_code = REST_Controller::HTTP_BAD_REQUEST;
+			}
         } else {
             $response['error'] = "Id torneo incorrecto";
             $response_code = REST_Controller::HTTP_BAD_REQUEST;

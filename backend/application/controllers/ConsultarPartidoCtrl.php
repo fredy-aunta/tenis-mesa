@@ -14,16 +14,17 @@ class ConsultarPartidoCtrl extends MY_Controller
         $this->load->model('partidoDB');
     }
 
-    public function index_get()
+    public function index_get($idPartido)
     {
-        $idPartido = $this->get("idPartido");
         $partido = $this->partidoDB->buscarPartido($idPartido);
         $response = array('partido' => null);
         $responseCode = REST_Controller::HTTP_BAD_REQUEST;
         if ($partido instanceof Partido) {
             $response['partido'] = $partido;
+			$responseCode = REST_Controller::HTTP_OK;
         } else {
             $response['error'] = "Error en Partido";
+			$responseCode = REST_Controller::HTTP_NOT_FOUND;
         }
         $this->response($response, $responseCode);
     }

@@ -47,31 +47,62 @@ class PartidoDB extends CI_Model
         $partidos = array();
         foreach ($query->result() as $row) {
             $partido = new Partido();
-            $partido->setIdPartido($row->idPartdo);
+            $partido->setIdPartido($row->idPartido);
             $partido->setFechaHora($row->fechaHora);
             $partido->setIdPartidoTorneo($row->idPartidoTorneo);
-            list($resultado1,$resultado2) = explode(' ',$row->resultados);
-            list($idJugador1,$idJugador2,$idArbitro) = explode(' ',$row->usuarios);
-            $partido->setIdJugador1($idJugador1);
-            $partido->setIdJugador2($idJugador2);
-            $partido->setResultado1($resultado1);
-            $partido->setResultado2($resultado2);
-            $partido->setIdArbitro($idArbitro);
+			$idsUsuarios = explode(' ',$row->usuarios);
+			$tiposUsuarios = explode(' ',$row->tipos);
+			$idJugador1 = null;
+			$idJugador2 = null;
+			$idArbitro = null;
+			$resultado1 = null;
+			$resultado2 = null;
+			$idsUsuariosPartido = $this->getIdsUsuarios($row->usuarios, $row->tipos);
+			$partido->setIdJugador1($idsUsuariosPartido['idJugador1']);
+                $partido->setIdJugador2($idsUsuariosPartido['idJugador2']);
+			    $partido->setIdArbitro($idsUsuariosPartido['idArbitro']);
+				
+			if (!empty($row->resultados)) {
+				list($resultado1,$resultado2) = explode(' ',$row->resultados);
+				$partido->setResultado1($resultado1);
+                $partido->setResultado2($resultado2);
+			}
             $partidos[] = $partido;
         }
         return $partidos;
     }
 
+	private function getIdsUsuarios($idsUsuarios, $tiposUsuarios) {
+		$idsUsuarios = explode(' ',$idsUsuarios);
+		$tiposUsuarios = explode(' ',$tiposUsuarios);
+		$usuariosPartido = [
+		    'idJugador1' => null,
+		    'idJugador2' => null,
+		    'idArbitro' => null,
+		];
+		for ($i = 0 ; $i < count($idsUsuarios) ; $i++) {
+				$tipo = $tiposUsuarios[$i];
+				if ($tipo == Usuario::TIPO_JUGADOR && is_null($usuariosPartido['idJugador1'])) {
+					$usuariosPartido['idJugador1'] = $idsUsuarios[$i];
+				} else if ($tipo == Usuario::TIPO_JUGADOR && is_null($usuariosPartido['idJugador2'])) {
+					$usuariosPartido['idJugador2'] = $idsUsuarios[$i];
+				} else if ($tipo == Usuario::TIPO_ARBITRO && is_null($usuariosPartido['idArbitro'])) {
+					$usuariosPartido['idArbitro'] = $idsUsuarios[$i];
+				}
+			}
+			return $usuariosPartido;
+	}
+	
     public function buscarPartido($idPartido) {
         $query = $this->db->query("SELECT p.idPartido, p.fechaHora, p.idPartidoTorneo
 , group_concat(up.idUsuario order by up.idUsuarioPartido ASC, u.tipo ASC SEPARATOR ' ') usuarios
 , group_concat(up.resultado order by up.idUsuarioPartido ASC, u.tipo ASC SEPARATOR ' ') resultados
 , group_concat(u.tipo order by p.idPartidoTorneo ASC, u.tipo ASC SEPARATOR ' ') tipos
- FROM " . self::TABLE_NAME_PARTIDO . "p
+ FROM " . self::TABLE_NAME_PARTIDO . " p
  join usuarioPartido up on up.idPartido = p.idPartido
- join usuario u on u.idUsuario = up.idUsuario 
+ join usuario u on u.id = up.idUsuario 
  where up.idPartido = " . $idPartido .
- "group by p.idPartido");
+ " group by p.idPartido");
         $partido_db = $query->row();
         $partido = new Partido($partido_db);
         return $partido;
