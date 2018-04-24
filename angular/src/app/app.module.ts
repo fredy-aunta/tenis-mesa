@@ -35,6 +35,9 @@ import { AsociarJugadoresComponent } from './administrador/asociar-jugadores/aso
 import { ConsultarPartidosComponent } from './_common/consultar-partidos/consultar-partidos.component';
 import {PartidoService} from './_services/partido.service';
 import { ConsultarPartidoComponent } from './_common/consultar-partido/consultar-partido.component';
+import { ArbitroComponent } from './arbitro/arbitro.component';
+import { IngresarResultadosComponent } from './arbitro/ingresar-resultados/ingresar-resultados.component';
+import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.component';
 
 
 @NgModule({
@@ -59,7 +62,10 @@ import { ConsultarPartidoComponent } from './_common/consultar-partido/consultar
     EditarTorneoComponent,
     AsociarJugadoresComponent,
     ConsultarPartidosComponent,
-    ConsultarPartidoComponent
+    ConsultarPartidoComponent,
+    ArbitroComponent,
+    IngresarResultadosComponent,
+    EditarPartidoComponent
   ],
   imports: [
     BrowserAnimationsModule,
