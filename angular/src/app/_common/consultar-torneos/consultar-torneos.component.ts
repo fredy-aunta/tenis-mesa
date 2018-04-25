@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TorneoService} from '../../_services/torneo.service';
 import {Torneo} from '../../_model/Torneo';
+import {User} from '../../_model/User';
+import {UserService} from '../../_services/user.service';
+import {USER_TYPES} from '../../app.contants';
 
 @Component({
   selector: 'app-consultar-torneos',
@@ -11,9 +14,12 @@ import {Torneo} from '../../_model/Torneo';
 export class ConsultarTorneosComponent implements OnInit {
 
   public tournaments: Array<Torneo>;
+  public user: User;
+  public userTypes = USER_TYPES;
 
   constructor(
-    private tournamentService: TorneoService
+    private tournamentService: TorneoService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -21,6 +27,12 @@ export class ConsultarTorneosComponent implements OnInit {
       .then(
         data => this.tournaments = data['torneos']
       ).catch(error => console.error(error));
+
+    this.userService.getUserSession()
+      .then(
+        data => this.user = data['usuario']
+      ).catch(error => console.error(error));
+
   }
 
 }

@@ -16,7 +16,7 @@ class CrearUsuarioCtrl extends MY_Controller
 
     public function index_post()
     {
-		$userCreate = $this->post('tournamentCreate');
+		$userCreate = $this->post('userCreate');
         $tipo = $userCreate['tipo'];
         $response = array();
 		$responseCode = REST_Controller::HTTP_NOT_FOUND;
