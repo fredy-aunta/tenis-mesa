@@ -15,6 +15,7 @@ import {ConsultarTorneoComponent} from './_common/consultar-torneo/consultar-tor
 import {EditarTorneoComponent} from './_common/editar-torneo/editar-torneo.component';
 import {ConsultarPartidosComponent} from './_common/consultar-partidos/consultar-partidos.component';
 import {ConsultarPartidoComponent} from './_common/consultar-partido/consultar-partido.component';
+import {EditarPartidoComponent} from './_common/editar-partido/editar-partido.component';
 
 export const AuthRoutes: Routes = [
   { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
@@ -96,6 +97,10 @@ export const ProtectedRoutes: Routes = [
           {
             path: 'ConsultarPartido/:id',
             component: ConsultarPartidoComponent
+          },
+          {
+            path: 'EditarPartido/:id',
+            component: EditarPartidoComponent
           }
         ]
       },

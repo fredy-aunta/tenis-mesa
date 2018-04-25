@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {PartidoService} from '../../_services/partido.service';
+import {Partido} from '../../_model/Partido';
 
 @Component({
   selector: 'app-editar-partido',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarPartidoComponent implements OnInit {
 
-  constructor() { }
+  public games: Array<Partido>;
+
+  constructor(
+    private route: ActivatedRoute,
+    private gamesService: PartidoService
+  ) { }
 
   ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.gamesService.getPartidosTorneo(id)
+      .then(
+        data => this.games = data['partidos']
+      ).catch(error => console.error(error));
   }
 
 }
