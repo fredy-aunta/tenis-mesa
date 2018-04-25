@@ -1,32 +1,54 @@
-<div>Usuarios</div><br>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <td>Id Usuario</td>
-        <td>Nombre</td>
-        <td>Apellido</td>
-        <td>Cedula</td>
-        <td>Telefono</td>
-        <td>Tipo</td>
-        <td>Estado</td>
-        <td></td>
-      </tr>
-    </thead>
-    <tbody *ngIf="users">
-      <tr *ngFor="let user of users">
-        <td>{{user.id}}</td>
-        <td>{{user.nombre}}</td>
-        <td>{{user.apellido}}</td>
-        <td>{{user.cedula}}</td>
-        <td>{{user.telefono}}</td>
-        <td>{{user.tipo}}</td>
-        <td>{{user.estado}}</td>
-        <td>
-            <button class="btn-sm bg-info"><a [routerLink]="['/admin/ConsultarUsuario/',user.id]">Consultar</a></button>
-          <button class="btn-sm bg-danger"><a [routerLink]="['/admin/EditarUsuario',user.id]">Editar</a></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 xs-row-flat">
+      <div class="row middle-sm">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row" *ngIf="users != null">
+              <div class="col-md-12 fields-panel">
+                <h3 class="box-title">Usuarios</h3>
+                <p>Puedes <strong>consultar o editar los usuarios registrados</strong></p>
+                <div *ngIf="(users && users.length > 0)" class="br-1-primary mg-t-30">
+                  <div class="row row-flat table-title">
+                    <div class="col-xs-3 col-md-2 row-flat title">Nombre</div>
+                    <div class="col-xs-3 col-md-2 row-flat title">Apellido</div>
+                    <div class="col-xs-3 col-md-2 row-flat title">Cedula</div>
+                    <div class="col-xs-3 col-md-2 row-flat title">Telefono</div>
+                    <div class="col-xs-3 col-md-1 row-flat title">Tipo</div>
+                    <div class="col-xs-3 col-md-1 row-flat title">Estado</div>
+                    <div class="col-xs-3 col-md-2 row-flat title"></div>
+                  </div>
+                  <div class="row middle-xs row-flat table-items"  *ngFor="let user of users">
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.nombre}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.apellido}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.cedula}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.telefono}}</div>
+                    <div class="col-xs-3 col-md-1 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.tipo}}</div>
+                    <div class="col-xs-3 col-md-1 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">{{user.estado}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item">
+                      <div class="row row-flat end-xs">
+                        <div class="col-xs-12">
+                          <div class="inline-button" [routerLink]="['/admin/ConsultarUsuario/'+user.id]">
+                            <span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Consultar</span>
+                          </div>
+                          <div class="inline-button" [routerLink]="['/admin/EditarUsuario/'+user.id]">
+                            <span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Editar</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
+
