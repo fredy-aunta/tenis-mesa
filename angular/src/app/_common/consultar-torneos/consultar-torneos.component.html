@@ -1,27 +1,49 @@
-<div>Torneos</div><br>
-<div>
-  <table class="table table-hover table-bordered">
-    <thead class="table-title">
-    <tr>
-      <td>Id Torneo</td>
-      <td>Nombre</td>
-      <td>Cantidad de Jugadores</td>
-      <td>Estructura</td>
-      <td></td>
-    </tr>
-    </thead>
-    <tbody *ngIf="tournaments" class="table-">
-    <tr *ngFor="let tournament of tournaments">
-      <td>{{tournament.idTorneo}}</td>
-      <td>{{tournament.nombre}}</td>
-      <td>{{tournament.cantidadJugadores}}</td>
-      <td>{{tournament.estructura.nombre}}</td>
-      <td>
-        <button  class="btn-sm bg-info"><a [routerLink]="['/admin/ConsultarTorneo/',tournament.idTorneo]">Consultar</a></button>
-        <button  class="btn-sm bg-danger"><a [routerLink]="['/admin/EditarTorneo/',tournament.idTorneo]">Editar</a></button>
-        <button  class="btn-sm bg-success"><a [routerLink]="['/admin/EditarTorneo/',tournament.idTorneo]">Ingresar Resultados</a></button>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-2 col-sm-12 col-md-10 xs-row-flat">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row" *ngIf="tournaments != null">
+              <div class="col-md-12 fields-panel">
+                <h3 class="box-title">Torneos</h3>
+                <p>Puedes <strong>consultar, editar o ingresar resultados</strong> de los torneos ya creados</p>
+                <div *ngIf="(tournaments && tournaments.length > 0)" class="br-1-primary mg-t-30">
+                  <div class="row row-flat table-title">
+                    <div class="col-xs-3 col-md-3 row-flat title">Nombre</div>
+                    <div class="col-xs-3 col-md-2 row-flat title"># Mesas</div>
+                    <div class="col-xs-3 col-md-2 row-flat title"># Jugadores</div>
+                    <div class="col-xs-3 col-md-5 row-flat title"></div>
+                  </div>
+                  <div class="row middle-xs row-flat table-items"  *ngFor="let tournament of tournaments">
+                    <div class="col-xs-3 col-md-3 row-flat item linkable" [routerLink]="['/admin/ConsultarTorneo/'+tournament.idTorneo]">{{tournament.nombre}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarTorneo/'+tournament.idTorneo]">{{tournament.cantidadMesas}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarTorneo/'+tournament.idTorneo]">{{tournament.cantidadJugadores}}</div>
+                    <div class="col-xs-3 col-md-5 row-flat item">
+                      <div class="row row-flat end-xs">
+                        <div class="col-xs-12">
+                          <div class="inline-button" [routerLink]="['/admin/ConsultarTorneo/'+tournament.idTorneo]">
+                            <span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Consultar</span>
+                          </div>
+                          <div class="inline-button" [routerLink]="['/admin/EditarTorneo/'+tournament.idTorneo]">
+                            <span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Editar</span>
+                          </div>
+                          <div class="inline-button" [routerLink]="['/admin/EditarTorneo/'+tournament.idTorneo]">
+                            <span class="btn-round"><i class="fa fa-arrow-circle-up" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Subir resultados</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

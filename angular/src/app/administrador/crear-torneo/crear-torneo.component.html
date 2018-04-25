@@ -83,6 +83,32 @@
                       </div>
                     </div>
                   </div>
+
+                  <!-- fechaHora Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': createTournamentForm.get('fechaHora').errors && (createTournamentForm.get('fechaHora').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Fecha y hora de inicio</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <input
+                              type="text"
+                              class="form-control input-lg"
+                              id="inputfechaHora"
+                              placeholder="Fecha y hora de inicio"
+                              formControlName="fechaHora">
+                            <div class="text-danger small" *ngIf="createTournamentForm.get('fechaHora').errors && (createTournamentForm.get('fechaHora').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="createTournamentForm.get('fechaHora').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <input value="1" type="hidden" formControlName="idEstructura">
                   <button type="submit" class="btn btn-primary btn-lg btn-block">Crear Torneo</button>
                 </form>

@@ -28,7 +28,7 @@ class TorneoDB extends CI_Model
     public function getAllTorneos()
     {
         $torneos = array();
-        $this->db->select('torneo.*,e.nombre');
+        $this->db->select('torneo.*,e.nombre as nombreEstructura');
         $this->db->join('estructura e', 'e.idEstructura = torneo.idEstructura');
         $query = $this->db->get(self::TABLE_NAME);
         foreach ($query->result() as $row) {
@@ -38,7 +38,7 @@ class TorneoDB extends CI_Model
             $estructura = FactoriaEstructura::getEstructura($row->idEstructura);
             $torneo->setCantidadJugadores($row->cantidadJugadores);
             $torneo->setCantidadMesas($row->cantidadMesas);
-            $estructura->setNombre($row->nombre);
+            $estructura->setNombre($row->nombreEstructura);
             $torneo->setEstructura($estructura);
             array_push($torneos, $torneo);
         }

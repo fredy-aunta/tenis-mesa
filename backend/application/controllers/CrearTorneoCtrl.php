@@ -23,7 +23,7 @@ class CrearTorneoCtrl extends MY_Controller
         $cantidadJugadores = $tournamentCreate["cantidadJugadores"];
         $cantidadMesas = $tournamentCreate["cantidadMesas"];
         // $nombreEstructura = $tournamentCreate["nombreEstructura"];
-        $fechaHora = $tournamentCreate["fechaHora"];
+        $fechaHora = $this->post("fechaHora");
         $torneo = new Torneo();
         $torneo->setNombre($nombre);
         $torneo->setCantidadJugadores($cantidadJugadores);
