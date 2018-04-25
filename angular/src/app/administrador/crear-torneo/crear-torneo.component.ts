@@ -41,6 +41,9 @@ export class CrearTorneoComponent implements OnInit {
       ],
       idEstructura: [this.tournament.idEstructura,
         [Validators.required]
+      ],
+      fechaHora: ['',
+        [Validators.required]
       ]
     });
   }
@@ -51,12 +54,16 @@ export class CrearTorneoComponent implements OnInit {
     this.createTournamentForm.controls.idEstructura.setValue('1');
   }
 
-  submitCreateTournamentForm(tournament: Torneo, isValid: boolean) {
+  submitCreateTournamentForm(tournament: Object, isValid: boolean) {
     this.tournament = this.formDataUtil.copyFormToObject(tournament, this.tournament, Torneo.classMetadata);
     this.submitted = true;
     if (isValid) {
+      const params = {
+        tournamentCreate: this.tournament,
+        fechaHora: tournament['fechaHora']
+      };
       // this.requestInProgress = true;
-      this.tournamentService.createTournament({tournamentCreate: this.tournament})
+      this.tournamentService.createTournament(params)
         .then(createdTournament => {
           // this.requestInProgress = false;
           // this.authenticationService.registerLoginData(loggedInUser);
