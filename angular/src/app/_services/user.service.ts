@@ -41,6 +41,17 @@ export class UserService {
     );
   }
 
+  getUserSession(): Promise<User> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarUsuarioCtrl/';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response as User;
+        }
+
+      );
+  }
+
   loginUser(params: any): Promise<User> {
     const url = 'http://dev.tenis-mesa.com/IniciarSesionCtrl/';
     return this.http.post(url, params)

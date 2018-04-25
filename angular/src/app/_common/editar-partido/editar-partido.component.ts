@@ -10,18 +10,18 @@ import {Partido} from '../../_model/Partido';
 })
 export class EditarPartidoComponent implements OnInit {
 
-  public games: Array<Partido>;
+  public game: Partido;
 
   constructor(
     private route: ActivatedRoute,
-    private gamesService: PartidoService
+    private gameService: PartidoService
   ) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.gamesService.getPartidosTorneo(id)
+    this.gameService.getPartido(id)
       .then(
-        data => this.games = data['partidos']
+        data => this.game = data['partido']
       ).catch(error => console.error(error));
   }
 

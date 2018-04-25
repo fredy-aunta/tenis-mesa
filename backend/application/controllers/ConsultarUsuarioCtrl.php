@@ -22,7 +22,8 @@ class ConsultarUsuarioCtrl extends MY_Controller
             $usuario = $this->usuarioDB->buscarUsuarioById($idUsuario);
         }
         if (is_null($usuario)) {
-            $usuario = new Usuario($this->session->userdata("usuarioLogueado"));
+            //$usuario = new Usuario($this->session->userdata("usuarioLogueado"));
+			$usuario = $this->session->userdata("usuarioLogueado");
         }
         $response = array(
             'usuario' => $usuario
