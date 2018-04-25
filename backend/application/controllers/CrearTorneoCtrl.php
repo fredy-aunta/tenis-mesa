@@ -16,19 +16,20 @@ class CrearTorneoCtrl extends MY_Controller
 
     public function index_post()
     {
-        $response = array('torneoCreado' => false);
-        $nombre = $this->post("nombre");
-        $tipoEstructura = $this->post("estructura");
-        $cantidadJugadores = $this->post("numeroJugadores");
-        $cantidadMesas = $this->post("numeroMesas");
-        $nombreEstructura = $this->post("nombreEstructura");
-        $fechaHora = $this->post("fechaHora");
+		$tournamentCreate = $this->post('tournamentCreate');
+        $response = array('torneoCreado' => null);
+        $nombre = $tournamentCreate["nombre"];
+        $tipoEstructura = $tournamentCreate["idEstructura"];
+        $cantidadJugadores = $tournamentCreate["cantidadJugadores"];
+        $cantidadMesas = $tournamentCreate["cantidadMesas"];
+        // $nombreEstructura = $tournamentCreate["nombreEstructura"];
+        $fechaHora = $tournamentCreate["fechaHora"];
         $torneo = new Torneo();
         $torneo->setNombre($nombre);
         $torneo->setCantidadJugadores($cantidadJugadores);
         $torneo->setCantidadMesas($cantidadMesas);
         $estructura = FactoriaEstructura::getEstructura($tipoEstructura);
-        $estructura->setNombre($nombreEstructura);
+        //$estructura->setNombre($nombreEstructura);
         $torneo->setEstructura($estructura);
 
         $idTorneo = $this->torneoDB->insert($torneo);
@@ -37,8 +38,12 @@ class CrearTorneoCtrl extends MY_Controller
             $torneo->setIdTorneo($idTorneo);
             $this->session->set_userdata('torneoSession', $torneo);
             $this->session->set_userdata('fechaHoraTorneoSession', $fechaHora);
-            $response["torneoCreado"] = true;
-        }
-        $this->response($response, REST_Controller::HTTP_OK);
+            $response["torneoCreado"] = $torneo;
+			$responseCode = REST_Controller::HTTP_OK;
+        } else {
+			$response['error'] = 'Torneo no creado';
+			$responseCode = REST_Controller::HTTP_BAD_REQUEST;
+		}
+        $this->response($response, $responseCode);
     }
 }

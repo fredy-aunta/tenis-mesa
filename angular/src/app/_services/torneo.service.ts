@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Torneo} from '../_model/Torneo';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {User} from '../_model/User';
 
 @Injectable()
 export class TorneoService {
@@ -37,4 +38,15 @@ export class TorneoService {
         return response as Torneo;
       });
   }
+
+  createTournament(params): Promise<Torneo> {
+    const url = 'http://dev.tenis-mesa.com/CrearTorneoCtrl/';
+    return this.http.post(url, params)
+      .toPromise()
+      .then(response => {
+          return response['torneoCreado'] as Torneo;
+        }
+      );
+  }
+
 }

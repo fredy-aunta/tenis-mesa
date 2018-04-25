@@ -30,14 +30,13 @@ export class CrearTorneoComponent implements OnInit {
 
   buildForm(): void {
     this.createTournamentForm = this.formBuilder.group({
-      nombreTorneo: [this.tournament.nombre,
+      nombre: [this.tournament.nombre,
         [Validators.required]
       ],
-      numeroMesas: [this.tournament.cantidadMesas, [
-        Validators.required
-      ]
+      cantidadMesas: [this.tournament.cantidadMesas,
+        [Validators.required]
       ],
-      numeroJugadores: [this.tournament.cantidadJugadores,
+      cantidadJugadores: [this.tournament.cantidadJugadores,
         [Validators.required]
       ],
       idEstructura: [this.tournament.idEstructura,
@@ -49,6 +48,36 @@ export class CrearTorneoComponent implements OnInit {
   ngOnInit() {
     this.tournament = new Torneo();
     this.buildForm();
+    this.createTournamentForm.controls.idEstructura.setValue('1');
+  }
+
+  submitCreateTournamentForm(tournament: Torneo, isValid: boolean) {
+    this.tournament = this.formDataUtil.copyFormToObject(tournament, this.tournament, Torneo.classMetadata);
+    this.submitted = true;
+    if (isValid) {
+      // this.requestInProgress = true;
+      this.tournamentService.createTournament({tournamentCreate: this.tournament})
+        .then(createdTournament => {
+          // this.requestInProgress = false;
+          // this.authenticationService.registerLoginData(loggedInUser);
+          // const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
+          // const url = '/admin/DefinirJugadores';
+          // this.router.navigate([url]);
+          this.alertService.showSuccess();
+        }).catch(response => {
+        // this.requestInProgress = false;
+        if (response.status === 404) {
+          // TODO: Mostrar error
+          this.alertService.showFormError();
+          // this.wrongUserOrPassword = true;
+        }
+        // TODO: Mostrar error
+        this.alertService.showFormError();
+      });
+    } else {
+      // TODO: Mostrar error
+      this.alertService.showFormError();
+    }
   }
 
 }
