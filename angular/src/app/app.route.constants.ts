@@ -55,7 +55,7 @@ export const ProtectedRoutes: Routes = [
         component: ConsultarUsuariosComponent
       },
       {
-        path: 'EditarUsuario',
+        path: 'EditarUsuario/:id',
         component: EditarUsuarioComponent
       },
       {

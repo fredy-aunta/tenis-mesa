@@ -1,16 +1,172 @@
-<div align="center" *ngIf="user">
-  <div>
-    {{user.id}}
-  </div>
-  <div>
-    <h6>{{user.id}}</h6>
-    Nombre Usuario: <input type="text" value="{{user.nombreUsuario}}">
-    Nombre: <input type="text" value="{{user.nombre}}">
-    Apellido: <input type="text" value="{{user.apellido}}">
-    <h6>Cedula: {{user.cedula}}</h6>
-    Telefono: <input type="text" value="{{user.telefono}}">
-    <h6>Tipo: {{user.tipo}}</h6>
-    <h6>Estado: {{user.estado}}</h6><br>
-    <button class="btn-lg">Crear</button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-1 col-sm-12 col-md-10">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-12 fields-panel col-sm-12" *ngIf="user">
+                <h3 class="box-title" align="center">Usuario</h3>
+                <p></p>
+
+                <!-- Nombre Usuario-->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Nombre Usuario</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.nombreUsuario}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Nombre -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Nombre</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.nombre}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Apellido -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Apellido</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.apellido}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cedula -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Cedula</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.cedula}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Telefono -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">telefono</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.telefono}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- fecha -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Fecha de Nacimiento</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.fechaNacimiento}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tipo -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Tipo Usuario</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.tipo}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Estado -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Estado</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{user.estado}}">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Modificar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

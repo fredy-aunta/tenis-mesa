@@ -1,12 +1,79 @@
-<div align="center" *ngIf="tournament">
-  <div>
-    {{tournament.idTorneo}}
-  </div>
-  <div>
-    <h6>{{tournament.idTorneo}}</h6>
-    <h6>Nombre: {{tournament.nombre}}</h6>
-    <h6>Cantidad Jugadores: {{tournament.cantidadJugadores}}</h6>
-    <h6>estructura: {{tournament.estructura.nombre}}</h6>
-    <button class="btn-info"><a [routerLink]="['/admin/ConsultarTorneo/ConsultarPartidos/',tournament.idTorneo]"> Ver Partidos</a></button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-1 col-sm-12 col-md-10">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-12 fields-panel col-sm-12" *ngIf="tournament">
+                <h3 class="box-title" align="center">Torneo</h3>
+                <p></p>
+
+                <!-- Nombre-->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Nombre</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{tournament.nombre}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Cantidad de jugadpres -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Cantidad de jugadpres</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{tournament.cantidadJugadores}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Estructura -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Estructura</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{tournament.estructura.nombre}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-sm btn-block" [routerLink]="['/admin/ConsultarTorneo/ConsultarPartidos/',tournament.idTorneo]"> Ver Partidos</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
