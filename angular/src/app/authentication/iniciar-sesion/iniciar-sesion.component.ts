@@ -67,9 +67,8 @@ export class IniciarSesionComponent implements OnInit {
       this.userService.loginUser({userLogin: this.user})
         .then(loggedInUser => {
           // this.requestInProgress = false;
-          // this.authenticationService.registerLoginData(loggedInUser);
+          this.authenticationService.registerLoginData(loggedInUser);
           const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
-          // const url = '';
           this.router.navigate([url]);
         }).catch(response => {
         // this.requestInProgress = false;

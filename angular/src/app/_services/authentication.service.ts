@@ -1,29 +1,24 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {Http, Headers} from '@angular/http';
-import {CookieService} from 'ng2-cookies';
-// import {TaxpayerUserLoggedInResponse} from '../_model/taxpayer-user-logged-in-response.model';
-// import {TaxpayerUser} from '../_model/taxpayer-user.model';
+import {Injectable} from '@angular/core';
+import {CookieService} from 'ngx-cookie-service';
 import { RestServiceUtil } from './rest-service-util.service';
-// import { TaxpayerUserService } from './taxpayer-user.service';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../_model/User';
+import {USER_TYPES} from '../app.contants';
 
 @Injectable()
 export class AuthenticationService {
 
-
+  private userTypes = USER_TYPES;
   public user: User;
   // public token: string;
   //
   public redirectUrl: string = null;
   //
-  private modules = {administrador: {path: '/', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
-    jugador: {path: '/', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador/home'},
-    arbitro: {path: '/', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}};
+  private modules = {Administrador: {path: '/admin', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
+    Jugador: {path: '/jugador', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador/home'},
+    Arbitro: {path: '/arbitro', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}};
   //
-  private loginSubject = new Subject<User>();
+  // private loginSubject = new Subject<User>();
   //
   // private taxpayerUserPath = '/taxpayer/taxpayer-user';
 
@@ -38,7 +33,7 @@ export class AuthenticationService {
   private initLoginData(user: User) {
     this.user = user;
     // this.token = taxpayerUserLoggedInResponse.token;
-    this.loginSubject.next(this.user);
+    // this.loginSubject.next(this.user);
   }
 
   // private removeLoginData() {
@@ -48,13 +43,12 @@ export class AuthenticationService {
 
 
   registerLoginData(user: User) {
-    const expirationDate = new Date(2020, 12, 31);
+    // const expirationDate = new Date(2020, 12, 31);
     // taxpayerUserLoggedInResponse.expirationTime = null;
-
-    this.cookieService.delete(this.modules[user.tipo]['cookieName']);
-    this.cookieService.set(this.modules[user.tipo]['cookieName'], JSON.stringify(user),
-      expirationDate, this.modules[user.tipo]['path']);
-
+    if (this.modules.hasOwnProperty(user.tipo)) {
+      this.cookieService.delete(this.modules[user.tipo]['cookieName']);
+      this.cookieService.set(this.modules[user.tipo]['cookieName'], JSON.stringify(user));
+    }
     this.initLoginData(user);
   }
 
@@ -88,10 +82,20 @@ export class AuthenticationService {
 
  isLoggedIn(moduleName?: string): Promise<boolean> {
     if (this.user == null) {
-      moduleName = (moduleName === undefined) ? 'administrador' : moduleName;
+      moduleName = (moduleName === undefined) ? this.getModuleNameLoggedIn() : moduleName;
       return Promise.resolve(this.loadCookieData(moduleName));
     }
     return Promise.resolve(this.user != null);
+  }
+
+  getModuleNameLoggedIn() {
+    for (const userType in this.userTypes) {
+      const moduleName = this.userTypes[userType].value;
+      if (this.cookieService.check(this.modules[moduleName]['cookieName'])) {
+        return moduleName;
+      }
+    }
+    return null;
   }
 
   public getRedirectUrl(moduleName) {
@@ -124,8 +128,8 @@ export class AuthenticationService {
   //   return this.taxpayerUser;
   // }
 
-    onLogin(): Observable<User> {
-        return this.loginSubject.asObservable();
-    }
+    // onLogin(): Observable<User> {
+    //     return this.loginSubject.asObservable();
+    // }
 
 }

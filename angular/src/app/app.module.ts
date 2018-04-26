@@ -21,7 +21,7 @@ import {FormDataUtil} from './_services/form-data-util.service';
 import {RestServiceUtil} from './_services/rest-service-util.service';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {APP_CONFIG, TM_APP_CONFIG} from './app.config';
-import {CookieService} from 'ng2-cookies';
+import {CookieService} from 'ngx-cookie-service';
 import {EditarUsuarioComponent} from './_common/editar-usuario/editar-usuario.component';
 import {CrearTorneoComponent} from './administrador/crear-torneo/crear-torneo.component';
 import {DefinirJugadoresComponent} from './administrador/definir-jugadores/definir-jugadores.component';
