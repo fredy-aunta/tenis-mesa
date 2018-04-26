@@ -21,4 +21,20 @@ class ConsultarUsuariosCtrl extends MY_Controller
         );
         $this->response($response, REST_Controller::HTTP_OK);
     }
+
+    public function jugadores_get()
+    {
+        $response = array(
+            'jugadores' => $this->usuarioDB->getJugadores()
+        );
+        $this->response($response, REST_Controller::HTTP_OK);
+    }
+
+    public function arbitros_get()
+    {
+        $response = array(
+            'arbitros' => $this->usuarioDB->getArbitros()
+        );
+        $this->response($response, REST_Controller::HTTP_OK);
+    }
 }
