@@ -8,7 +8,7 @@
 
 class UsuarioDB extends CI_Model
 {
-    const TABLE_NAME = "Usuario";
+    const TABLE_NAME = "usuario";
 
     const SQL_VALID = "SELECT * FROM " . self::TABLE_NAME . " WHERE username = ? AND password = ? AND tipo = ?";
     const SQL_USUARIOS = "SELECT * FROM " . self::TABLE_NAME . " u ORDER BY u.id DESC";
@@ -120,7 +120,7 @@ class UsuarioDB extends CI_Model
         $jugadores = array();
         $this->db->where('tipo', 'Jugador');
         $this->db->order_by('u.id DESC');
-        $query = $this->db->get(self::TABLE_NAME);
+        $query = $this->db->get(self::TABLE_NAME . ' u');
         foreach ($query->result() as $row) {
             $usuario = new Usuario();
             $usuario->setId($row->id);
@@ -143,7 +143,7 @@ class UsuarioDB extends CI_Model
         $arbitros = array();
         $this->db->where('tipo', 'Arbitro');
         $this->db->order_by('u.id DESC');
-        $query = $this->db->get(self::TABLE_NAME);
+        $query = $this->db->get(self::TABLE_NAME . ' u');
         foreach ($query->result() as $row) {
             $usuario = new Usuario();
             $usuario->setId($row->id);

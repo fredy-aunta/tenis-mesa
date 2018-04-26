@@ -100,7 +100,7 @@ export class AuthenticationService {
 
   public getRedirectUrl(moduleName) {
     if (this.redirectUrl === null) {
-      return this.getDefaultRedirectUrl(moduleName.toLowerCase());
+      return this.getDefaultRedirectUrl(moduleName);
     } else {
       return this.redirectUrl;
     }

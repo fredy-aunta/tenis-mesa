@@ -20,12 +20,31 @@ export class UserService {
   }
 
   getUsers(): Promise<Array<User>> {
-
     const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl';
     return this.http.get(url)
       .toPromise()
       .then(response => {
-          return response as Array<User>;
+          return response['usuarios'] as Array<User>;
+        }
+      );
+  }
+
+  getPlayers(): Promise<Array<User>> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl/jugadores';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response['jugadores'] as Array<User>;
+        }
+      );
+  }
+
+  getReferees(): Promise<Array<User>> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl/arbitros';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response['arbitros'] as Array<User>;
         }
       );
   }

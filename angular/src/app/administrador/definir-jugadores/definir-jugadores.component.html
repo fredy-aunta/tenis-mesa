@@ -1,3 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-2 col-sm-12 col-md-10">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-12 fields-panel col-sm-12">
+                <h3 class="box-title">Crear Torneo</h3>
+                <form [formGroup]="setPlayersForm" (ngSubmit)="submitSetPlayersForm(setPlayersForm.value, setPlayersForm.valid)" novalidate>
+                  <div id="panelJugadores">
+
+                  </div>
+                  <!-- jugadores -->
+                  <div class="form-group">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Jugadores</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <select multiple class="form-control input-lg" id="inputJugadores" *ngFor="let player of players">
+                              <option value="{{player.id}}">{{player.nombre}}</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="button" id="agregarJugador" class="btn btn-success btn-sm">Agregar Jugador</button>
+                  <button type="button" id="removerJugador" class="btn btn-success btn-xs">Remover Jugador</button>
+
+                  <!-- jugadoresSelec Control -->
+                  <div class="form-group" [ngClass]="{ 'has-error': setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)}">
+                    <div class="row middle-xs">
+                      <div class="col-xs-12 col-sm-2">
+                        <label class="control-label">Jugadores Seleccionados</label>
+                      </div>
+                      <div class="col-xs-12 row-flat col-sm-10">
+                        <div class="row row-flat middle-xs">
+                          <div class="col-xs-9 col-sm-10">
+                            <select multiple class="form-control input-lg" formControlName="jugadoresSelec" id="inputjugadoresSelec">
+                            </select>
+                            <div class="text-danger small" *ngIf="setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)">
+                              <i class="fa fa-times" aria-hidden="true"></i>
+                              <span *ngIf="setPlayersForm.get('jugadoresSelec').errors['required']">Este campo es obligatorio</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="button" id="confirmarJugadores" class="btn btn-success">Confirmar Jugadores</button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
       <div>
         <div class="form-group" *ngIf="players">
           <select name="jugadores" id="jugadores" multiple *ngFor="let player of players">
@@ -5,15 +71,35 @@
           </select>
         </div>
         <div class="form-group">
-          <button type="button" id="agregarJugador" class="btn btn-success">Agregar Jugador</button>
-          <button type="button" id="removerJugador" class="btn btn-success">Remover Jugador</button>
+          <!--<button type="button" id="agregarJugador" class="btn btn-success">Agregar Jugador</button>-->
+          <!--<button type="button" id="removerJugador" class="btn btn-success">Remover Jugador</button>-->
         </div>
         <div class="form-group">
           <select name="jugadoresSeleccionados" class="form-control" multiple id="jugadoresSeleccionados">
           </select>
         </div>
         <div class="form-group">
-          <button type="button" id="confirmarJugadores" class="btn btn-success"><a routerLink="/admin/asociarJugadores">Confirmar Jugadores</a></button>
+          <!--<button type="button" id="confirmarJugadores" class="btn btn-success">Confirmar Jugadores</button>-->
+        </div>
+
+      </div>
+
+      <div>
+        <div class="form-group" *ngIf="referees">
+          <select name="jugadores" id="arbitros" multiple *ngFor="let referee of referees">
+            <option value="{{referee.id}}">{{referee.nombre}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="button" id="agregarArbitro" class="btn btn-success">Agregar Arbitro</button>
+          <button type="button" id="removerArbitro" class="btn btn-success">Remover Arbitro</button>
+        </div>
+        <div class="form-group">
+          <select name="arbitrosSeleccionados" class="form-control" multiple id="arbitrosSeleccionados">
+          </select>
+        </div>
+        <div class="form-group">
+          <button type="button" id="confirmarArbitros" class="btn btn-success">Confirmar Jugadores</button>
         </div>
 
       </div>
