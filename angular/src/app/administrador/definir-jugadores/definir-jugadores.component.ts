@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../_model/User';
 import {UserService} from '../../_services/user.service';
 import {AlertService} from '../../_services/alert.service';
+import {CookieService} from 'ngx-cookie-service';
+import {COOKIE_NAMES} from '../../app.contants';
+import {AuthenticationService} from '../../_services/authentication.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-definir-jugadores',
@@ -12,17 +16,18 @@ import {AlertService} from '../../_services/alert.service';
 export class DefinirJugadoresComponent implements OnInit {
 
   public setPlayersForm: FormGroup;
-  public players: Array<any> = [
-    {id: 1, nombre: 'TTT'},
-    {id: 2, nombre: 'TTTY'},
-    {id: 3, nombre: 'TTfdTY'}
-  ];
-  public playersSelected: Array<any> = [];
+  public players: Array<User>;
+  public playersSelected: Array<User> = [];
   public referees: Array<User> = [];
+  public refereesSelected: Array<User> = [];
+  public hasPlayersSelected = false;
   constructor(
     private userService: UserService,
     private alertService: AlertService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cookieService: CookieService,
+    private authenticationService: AuthenticationService,
+    private router: Router
   ) { }
 
   buildForm(): void {
@@ -45,7 +50,7 @@ export class DefinirJugadoresComponent implements OnInit {
   ngOnInit() {
     this.userService.getPlayers()
       .then(players => {
-        // this.players = players;
+        this.players = players;
       })
       .catch(response => {
         this.alertService.showError();
@@ -62,12 +67,24 @@ export class DefinirJugadoresComponent implements OnInit {
     this.buildForm();
   }
 
-  addPlayer() {
-    const selectedJugadores = this.setPlayersForm.controls['allJugadores'].value;
-    if (selectedJugadores) {
-      // const optionsSelected : HTMLOptionsCollection = document.get
+  confirmPlayers() {
+    if (this.playersSelected.length === 0) {
+      console.error(this.playersSelected);
+    } else {
+      this.hasPlayersSelected = true;
     }
-    console.log(this.setPlayersForm.controls['allJugadores']);
+  }
+
+  confirmReferees() {
+    if (this.refereesSelected.length === 0) {
+      console.error(this.refereesSelected);
+    } else {
+      this.cookieService.set(this.authenticationService.getPrefixCookieNameLoggedInUser() + COOKIE_NAMES.PLAYERS_SELECTED, JSON.stringify(this.playersSelected));
+      this.cookieService.set(this.authenticationService.getPrefixCookieNameLoggedInUser() + COOKIE_NAMES.REFEREES_SELECTED, JSON.stringify(this.refereesSelected));
+      const url = '/admin/asociarJugadores';
+      this.router.navigate([url]);
+      // this.hasPlayersSelected = true;
+    }
   }
 
   submitSetPlayersForm(formValues: Object, isValid: boolean) {

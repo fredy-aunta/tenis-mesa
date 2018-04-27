@@ -115,6 +115,23 @@ export class AuthenticationService {
     return this.modules[moduleName]['defaultUrl'];
   }
 
+  public getPrefixCookieNameLoggedInUser(): string {
+    let prefixCookieName = null;
+    if (this.user != null) {
+      switch (this.user.tipo) {
+        case USER_TYPES.ADMIN.value:
+          prefixCookieName = USER_TYPES.ADMIN.prefixCookieName;
+          break;
+        case USER_TYPES.ARBITRO.value:
+          prefixCookieName = USER_TYPES.ARBITRO.prefixCookieName;
+          break;
+        case USER_TYPES.JUGADOR.value:
+          prefixCookieName = USER_TYPES.JUGADOR.prefixCookieName;
+          break;
+      }
+    }
+    return prefixCookieName;
+  }
 
   // public getFirstName() {
   //   const splitName = this.taxpayerUser.fullName.split(' ');

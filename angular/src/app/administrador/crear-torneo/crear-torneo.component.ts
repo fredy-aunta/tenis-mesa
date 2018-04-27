@@ -68,9 +68,9 @@ export class CrearTorneoComponent implements OnInit {
           // this.requestInProgress = false;
           // this.authenticationService.registerLoginData(loggedInUser);
           // const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
-          // const url = '/admin/DefinirJugadores';
-          // this.router.navigate([url]);
-          this.alertService.showSuccess();
+          const url = '/admin/DefinirJugadores';
+          this.router.navigate([url]);
+          // this.alertService.showSuccess();
         }).catch(response => {
         // this.requestInProgress = false;
         if (response.status === 404) {
