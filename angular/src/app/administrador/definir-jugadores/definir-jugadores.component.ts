@@ -17,6 +17,7 @@ export class DefinirJugadoresComponent implements OnInit {
     {id: 2, nombre: 'TTTY'},
     {id: 3, nombre: 'TTfdTY'}
   ];
+  public playersSelected: Array<any> = [];
   public referees: Array<User> = [];
   constructor(
     private userService: UserService,
