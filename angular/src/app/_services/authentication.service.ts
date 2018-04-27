@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CookieService} from 'ngx-cookie-service';
-import { RestServiceUtil } from './rest-service-util.service';
+import {RestServiceUtil} from './rest-service-util.service';
 import {HttpClient} from '@angular/common/http';
 import {User} from '../_model/User';
 import {USER_TYPES} from '../app.contants';
@@ -14,9 +14,11 @@ export class AuthenticationService {
   //
   public redirectUrl: string = null;
   //
-  private modules = {Administrador: {path: '/admin', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
+  private modules = {
+    Administrador: {path: '/admin', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
     Jugador: {path: '/jugador', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador/home'},
-    Arbitro: {path: '/arbitro', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}};
+    Arbitro: {path: '/arbitro', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}
+  };
   //
   // private loginSubject = new Subject<User>();
   //
@@ -53,16 +55,19 @@ export class AuthenticationService {
   }
 
 
- loadCookieData(moduleName: string): boolean {
+  loadCookieData(moduleName: string): boolean {
     let user: User;
-    const cookieData = this.cookieService.get(this.modules[moduleName]['cookieName']);
-    if (cookieData === '') {
-      return false;
-    } else {
-      user = JSON.parse(cookieData);
-      this.initLoginData(user);
-      return true;
+    if (moduleName !== null) {
+      const cookieData = this.cookieService.get(this.modules[moduleName]['cookieName']);
+      if (cookieData === '') {
+        return false;
+      } else {
+        user = JSON.parse(cookieData);
+        this.initLoginData(user);
+        return true;
+      }
     }
+    return false;
   }
 
   // loadTaxpayerUserFromHttpCookie(): Promise<TaxpayerUserLoggedInResponse> {
@@ -80,7 +85,7 @@ export class AuthenticationService {
   // }
 
 
- isLoggedIn(moduleName?: string): Promise<boolean> {
+  isLoggedIn(moduleName?: string): Promise<boolean> {
     if (this.user == null) {
       moduleName = (moduleName === undefined) ? this.getModuleNameLoggedIn() : moduleName;
       return Promise.resolve(this.loadCookieData(moduleName));
@@ -128,8 +133,8 @@ export class AuthenticationService {
   //   return this.taxpayerUser;
   // }
 
-    // onLogin(): Observable<User> {
-    //     return this.loginSubject.asObservable();
-    // }
+  // onLogin(): Observable<User> {
+  //     return this.loginSubject.asObservable();
+  // }
 
 }

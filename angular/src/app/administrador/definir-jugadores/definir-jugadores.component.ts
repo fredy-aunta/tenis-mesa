@@ -12,7 +12,11 @@ import {AlertService} from '../../_services/alert.service';
 export class DefinirJugadoresComponent implements OnInit {
 
   public setPlayersForm: FormGroup;
-  public players: Array<User> = [];
+  public players: Array<any> = [
+    {id: 1, nombre: 'TTT'},
+    {id: 2, nombre: 'TTTY'},
+    {id: 3, nombre: 'TTfdTY'}
+  ];
   public referees: Array<User> = [];
   constructor(
     private userService: UserService,
@@ -22,19 +26,25 @@ export class DefinirJugadoresComponent implements OnInit {
 
   buildForm(): void {
     this.setPlayersForm = this.formBuilder.group({
+      allJugadores: ['',
+        []
+      ],
       jugadoresSelec: ['',
         [Validators.required]
       ],
-      arbitrosSelec: ['',
-        [Validators.required]
-      ]
+      // allArbitros: ['',
+      //   []
+      // ],
+      // arbitrosSelec: ['',
+      //   [Validators.required]
+      // ]
     });
   }
 
   ngOnInit() {
     this.userService.getPlayers()
       .then(players => {
-        this.players = players;
+        // this.players = players;
       })
       .catch(response => {
         this.alertService.showError();
@@ -52,7 +62,14 @@ export class DefinirJugadoresComponent implements OnInit {
   }
 
   addPlayer() {
-    
+    const selectedJugadores = this.setPlayersForm.controls['allJugadores'].value;
+    if (selectedJugadores) {
+      // const optionsSelected : HTMLOptionsCollection = document.get
+    }
+    console.log(this.setPlayersForm.controls['allJugadores']);
   }
 
+  submitSetPlayersForm(formValues: Object, isValid: boolean) {
+
+  }
 }

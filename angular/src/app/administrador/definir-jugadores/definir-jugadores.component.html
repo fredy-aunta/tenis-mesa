@@ -8,52 +8,85 @@
               <div class="col-md-12 fields-panel col-sm-12">
                 <h3 class="box-title">Crear Torneo</h3>
                 <form [formGroup]="setPlayersForm" (ngSubmit)="submitSetPlayersForm(setPlayersForm.value, setPlayersForm.valid)" novalidate>
-                  <div id="panelJugadores">
 
-                  </div>
-                  <!-- jugadores -->
-                  <div class="form-group">
-                    <div class="row middle-xs">
-                      <div class="col-xs-12 col-sm-2">
-                        <label class="control-label">Jugadores</label>
-                      </div>
-                      <div class="col-xs-12 row-flat col-sm-10">
-                        <div class="row row-flat middle-xs">
-                          <div class="col-xs-9 col-sm-10">
-                            <select multiple class="form-control input-lg" id="inputJugadores" *ngFor="let player of players">
-                              <option value="{{player.id}}">{{player.nombre}}</option>
-                            </select>
-                          </div>
-                        </div>
-                      </div>
+
+                  <div class="row">
+                    <div class="col-xs-6 col-6 col-md-5 col-lg-3" [formGroup]="setPlayersForm">
+                      <bs-sortable
+                        [(ngModel)]="players"
+                        [ngModelOptions]="{standalone: true}"
+                        fieldName="nombre"
+                        itemClass="sortable-item"
+                        itemActiveClass="sortable-item-active"
+                        placeholderItem="Drag here"
+                        placeholderClass="sortable-item"
+                        wrapperClass="sortable-wrapper"
+                      ></bs-sortable>
+                      <!--<pre class="code-preview">{{ itemObjectsLeft | json }}</pre>-->
                     </div>
+                    <!--<div class="col-xs-6 col-6 col-md-5 col-lg-3">-->
+                      <!--<bs-sortable-->
+                        <!--[(ngModel)]="itemObjectsRight"-->
+                        <!--fieldName="name"-->
+                        <!--itemClass="sortable-item"-->
+                        <!--itemActiveClass="sortable-item-active"-->
+                        <!--placeholderItem="Drag here"-->
+                        <!--placeholderClass="sortable-item"-->
+                        <!--wrapperClass="sortable-wrapper"-->
+                      <!--&gt;</bs-sortable>-->
+                      <!--<pre class="code-preview">{{ itemObjectsRight | json }}</pre>-->
+                    <!--</div>-->
                   </div>
 
-                  <button type="button" id="agregarJugador" class="btn btn-success btn-sm">Agregar Jugador</button>
-                  <button type="button" id="removerJugador" class="btn btn-success btn-xs">Remover Jugador</button>
-
-                  <!-- jugadoresSelec Control -->
-                  <div class="form-group" [ngClass]="{ 'has-error': setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)}">
-                    <div class="row middle-xs">
-                      <div class="col-xs-12 col-sm-2">
-                        <label class="control-label">Jugadores Seleccionados</label>
-                      </div>
-                      <div class="col-xs-12 row-flat col-sm-10">
-                        <div class="row row-flat middle-xs">
-                          <div class="col-xs-9 col-sm-10">
-                            <select multiple class="form-control input-lg" formControlName="jugadoresSelec" id="inputjugadoresSelec">
-                            </select>
-                            <div class="text-danger small" *ngIf="setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)">
-                              <i class="fa fa-times" aria-hidden="true"></i>
-                              <span *ngIf="setPlayersForm.get('jugadoresSelec').errors['required']">Este campo es obligatorio</span>
+                  <div id="panelJugadores">
+                    <!-- jugadores -->
+                    <div class="form-group">
+                      <div class="row middle-xs">
+                        <div class="col-xs-12 col-sm-2">
+                          <label class="control-label">Jugadores</label>
+                        </div>
+                        <div class="col-xs-12 row-flat col-sm-10">
+                          <div class="row row-flat middle-xs">
+                            <div class="col-xs-9 col-sm-10">
+                              <select
+                                multiple
+                                class="form-control input-lg"
+                                id="inputJugadores"
+                                formControlName="allJugadores">
+                                <option *ngFor="let player of players" value="{{player.id}}">{{player.nombre}}</option>
+                              </select>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    <button type="button" id="agregarJugador" class="btn btn-success btn-sm" (click)="addPlayer()">Agregar Jugador</button>
+                    <button type="button" id="removerJugador" class="btn btn-success btn-xs">Remover Jugador</button>
+
+                    <!-- jugadoresSelec Control -->
+                    <div class="form-group" [ngClass]="{ 'has-error': setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)}">
+                      <div class="row middle-xs">
+                        <div class="col-xs-12 col-sm-2">
+                          <label class="control-label">Jugadores Seleccionados</label>
+                        </div>
+                        <div class="col-xs-12 row-flat col-sm-10">
+                          <div class="row row-flat middle-xs">
+                            <div class="col-xs-9 col-sm-10">
+                              <select multiple class="form-control input-lg" formControlName="jugadoresSelec" id="inputjugadoresSelec">
+                              </select>
+                              <div class="text-danger small" *ngIf="setPlayersForm.get('jugadoresSelec').errors && (setPlayersForm.get('jugadoresSelec').dirty  || submitted)">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                                <span *ngIf="setPlayersForm.get('jugadoresSelec').errors['required']">Este campo es obligatorio</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="button" id="confirmarJugadores" class="btn btn-success">Confirmar Jugadores</button>
                   </div>
 
-                  <button type="button" id="confirmarJugadores" class="btn btn-success">Confirmar Jugadores</button>
 
                 </form>
               </div>

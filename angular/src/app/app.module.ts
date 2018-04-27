@@ -38,6 +38,7 @@ import { ConsultarPartidoComponent } from './_common/consultar-partido/consultar
 import { ArbitroComponent } from './arbitro/arbitro.component';
 import { IngresarResultadosComponent } from './arbitro/ingresar-resultados/ingresar-resultados.component';
 import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.component';
+import {SortableModule} from 'ngx-bootstrap/sortable';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    SortableModule.forRoot(),
     ReactiveFormsModule/*,
     RouterModule.forRoot([
       {
