@@ -62,8 +62,7 @@ export class CrearTorneoComponent implements OnInit {
     this.submitted = true;
     if (isValid) {
       const params = {
-        tournamentCreate: this.tournament,
-        fechaHora: tournament['fechaHora']
+        tournamentCreate: this.tournament
       };
       // this.requestInProgress = true;
       this.tournamentService.createTournament(params)
@@ -72,6 +71,7 @@ export class CrearTorneoComponent implements OnInit {
           // this.authenticationService.registerLoginData(loggedInUser);
           // const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
           this.cookieService.keepTournament(createdTournament);
+          this.cookieService.keepInitialDateTournament(tournament['fechaHora']);
           const url = '/admin/DefinirJugadores';
           this.router.navigate([url]);
           // this.alertService.showSuccess();

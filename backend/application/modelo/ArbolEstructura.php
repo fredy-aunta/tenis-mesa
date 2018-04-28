@@ -15,15 +15,15 @@ class ArbolEstructura
     /**
      * @var Nodo
      */
-    private $raiz;
+    public $raiz;
     public $cant;
     public $altura;
     public $subizq;
-    private $subder;
+    public $subder;
     /**
      * @var array
      */
-    private $niveles;
+    public $niveles;
 
     public function __construct(Nodo $nodo = null)
     {

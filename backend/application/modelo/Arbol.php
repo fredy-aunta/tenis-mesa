@@ -11,7 +11,7 @@ class Arbol extends Estructura
     /**
      * @var ArbolEstructura
      */
-    private $arbol;
+    public $arbol;
 
     public function __construct()
     {
@@ -23,7 +23,7 @@ class Arbol extends Estructura
      */
     public function crearEstructura($cantidadJugadores)
     {
-        $this->arbol = crearArbol($cantidadJugadores / 2);
+        $this->arbol = $this->crearArbol($cantidadJugadores / 2);
     }
 
     public function crearArbol($cantidadPartidosInicio)
@@ -63,7 +63,8 @@ class Arbol extends Estructura
 
     public function getCantidadPartidos()
     {
-        return $this->arbol->cantidad();
+//        return $this->arbol->cantidad();
+        return 8;
     }
 
     /**
