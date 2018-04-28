@@ -20,7 +20,7 @@ export class UserService {
   }
 
   getUsers(): Promise<Array<User>> {
-    const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl';
+    const url = 'http://dev.tenis-mesa.com/ConsultarUsuariosCtrl/users';
     return this.http.get(url)
       .toPromise()
       .then(response => {

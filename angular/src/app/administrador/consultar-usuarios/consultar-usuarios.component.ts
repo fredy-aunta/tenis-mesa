@@ -19,9 +19,9 @@ export class ConsultarUsuariosComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers()
       .then(
-        data => this.users = data['usuarios']
+        usuarios => this.users = usuarios
         // this.users = data
-      ).catch(error => console.error(error));
+      ).catch(response => console.error(response));
 
   }
 
