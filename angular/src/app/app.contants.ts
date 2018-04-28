@@ -29,5 +29,6 @@ export const RESPONSE_MESSAGES = {
  */
 export const COOKIE_NAMES = {
   PLAYERS_SELECTED: 'players-selected',
-  REFEREES_SELECTED: 'referees-selected'
+  REFEREES_SELECTED: 'referees-selected',
+  TOURNAMENT: 'tournament'
 };

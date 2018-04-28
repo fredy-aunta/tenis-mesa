@@ -39,6 +39,7 @@ import { ArbitroComponent } from './arbitro/arbitro.component';
 import { IngresarResultadosComponent } from './arbitro/ingresar-resultados/ingresar-resultados.component';
 import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.component';
 import {SortableModule} from 'ngx-bootstrap/sortable';
+import {CustomCookieService} from './_services/custom-cookie.service';
 
 
 @NgModule({
@@ -109,6 +110,7 @@ import {SortableModule} from 'ngx-bootstrap/sortable';
     FormBuilder,
     {provide: APP_CONFIG, useValue: TM_APP_CONFIG},
     CookieService,
+    CustomCookieService,
     TorneoService,
     FormsModule,
     ReactiveFormsModule,

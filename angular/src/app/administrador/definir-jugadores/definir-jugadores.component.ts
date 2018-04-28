@@ -3,10 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../_model/User';
 import {UserService} from '../../_services/user.service';
 import {AlertService} from '../../_services/alert.service';
-import {CookieService} from 'ngx-cookie-service';
 import {COOKIE_NAMES} from '../../app.contants';
 import {AuthenticationService} from '../../_services/authentication.service';
 import {Router} from '@angular/router';
+import {CustomCookieService} from '../../_services/custom-cookie.service';
 
 @Component({
   selector: 'app-definir-jugadores',
@@ -25,7 +25,7 @@ export class DefinirJugadoresComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     private formBuilder: FormBuilder,
-    private cookieService: CookieService,
+    private cookieService: CustomCookieService,
     private authenticationService: AuthenticationService,
     private router: Router
   ) { }
@@ -48,6 +48,11 @@ export class DefinirJugadoresComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.cookieService.checkTournament()) {
+      console.log('Success');
+    } else {
+      console.error('Error');
+    }
     this.userService.getPlayers()
       .then(players => {
         this.players = players;
@@ -79,11 +84,10 @@ export class DefinirJugadoresComponent implements OnInit {
     if (this.refereesSelected.length === 0) {
       console.error(this.refereesSelected);
     } else {
-      this.cookieService.set(this.authenticationService.getPrefixCookieNameLoggedInUser() + COOKIE_NAMES.PLAYERS_SELECTED, JSON.stringify(this.playersSelected));
-      this.cookieService.set(this.authenticationService.getPrefixCookieNameLoggedInUser() + COOKIE_NAMES.REFEREES_SELECTED, JSON.stringify(this.refereesSelected));
+      this.cookieService.keepPlayers(this.playersSelected);
+      this.cookieService.keepReferees(this.refereesSelected);
       const url = '/admin/asociarJugadores';
       this.router.navigate([url]);
-      // this.hasPlayersSelected = true;
     }
   }
 
