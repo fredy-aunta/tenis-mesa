@@ -26,7 +26,10 @@
                             <span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>
                             <span class="hidden-xs">Consultar</span>
                           </div>
-                          <div class="inline-button" [routerLink]="['/admin/EditarTorneo/'+tournament.idTorneo]">
+                          <div
+                            class="inline-button"
+                            *ngIf="user.tipo === userTypes.ADMIN.value"
+                            [routerLink]="['/admin/EditarTorneo/'+tournament.idTorneo]">
                             <span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>
                             <span class="hidden-xs">Editar</span>
                           </div>
