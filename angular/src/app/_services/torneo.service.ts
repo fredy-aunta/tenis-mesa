@@ -3,6 +3,7 @@ import {Torneo} from '../_model/Torneo';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../_model/User';
+import {Partido} from '../_model/Partido';
 
 @Injectable()
 export class TorneoService {
@@ -49,4 +50,13 @@ export class TorneoService {
       );
   }
 
+  createEstructura(params): Promise<Array<Partido>> {
+    const url = 'http://dev.tenis-mesa.com/CrearEstructuraCtrl/';
+    return this.http.post(url, params)
+      .toPromise()
+      .then(response => {
+          return response['partidos'] as Array<Partido>;
+        }
+      );
+  }
 }

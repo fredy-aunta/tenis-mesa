@@ -7,6 +7,8 @@ import {AlertService} from '../../_services/alert.service';
 import {Router} from '@angular/router';
 import {UserService} from '../../_services/user.service';
 import {TorneoService} from '../../_services/torneo.service';
+import {CookieService} from 'ngx-cookie-service';
+import {CustomCookieService} from '../../_services/custom-cookie.service';
 
 @Component({
   selector: 'app-crear-torneo',
@@ -25,7 +27,8 @@ export class CrearTorneoComponent implements OnInit {
     private formDataUtil: FormDataUtil,
     private tournamentService: TorneoService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cookieService: CustomCookieService
   ) { }
 
   buildForm(): void {
@@ -68,9 +71,10 @@ export class CrearTorneoComponent implements OnInit {
           // this.requestInProgress = false;
           // this.authenticationService.registerLoginData(loggedInUser);
           // const url = this.authenticationService.getRedirectUrl(loggedInUser.tipo);
-          // const url = '/admin/DefinirJugadores';
-          // this.router.navigate([url]);
-          this.alertService.showSuccess();
+          this.cookieService.keepTournament(createdTournament);
+          const url = '/admin/DefinirJugadores';
+          this.router.navigate([url]);
+          // this.alertService.showSuccess();
         }).catch(response => {
         // this.requestInProgress = false;
         if (response.status === 404) {
