@@ -11,22 +11,22 @@ class Nodo
     /**
      * @var integer
      */
-    private $dato;
+    public $dato;
     /**
      * @var Nodo
      */
-    private $izq, $der;
+    public $izq, $der;
 
     public function __construct($dato = null, $izq = null, $der = null)
     {
         if (!is_null($dato)) {
-            $this->dato = dato;
+            $this->dato = $dato;
         }
         if (!is_null($izq)) {
-            $this->izq = izq;
+            $this->izq = $izq;
         }
         if (!is_null($der)) {
-            $this->der = der;
+            $this->der = $der;
         }
     }
 

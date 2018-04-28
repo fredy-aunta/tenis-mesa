@@ -69,4 +69,23 @@ export class CustomCookieService {
     cookieName += COOKIE_NAMES.REFEREES_SELECTED;
     return JSON.parse(this.cookieService.get(cookieName)) as Array<User>;
   }
+
+  keepInitialDateTournament(value: any, expires?: number | Date, path?: string, domain?: string, secure?: boolean) {
+    let cookieName = this.authenticationService.getPrefixCookieNameLoggedInUser();
+    cookieName += COOKIE_NAMES.INITIAL_DATE_TOURNAMENT;
+    const data = value;
+    this.cookieService.set(cookieName, data, expires, path, domain, secure);
+  }
+
+  checkInitialDateTournament(): boolean {
+    let cookieName = this.authenticationService.getPrefixCookieNameLoggedInUser();
+    cookieName += COOKIE_NAMES.INITIAL_DATE_TOURNAMENT;
+    return this.cookieService.check(cookieName);
+  }
+
+  getInitialDateTournament(): string {
+    let cookieName = this.authenticationService.getPrefixCookieNameLoggedInUser();
+    cookieName += COOKIE_NAMES.INITIAL_DATE_TOURNAMENT;
+    return this.cookieService.get(cookieName);
+  }
 }

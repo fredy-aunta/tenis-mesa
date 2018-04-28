@@ -15,16 +15,19 @@ class CrearEstructuraCtrl extends MY_Controller
 
     public function index_post()
     {
-        $torneo = $this->session->userdata('torneoSession');
+        $torneo = $this->post('torneo');
+        $torneo = new Torneo($torneo);
         $response = array('partidos' => array());
         if ($torneo instanceof Torneo) {
-            $jugadores = $this->session->userdata("jugadoresSesion");
-            $arbitros = $this->session->userdata("arbitrosSesion");
+            $jugadores = $this->post("jugadores");
+            $arbitros = $this->post("arbitros");
             $torneo->getEstructura()->crearEstructura($torneo->getCantidadJugadores());
             $estructura = $torneo->getEstructura();
+            $response['torneo'] = print_r($torneo, true);
+            $response['estu'] = $estructura;
             if ($estructura instanceof Estructura) {
                 $cantidadPartidos = $estructura->getCantidadPartidos();
-                $fechaHora = $this->session->userdata("fechaHoraTorneoSession");
+                $fechaHora = $this->post("fechaHora");
                 $partidos = new Partidos($cantidadPartidos, $jugadores,$arbitros,$fechaHora);
                 $response['partidos'] = $partidos->getData();
                 $response_code = REST_Controller::HTTP_OK;
@@ -34,6 +37,7 @@ class CrearEstructuraCtrl extends MY_Controller
             }
         } else {
             $response['error'] = "Error en Torneo";
+            $response['torneo'] = print_r($torneo, true);
             $response_code = REST_Controller::HTTP_BAD_REQUEST;
         }
 

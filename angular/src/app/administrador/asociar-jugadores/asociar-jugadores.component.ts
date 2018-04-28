@@ -17,13 +17,15 @@ export class AsociarJugadoresComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if (this.cookieService.getTournament() &&
+    if (this.cookieService.checkTournament() &&
       this.cookieService.checkPlayers() &&
-      this.cookieService.checkReferees()) {
+      this.cookieService.checkReferees() &&
+      this.cookieService.checkInitialDateTournament()) {
       const params = {
         torneo: this.cookieService.getTournament(),
         jugadores: this.cookieService.getPlayers(),
         arbitros: this.cookieService.getReferees(),
+        fechaHora: this.cookieService.getInitialDateTournament()
       };
       this.tournamentService.createEstructura(params)
         .then(partidos => {

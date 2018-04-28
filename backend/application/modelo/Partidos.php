@@ -15,6 +15,7 @@ class Partidos
 
     public function __construct($cantidadPartidos, array $jugadores, array $arbitros, $fechaHoraInicial)
     {
+        $this->data = array();
         $contadorPartidos = 0;
         for ($i = 0; $i < count($jugadores); $i=$i+2) {
             if ($i > 0) {
@@ -24,12 +25,12 @@ class Partidos
             }
             $date = date('Y-m-d H:i:s',strtotime('+30 minutes',strtotime($date)));
 
-                $jugador1 = $jugadores[$i];
-                $jugador2 = $jugadores[$i+1];
+                $jugador1 = new Usuario($jugadores[$i]);
+                $jugador2 = new Usuario($jugadores[$i+1]);
                 $contadorPartidos++;
                 $m_Partido = new Partido();
-                $m_Partido->setIdJugador1($jugador1->getIdUsuario());
-                $m_Partido->setIdJugador2($jugador2->getIdUsuario());
+                $m_Partido->setIdJugador1($jugador1->getId());
+                $m_Partido->setIdJugador2($jugador2->getId());
                 $m_Partido->setFechaHora($date);
                 $m_Partido->setIdPartidoTorneo($contadorPartidos);
                 $this->agregar($m_Partido);

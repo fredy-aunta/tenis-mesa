@@ -1,3 +1,43 @@
-<p>
-  asociar-jugadores works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-md-12 xs-row-flat">
+      <div class="row middle-sm">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row" *ngIf="partidos != null">
+              <div class="col-md-12 fields-panel">
+                <h3 class="box-title">Usuarios</h3>
+                <p>Puedes <strong>consultar o editar los usuarios registrados</strong></p>
+                <div *ngIf="(partidos && partidos.length > 0)" class="br-1-primary mg-t-30">
+                  <div class="row row-flat table-title">
+                    <div class="col-xs-5 col-md-4 row-flat title">Fecha - Hora</div>
+                    <div class="col-xs-5 col-md-6 row-flat title">Jugadores</div>
+                    <!--<div class="col-xs-3 col-md-2 row-flat title"></div>-->
+                  </div>
+                  <div class="row middle-xs row-flat table-items"  *ngFor="let partido of partidos">
+                    <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">{{partido.fechaHora}}</div>
+                    <div class="col-xs-3 col-md-1 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">{{partido.idJugador1}} - {{partido.idJugador2}}</div>
+                    <div class="col-xs-3 col-md-2 row-flat item">
+                      <div class="row row-flat end-xs">
+                        <div class="col-xs-12">
+                          <div class="inline-button" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">
+                            <span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Consultar</span>
+                          </div>
+                          <div class="inline-button" [routerLink]="['/admin/EditarUsuario/'+partido.idPartidoTorneo]">
+                            <span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                            <span class="hidden-xs">Editar</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

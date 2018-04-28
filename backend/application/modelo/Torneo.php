@@ -15,6 +15,23 @@ class Torneo
     public $cantidadMesas;
     public $partidos;
 
+    public function __construct($torneo_db = null)
+    {
+        if (!is_null($torneo_db)){
+            if (is_array($torneo_db)) {
+                $torneo_db = (object) $torneo_db;
+            }
+            $this->setIdTorneo($torneo_db->idTorneo);
+            $this->setNombre($torneo_db->nombre);
+            $this->setCantidadJugadores($torneo_db->cantidadJugadores);
+            $this->setCantidadMesas($torneo_db->cantidadMesas);
+            if (isset($torneo_db->estructura) && isset($torneo_db->estructura['idEstructura'])) {
+                $estructura = FactoriaEstructura::getEstructura($torneo_db->estructura['idEstructura']);
+                $this->setEstructura($estructura);
+            }
+        }
+    }
+
     /**
      * @return mixed
      */
@@ -48,7 +65,7 @@ class Torneo
     }
 
     /**
-     * @return mixed
+     * @return Estructura
      */
     public function getEstructura()
     {

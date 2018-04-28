@@ -13,7 +13,7 @@ abstract class Estructura
 
     function __construct()
     {
-        $this->setIdEstructura(FactoriaEstructura.ESTRUCTURA_ARBOL);
+        $this->setIdEstructura(FactoriaEstructura::ESTRUCTURA_ARBOL);
     }
 
     public abstract function crearEstructura($cantidadJugadores);
