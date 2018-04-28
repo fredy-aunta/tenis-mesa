@@ -14,7 +14,7 @@ class ConsultarUsuariosCtrl extends MY_Controller
         $this->load->model('usuarioDB');
     }
 
-    public function index_get()
+    public function users_get()
     {
         $response = array(
             'usuarios' => $this->usuarioDB->getAllUsuarios()
