@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="dropdown">
+        <li class="dropdown" *ngIf="user.tipo=== userTypes.ADMIN.value">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Usuarios<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a routerLink="/admin/CrearUsuario">Crear Usuario</a></li>
@@ -24,7 +24,7 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Torneos<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a routerLink="/admin/CrearTorneo">Crear Torneo</a></li>
+            <li *ngIf="user.tipo === userTypes.ADMIN.value"><a routerLink="/admin/CrearTorneo">Crear Torneo</a></li>
             <li><a routerLink="/admin/ConsultarTorneos">Colsultar Torneos</a></li>
           </ul>
         </li>
@@ -32,4 +32,5 @@
       </ul>
     </div>
   </div>
+
 </nav>

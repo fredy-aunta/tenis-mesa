@@ -38,7 +38,7 @@ export const ProtectedRoutes: Routes = [
         redirectTo: 'home',
         pathMatch: 'full'
       },
-    {
+      {
         path: 'home',
         component: AdministradorComponent,
       },
@@ -122,7 +122,7 @@ export const ProtectedRoutes: Routes = [
         component: NextDateForTaxPaymentComponent
       }*/
     ]}/*,
-  {path: 'arbitro', component: TaxPayerRouterOutletComponent, canActivate: [AuthenticationGuardService], children: [
+  {path: 'arbitro', component: AdministradorRouterOutletComponent, canActivate: [], children: [
       {
         path: 'dashboard',
         component: IndexDashboardComponent

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Partido} from '../_model/Partido';
 import 'rxjs/add/operator/toPromise';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Torneo} from '../_model/Torneo';
 
 @Injectable()
 export class PartidoService {
@@ -35,6 +36,16 @@ export class PartidoService {
       .toPromise()
       .then(response => {
           return response as Partido;
+        }
+      );
+  }
+
+  updateGame(params): Promise<Partido> {
+    const url = 'http://dev.tenis-mesa.com/ModificarPartidoCtrl/';
+    return this.http.put(url, params)
+      .toPromise()
+      .then(response => {
+          return response['partido'] as Partido;
         }
       );
   }

@@ -1,14 +1,137 @@
-<div align="center" *ngIf="game">
-  <div>
-    {{game.idPartido}}
-  </div>
-  <div>
-    <h6>Id Partido: {{game.idPartido}}</h6>
-    <h6>Fecha-Hora: {{game.fechaHora}}</h6>
-    <h6>Id Jugador 1: {{game.idJugador1}}</h6>
-    <h6>Id Jugador 2: {{game.idJugador2}}</h6>
-    <h6>Resultado 1: {{game.resultado1}}</h6>
-    <h6>Resultado 2: {{game.resultado2}}</h6>
-    <h6>Id Arbitro: {{game.idArbitro}}</h6>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-1 col-sm-12 col-md-10">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-12 fields-panel col-sm-12" *ngIf="game">
+                <h3 class="box-title" align="center">Partido</h3>
+
+                <p></p>
+
+                <!--Fecha-Hora-->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Fecha-Hora</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.fechaHora}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Jugador 1 -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Jugador 1</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.idJugador1}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Jugador 2 -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Jugador 2</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.idJugador2}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Resltado 1 -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Resltado 1</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.resultado1}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Resultado 2 -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Resultado 2</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.resultado2}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Arbitro -->
+                <div class="form-group">
+                  <div class="row middle-xs">
+                    <div class="col-xs-12 col-sm-2">
+                      <label class="control-label">Arbitro</label>
+                    </div>
+                    <div class="col-xs-12 row-flat col-sm-10">
+                      <div class="row row-flat middle-xs">
+                        <div class="col-xs-9 col-sm-10">
+                          <input
+                            type="text"
+                            class="form-control input-lg"
+                            placeholder="{{game.idArbitro}}" disabled>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!--<button type="submit" class="btn btn-primary btn-sm btn-block" [routerLink]="['/admin/ConsultarTorneo/ConsultarPartidos/',tournament.idTorneo]"> Ver Partidos</button>
+-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
