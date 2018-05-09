@@ -19,13 +19,29 @@ class PartidoDB extends CI_Model
     public function insert(Partido $partido, $idTorneo)
     {
         $partidoInsert = array(
-            'fechaHora' => $partido->getFechaHoraFull(),
+            'fechaHora' => $partido->getFechaHora(),
             'idTorneo' => $idTorneo,
             'idPartidoTorneo' => $partido->getIdPartidoTorneo()
         );
         $this->db->insert(self::TABLE_NAME_PARTIDO, $partidoInsert);
-        $rows = $this->db->affected_rows();
-        if ($rows == 1) {
+        
+        $idPartido = $this->db->insert_id();
+        $idUsuarios = array(
+            $partido->getIdJugador1(),
+            $partido->getIdJugador2(),
+            $partido->getIdArbitro()
+        );
+            
+            for ($i = 0; $i < count($idUsuarios); $i++) {
+                //index = 1;
+                $idUsuario = $idUsuarios[$i];
+                $usuarioPartido = array(
+                    'idPartido'=> $idPartido,
+                    'idUsuario'=> $idUsuario
+                );
+                $this->db->insert(self::TABLE_NAME_USUARIO_PARTIDO, $usuarioPartido);
+            }
+        if (true) {
             return true;
         } else {
             return false;

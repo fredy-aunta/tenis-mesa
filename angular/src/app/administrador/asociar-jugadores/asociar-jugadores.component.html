@@ -17,21 +17,22 @@
                   <div class="row middle-xs row-flat table-items"  *ngFor="let partido of partidos">
                     <div class="col-xs-3 col-md-2 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">{{partido.fechaHora}}</div>
                     <div class="col-xs-3 col-md-1 row-flat item linkable" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">{{partido.idJugador1}} - {{partido.idJugador2}}</div>
-                    <div class="col-xs-3 col-md-2 row-flat item">
-                      <div class="row row-flat end-xs">
-                        <div class="col-xs-12">
-                          <div class="inline-button" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">
-                            <span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>
-                            <span class="hidden-xs">Consultar</span>
-                          </div>
-                          <div class="inline-button" [routerLink]="['/admin/EditarUsuario/'+partido.idPartidoTorneo]">
-                            <span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-                            <span class="hidden-xs">Editar</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <!--<div class="col-xs-3 col-md-2 row-flat item">-->
+                      <!--<div class="row row-flat end-xs">-->
+                        <!--<div class="col-xs-12">-->
+                          <!--<div class="inline-button" [routerLink]="['/admin/ConsultarUsuario/'+partido.idPartidoTorneo]">-->
+                            <!--<span class="btn-round"><i class="fa fa-search" aria-hidden="true"></i></span>-->
+                            <!--<span class="hidden-xs">Consultar</span>-->
+                          <!--</div>-->
+                          <!--<div class="inline-button" [routerLink]="['/admin/EditarUsuario/'+partido.idPartidoTorneo]">-->
+                            <!--<span class="btn-round"><i class="fa fa-pencil" aria-hidden="true"></i></span>-->
+                            <!--<span class="hidden-xs">Editar</span>-->
+                          <!--</div>-->
+                        <!--</div>-->
+                      <!--</div>-->
+                    <!--</div>-->
                   </div>
+                  <button (click)="confirmGames()">Confirmar partidos</button>
                 </div>
               </div>
             </div>

@@ -59,4 +59,15 @@ export class TorneoService {
         }
       );
   }
+
+  asociarUsuarios(params): Promise<boolean> {
+    const url = 'http://dev.tenis-mesa.com/AsociarUsuariosCtrl';
+    return this.http.post(url, params)
+      .toPromise()
+      .then(response => {
+          return response['estadoAsociacion'] as boolean;
+        }
+      );
+  }
+
 }
