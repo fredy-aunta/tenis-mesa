@@ -73,15 +73,16 @@ class TorneoDB extends CI_Model
         $this->db->join('torneo t', 't.idTorneo = p.idTorneo');
         $this->db->join('estructura e', 'e.idEstructura = t.idEstructura');
         $this->db->where('p.idPartido', $idPartido);
-        $query = $this->db->get(self::TABLE_NAME);
+        $query = $this->db->get('partido p');
         $torneoDb = $query->row();
         $torneo = new Torneo();
         $torneo->setIdTorneo($torneoDb->idTorneo);
         $torneo->setNombre($torneoDb->nombre);
-        $estructura = FactoriaEstructura . getEstructura($torneoDb->idEstructura);
+        $estructura = FactoriaEstructura::getEstructura($torneoDb->idEstructura);
         $torneo->setCantidadJugadores($torneoDb->cantidadJugadores);
         $torneo->setCantidadMesas($torneoDb->cantidadMesas);
         $estructura->setNombre($torneoDb->nombre);
+        $estructura->crearEstructura($torneo->getCantidadJugadores());
         $torneo->setEstructura($estructura);
         return $torneo;
     }

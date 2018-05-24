@@ -165,20 +165,22 @@ class PartidoDB extends CI_Model
 
     public function definirSiguientePartido(Torneo $torneo, Partido $partido)
     {
+        log_message('info', print_r($torneo, true));
+        log_message('info', print_r($partido, true));
         $e = $torneo->getEstructura();
         $idNextUsuario = $partido->getIdGanador();
         $this->db->select("up.idUsuarioPartido");
         $this->db->join('partido p','p.idPartido = up.idPartido');
         $this->db->where('p.idPartidoTorneo', $e->getIdSiguientePartido($partido->getIdPartidoTorneo()));
         $this->db->where('p.idTorneo', $torneo->getIdTorneo());
-        $this->db->where('up.idUsuario', 0);
+        $this->db->where('up.idUsuario', null);
         $this->db->order_by('up.idUsuarioPartido ASC');
         $this->db->limit(1);
         $query = $this->db->get("usuariopartido up");
         $idUsuarioPartido = $query->row()->idUsuarioPartido;
-        $this->db->set('idUsuario');
-        $this->db->where('idUsuarioPartido', $idNextUsuario);
-        $this->db->update('usuariopartido', $idUsuarioPartido);
+        $this->db->set('idUsuario', $idNextUsuario);
+        $this->db->where('idUsuarioPartido', $idUsuarioPartido);
+        $this->db->update('usuariopartido');
         $affected_rows = $this->db->affected_rows();
         return ($affected_rows > 0);
     }

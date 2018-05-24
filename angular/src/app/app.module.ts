@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {IniciarSesionComponent} from './authentication/iniciar-sesion/iniciar-sesion.component';
 import {AdministradorComponent} from './administrador/administrador.component';
-import {MenuComponent} from './administrador/menu/menu.component';
+import {MenuComponent} from './_common/menu/menu.component';
 import {CrearUsuarioComponent} from './administrador/crear-usuario/crear-usuario.component';
 import {ConsultarUsuariosComponent} from './administrador/consultar-usuarios/consultar-usuarios.component';
 import {ConsultarUsuarioComponent} from './_common/consultar-usuario/consultar-usuario.component';
@@ -40,6 +40,9 @@ import { IngresarResultadosComponent } from './arbitro/ingresar-resultados/ingre
 import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.component';
 import {SortableModule} from 'ngx-bootstrap/sortable';
 import {CustomCookieService} from './_services/custom-cookie.service';
+import {ArbitroRouterOutletComponent} from './arbitro/arbitro-router-outlet.component';
+import { JugadorComponent } from './jugador/jugador.component';
+import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.component';
 
 
 @NgModule({
@@ -67,7 +70,11 @@ import {CustomCookieService} from './_services/custom-cookie.service';
     ConsultarPartidoComponent,
     ArbitroComponent,
     IngresarResultadosComponent,
-    EditarPartidoComponent
+    EditarPartidoComponent,
+    ArbitroComponent,
+    ArbitroRouterOutletComponent,
+    JugadorComponent,
+    JugadorRouterOutletComponent
   ],
   imports: [
     BrowserAnimationsModule,

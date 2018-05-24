@@ -61,6 +61,7 @@ class AsociarUsuariosCtrl extends MY_Controller
             }
             $partido->setIdPartidoTorneo($idPartidosTorneo);
             $arbitro = $arbitros[rand(0, (count($arbitros) - 1))];
+            $arbitro = new Usuario($arbitro);
             if ($arbitro instanceof Usuario) {
                 $partido->setIdArbitro($arbitro->getId());
             }

@@ -8,9 +8,7 @@
             <div class="row">
               <div class="col-md-12 fields-panel col-sm-12" *ngIf="game">
                 <h3 class="box-title" align="center">Partido</h3>
-
-                <p></p>
-                <form [formGroup]="editGameForm" (ngSubmit)="submitEditGameForm(editGameForm.value, editGameForm.valid)" novalidate>
+                <form [formGroup]="editGameForm" (ngSubmit)="submitEditGameForm(editGameForm.value, editGameForm.valid)" novalidate *ngIf="editGameForm !== null">
                 <!--Fecha-Hora-->
                 <div class="form-group">
                   <div class="row middle-xs">
@@ -23,8 +21,7 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.fechaHora}}"
-                            [disabled]="user.tipo === userTypes.ARBITRO.value">
+                            formControlName="fechaHora">
                         </div>
                       </div>
                     </div>
@@ -43,7 +40,7 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.idJugador1}}" disabled>
+                            formControlName="idJugador1">
                         </div>
                       </div>
                     </div>
@@ -62,7 +59,7 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.idJugador2}}" disabled>
+                            formControlName="idJugador2">
                         </div>
                       </div>
                     </div>
@@ -73,7 +70,7 @@
                 <div class="form-group">
                   <div class="row middle-xs">
                     <div class="col-xs-12 col-sm-2">
-                      <label class="control-label">Resltado 1</label>
+                      <label class="control-label">Resultado 1</label>
                     </div>
                     <div class="col-xs-12 row-flat col-sm-10">
                       <div class="row row-flat middle-xs">
@@ -81,8 +78,7 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.resultado1}}"
-                            [disabled]="user.tipo === userTypes.ADMIN.value">
+                            formControlName="resultado1">
                         </div>
                       </div>
                     </div>
@@ -101,8 +97,7 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.resultado2}}"
-                            [disabled]="user.tipo === userTypes.ADMIN.value">
+                            formControlName="resultado2">
                         </div>
                       </div>
                     </div>
@@ -121,13 +116,12 @@
                           <input
                             type="text"
                             class="form-control input-lg"
-                            value="{{game.idArbitro}}" disabled>
+                            formControlName="idArbitro">
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-
                 <button type="submit" class="btn btn-primary btn-sm btn-block">Modificar</button>
                 </form>
               </div>

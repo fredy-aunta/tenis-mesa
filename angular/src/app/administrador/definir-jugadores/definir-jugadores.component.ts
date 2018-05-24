@@ -7,6 +7,7 @@ import {COOKIE_NAMES} from '../../app.contants';
 import {AuthenticationService} from '../../_services/authentication.service';
 import {Router} from '@angular/router';
 import {CustomCookieService} from '../../_services/custom-cookie.service';
+import {Torneo} from '../../_model/Torneo';
 
 @Component({
   selector: 'app-definir-jugadores',
@@ -21,6 +22,7 @@ export class DefinirJugadoresComponent implements OnInit {
   public referees: Array<User> = [];
   public refereesSelected: Array<User> = [];
   public hasPlayersSelected = false;
+  public tournament: Torneo;
   constructor(
     private userService: UserService,
     private alertService: AlertService,
@@ -49,13 +51,16 @@ export class DefinirJugadoresComponent implements OnInit {
 
   ngOnInit() {
     if (this.cookieService.checkTournament()) {
-      console.log('Success');
+      this.tournament = this.cookieService.getTournament();
     } else {
       console.error('Error');
     }
     this.userService.getPlayers()
       .then(players => {
         this.players = players;
+        for (let i = 0; i < parseInt(this.tournament.cantidadJugadores, 10); i++){
+
+        }
       })
       .catch(response => {
         this.alertService.showError();

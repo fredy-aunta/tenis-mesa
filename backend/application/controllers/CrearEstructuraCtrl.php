@@ -18,6 +18,7 @@ class CrearEstructuraCtrl extends MY_Controller
         $torneo = $this->post('torneo');
         $torneo = new Torneo($torneo);
         $response = array('partidos' => array());
+
         if ($torneo instanceof Torneo) {
             $jugadores = $this->post("jugadores");
             $arbitros = $this->post("arbitros");
@@ -26,6 +27,7 @@ class CrearEstructuraCtrl extends MY_Controller
             $response['torneo'] = print_r($torneo, true);
             $response['estu'] = $estructura;
             if ($estructura instanceof Estructura) {
+                //$estructura->crearEstructura($torneo->getCantidadJugadores());
                 $cantidadPartidos = $estructura->getCantidadPartidos();
                 $fechaHora = $this->post("fechaHora");
                 $partidos = new Partidos($cantidadPartidos, $jugadores,$arbitros,$fechaHora);

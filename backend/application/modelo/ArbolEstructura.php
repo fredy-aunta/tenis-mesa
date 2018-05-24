@@ -80,19 +80,21 @@ class ArbolEstructura
     }
 
     //TODO: Revisar funcionalidad
-    public function cantidad($reco = null)
+    public function cantidad()
     {
-        if ($reco != null) {
-            $this->cant++;
-            $this->cantidad($reco->getIzq());
-            $this->cantidad($reco->getDer());
-        } else {
-            $this->cant = 0;
-            $this->cantidad($this->raiz);
-        }
+        $this->cant = 0;
+        $this->cantidadRecursive($this->raiz);
         return $this->cant;
     }
 
+    private function cantidadRecursive($reco)
+    {
+        if ($reco != null) {
+            $this->cant++;
+            $this->cantidadRecursive($reco->getIzq());
+            $this->cantidadRecursive($reco->getDer());
+        }
+    }
     //TODO: Revisar funcionalidad
     private function cantidadNodosHoja($reco = null)
     {
@@ -240,16 +242,13 @@ class ArbolEstructura
 
     public function padre($padre, $hijo)
     {
-        $p = 0;
         if ($padre == null) {
             return;
         }
         if ($padre->getIzq()->getDato() == $hijo) {
-            $p = $padre->getDato();
-            $res = $padre->getDato();
+            $this->res = $padre->getDato();
         } else if ($padre->getDer()->getDato() == $hijo) {
-            $p = $padre->getDato();
-            $res = $padre->getDato();
+            $this->res = $padre->getDato();
         } else if ($padre->getIzq()->getIzq() != null) {
             $this->padre($padre->getIzq(), $hijo);
             $this->padre($padre->getDer(), $hijo);
