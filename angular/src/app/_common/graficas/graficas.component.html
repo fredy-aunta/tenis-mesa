@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-offset-1 col-sm-12 col-md-10 xs-row-flat">
+      <div class="row middle-xs">
+        <div class="col-xs-12">
+          <div class="inside-box-panel">
+            <div class="row">
+              <div class="col-md-6">
+                <div *ngIf="tiposUsuario">
+                  <h3 align="center">Tipos de Usuarios</h3>
+                  <canvas id="tiposUsuario">{{ tiposUsuario }}</canvas>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div *ngIf="fechaPartidos">
+                  <h3 align="center">Partidos por Jugar</h3>
+                  <canvas id="fechaPartidos">{{ fechaPartidos }}</canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

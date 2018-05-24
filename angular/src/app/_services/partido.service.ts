@@ -20,6 +20,16 @@ export class PartidoService {
     };
   }
 
+  getPartidos(): Promise<Array<Partido>> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarPartidosTorneoCtrl/index2';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response["partidos"] as Array<Partido>;
+        }
+      );
+  }
+
   getPartidosTorneo(id: string): Promise<Array<Partido>> {
     const url = 'http://dev.tenis-mesa.com/ConsultarPartidosTorneoCtrl/' + id;
     return this.http.get(url)
