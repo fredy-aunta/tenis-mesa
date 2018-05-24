@@ -4,7 +4,6 @@ import {PartidoService} from '../../_services/partido.service';
 import {Partido} from '../../_model/Partido';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormDataUtil} from '../../_services/form-data-util.service';
-import {CustomCookieService} from '../../_services/custom-cookie.service';
 import {AlertService} from '../../_services/alert.service';
 import {User} from '../../_model/User';
 import {USER_TYPES} from '../../app.contants';
@@ -18,11 +17,13 @@ import {AuthenticationService} from '../../_services/authentication.service';
 })
 export class EditarPartidoComponent implements OnInit {
 
-  public editGameForm: FormGroup;
+  public editGameForm: FormGroup = null;
   public game: Partido;
   public submitted: boolean;
   public user: User;
   public userTypes = USER_TYPES;
+  private isReferee: boolean;
+  private isAdmin: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,23 +37,33 @@ export class EditarPartidoComponent implements OnInit {
   ) { }
 
   buildForm(): void {
+    let validationsFechaHora: Validators = [];
+    let validationsResultados: Validators = [];
+    if (this.user && this.user.tipo === this.userTypes.ADMIN.value) {
+      validationsFechaHora = Validators.required;
+    } else if (this.user && this.user.tipo === this.userTypes.ARBITRO.value) {
+      validationsResultados = Validators.required;
+    }
+    this.isReferee = this.user.tipo === this.userTypes.ARBITRO.value;
+    this.isAdmin = this.user.tipo === this.userTypes.ADMIN.value;
+
     this.editGameForm = this.formBuilder.group({
-      fechaHora: [this.game.fechaHora,
-        [Validators.required]
+      fechaHora: [{value: this.game.fechaHora, disabled: this.isReferee},
+        validationsFechaHora
       ],
-      idJugador1: [this.game.idJugador1,
-        [Validators.required]
+      idJugador1: [{value: this.game.idJugador1, disabled: true},
+        []
       ],
-      idJugador2: [this.game.idJugador2,
-        [Validators.required]
+      idJugador2: [{value: this.game.idJugador2, disabled: true},
+        []
       ],
-      idresultado1: [this.game.resultado1,
-        [Validators.required]
+      resultado1: [{value: this.game.resultado1, disabled: this.isAdmin},
+        validationsResultados
       ],
-      iresultado2: [this.game.resultado2,
-        [Validators.required]
+      resultado2: [{value: this.game.resultado2, disabled: this.isAdmin},
+        validationsResultados
       ],
-      idArbitro: [this.game.idArbitro,
+      idArbitro: [{value: this.game.idArbitro, disabled: true},
         [Validators.required]
       ]
     });
@@ -65,36 +76,51 @@ export class EditarPartidoComponent implements OnInit {
         this.user = this.authenticationService.user;
       });
     this.game = new Partido();
-    this.buildForm();
-    this.editGameForm.controls.fechaHora.disable();
+
     this.gameService.getPartido(id)
       .then(
-        data => this.game = data['partido']
-      ).catch(error => console.error(error));
+        data => {
+          this.game = data['partido'];
+          this.buildForm();
+        }
+      ).catch(error => {
+        console.error(error);
+      });
   }
 
   submitEditGameForm(game: Object, isValid: boolean) {
     this.game = this.formDataUtil.copyFormToObject(game, this.game, Partido.classMetadata);
     this.submitted = true;
+    let params: any = {};
     if (isValid) {
-      const params = {
-        fechaHora: game['fechaHora'],
-        idPartido: game['idPartido'],
+      params = {
+        fechaHora: this.game['fechaHora'],
+        idPartido: this.game['idPartido'],
       };
       // this.requestInProgress = true;
-      this.gameService.updateGame(params)
-        .then(createdTournament => {
-          this.alertService.showSuccess();
-        }).catch(response => {
-        // this.requestInProgress = false;
-        if (response.status === 404) {
-          // TODO: Mostrar error
-          this.alertService.showFormError();
-          // this.wrongUserOrPassword = true;
-        }
-        // TODO: Mostrar error
-        this.alertService.showFormError();
-      });
+      if (this.isAdmin) {
+        this.gameService.updateGame(this.game)
+          .then(updatedPartido => {
+            this.alertService.showSuccess();
+            console.log(updatedPartido);
+          }).catch(response => {
+          if (response.status === 404) {
+            this.alertService.showFormError();
+          } else {
+            this.alertService.showError();
+          }
+        });
+      } else if (this.isReferee) {
+        this.gameService.uploadResults(this.game)
+          .then(updatedPartido => {
+            this.alertService.showSuccess();
+            console.log(updatedPartido);
+          }).catch(error => {
+            console.error(error);
+            this.alertService.showError();
+        });
+      }
+
     } else {
       // TODO: Mostrar error
       this.alertService.showFormError();

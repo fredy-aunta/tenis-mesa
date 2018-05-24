@@ -60,4 +60,14 @@ export class PartidoService {
       );
   }
 
+  uploadResults(params): Promise<Partido> {
+    const url = 'http://dev.tenis-mesa.com/IngresarResultadoPartidoCtrl/';
+    return this.http.put(url, params)
+      .toPromise()
+      .then(response => {
+          return response['partido'] as Partido;
+        }
+      );
+  }
+
 }

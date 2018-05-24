@@ -17,14 +17,33 @@ class AsociarUsuariosCtrl extends MY_Controller
 
     public function index_post()
     {
-        $idsPartidosTorneo = $this->post("idPartidoTorneo");
-        $idsJugador1 = $this->post("idJugador1");
-        $idsJugador2 = $this->post("idJugador2");
-        $fechas = $this->post("fechas");
-        $arbitros = $this->session->userdata("arbitrosSesion");
-        $torneo = $this->session->userdata("torneoSession");
+        $partidos = $this->post('partidos');
+        $idsPartidosTorneo = array();
+        $idsJugador1 = array();
+        $idsJugador2 = array();
+        $fechas = array();
+        //log_message('error', $partidos);
+        foreach ($partidos as $key => $partidoPost) {
+            
+            array_push($idsPartidosTorneo, $partidoPost['idPartidoTorneo']);
+            array_push($idsJugador1, $partidoPost['idJugador1']);
+            array_push($idsJugador2, $partidoPost['idJugador2']);
+            array_push($fechas, $partidoPost['fechaHora']);
+        }
+
+        $torneo = $this->post('torneo');
+        $torneo = new Torneo($torneo);
+        $jugadores = $this->post("jugadores");
+        $arbitros = $this->post("arbitros");
+        // $idsPartidosTorneo = $this->post("idPartidoTorneo");
+        //$idsJugador1 = $this->post("idJugador1");
+        //$idsJugador2 = $this->post("idJugador2");
+        //$fechas = $this->post("fechas");
+        //$arbitros = $this->session->userdata("arbitrosSesion");
+        //$torneo = $this->session->userdata("torneoSession");
 //        Partido partido;
         $idsPartidos = array();
+        $response['idsGames'] = array();
         for ($i = 0; $i < count($idsPartidosTorneo); $i++) {
             $idPartidosTorneo = $idsPartidosTorneo[$i];
             $idJugador1 = $idsJugador1[$i];
@@ -33,6 +52,7 @@ class AsociarUsuariosCtrl extends MY_Controller
 
             $partido = new Partido();
             $partido->setFechaHora($fecha);
+            // print_r($partido);
             if (!$idJugador1 == "0") {
                 $partido->setIdJugador1($idJugador1);
             }
@@ -40,21 +60,23 @@ class AsociarUsuariosCtrl extends MY_Controller
                 $partido->setIdJugador2($idJugador2);
             }
             $partido->setIdPartidoTorneo($idPartidosTorneo);
-            $arbitro = $arbitros[rand(0, count($arbitros))];
+            $arbitro = $arbitros[rand(0, (count($arbitros) - 1))];
+            $arbitro = new Usuario($arbitro);
             if ($arbitro instanceof Usuario) {
                 $partido->setIdArbitro($arbitro->getId());
             }
             if ($torneo instanceof Torneo) {
                 $idNewPartido = $this->partidoDB->insert($partido, $torneo->getIdTorneo());
-                array_push($idsPartidosTorneo, $idNewPartido);
+                array_push($idsPartidos, $idNewPartido);
+                array_push($response['idsGames'], $idNewPartido);
             }
         }
         if (count($idsPartidos) == count($idsPartidosTorneo)) {
-            $this->session->unset_userdata("torneoSession");
-            $this->session->unset_userdata("fechaHoraTorneoSession");
-            $this->session->unset_userdata("jugadoresSesion");
-            $this->session->unset_userdata("arbitrosSesion");
-            $response['estadoAsociación'] = true;
+            //$this->session->unset_userdata("torneoSession");
+            //$this->session->unset_userdata("fechaHoraTorneoSession");
+            //$this->session->unset_userdata("jugadoresSesion");
+            //$this->session->unset_userdata("arbitrosSesion");
+            $response['estadoAsociacion'] = true;
             $response_code = REST_Controller::HTTP_OK;
         } else {
             $response['error'] = "No coincide el numero de partidos insertados";

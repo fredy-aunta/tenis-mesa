@@ -16,11 +16,16 @@ import {EditarTorneoComponent} from './_common/editar-torneo/editar-torneo.compo
 import {ConsultarPartidosComponent} from './_common/consultar-partidos/consultar-partidos.component';
 import {ConsultarPartidoComponent} from './_common/consultar-partido/consultar-partido.component';
 import {EditarPartidoComponent} from './_common/editar-partido/editar-partido.component';
+import {ArbitroRouterOutletComponent} from './arbitro/arbitro-router-outlet.component';
+import {ArbitroComponent} from './arbitro/arbitro.component';
+import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.component';
+import {JugadorComponent} from './jugador/jugador.component';
 import {GraficasComponent} from './_common/graficas/graficas.component';
 
 export const AuthRoutes: Routes = [
-  { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
-  {path: 'auth', component: AuthenticationRouterOutletComponent,  children: [
+  {path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full'},
+  {
+    path: 'auth', component: AuthenticationRouterOutletComponent, children: [
       {
         path: '',
         redirectTo: 'iniciar-sesion',
@@ -30,10 +35,12 @@ export const AuthRoutes: Routes = [
         path: 'iniciar-sesion',
         component: IniciarSesionComponent
       }
-    ]}
+    ]
+  }
 ];
 export const ProtectedRoutes: Routes = [
-  { path: 'admin', component: AdministradorRouterOutletComponent, canActivate: [], children: [
+  {
+    path: 'admin', component: AdministradorRouterOutletComponent, canActivate: [], children: [
       {
         path: '',
         redirectTo: 'home',
@@ -126,15 +133,30 @@ export const ProtectedRoutes: Routes = [
         path: 'next-date-for-tax-payment',
         component: NextDateForTaxPaymentComponent
       }*/
-    ]}/*,
-  {path: 'arbitro', component: AdministradorRouterOutletComponent, canActivate: [], children: [
+    ]
+  },
+  {
+    path: 'arbitro', component: ArbitroRouterOutletComponent, canActivate: [], children: [
       {
-        path: 'dashboard',
-        component: IndexDashboardComponent
+        path: 'home',
+        component: ArbitroComponent
       },
+      // {
+      //   path: 'previous-years',
+      //   component: TaxpayerPreviousYearsDashboardComponent
+      // }
+    ]
+  },
+  {
+    path: 'jugador', component: JugadorRouterOutletComponent, canActivate: [], children: [
       {
-        path: 'previous-years',
-        component: TaxpayerPreviousYearsDashboardComponent
-      }
-    ]}*/
+        path: 'home',
+        component: JugadorComponent
+      },
+      // {
+      //   path: 'previous-years',
+      //   component: TaxpayerPreviousYearsDashboardComponent
+      // }
+    ]
+  }
 ];

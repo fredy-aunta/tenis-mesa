@@ -10,9 +10,8 @@
       </button>
       <a class="navbar-brand" href="#">Tenis de mesa</a>
     </div>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" *ngIf="user !== null">
       <ul class="nav navbar-nav">
         <li class="dropdown" *ngIf="user.tipo=== userTypes.ADMIN.value">
           <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrar Usuarios<span class="caret"></span></a>

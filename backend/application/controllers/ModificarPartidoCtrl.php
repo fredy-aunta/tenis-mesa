@@ -23,7 +23,7 @@ class ModificarPartidoCtrl extends MY_Controller
         $fechaHora = $this->put("fechaHora");
 
         $partido->setFechaHora($fechaHora);
-
+log_message('error', print_r($partido, true));
         $registrosActualizados = $this->partidoDB->update($partido);
         if ($registrosActualizados == 1) {
             $response['mensaje'] = "Actualizado";

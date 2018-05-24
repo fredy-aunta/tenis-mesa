@@ -35,6 +35,21 @@ class Partidos
                 $m_Partido->setIdPartidoTorneo($contadorPartidos);
                 $this->agregar($m_Partido);
         }
+        $partidosIniciales = $contadorPartidos;
+        for ($i = 0; $i < ($cantidadPartidos-$partidosIniciales); $i++) {
+            $date = $this->getLast()->getFechaHora();
+            $date = date('Y-m-d H:i:s',strtotime('+30 minutes',strtotime($date)));
+            //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            //Calendar c = Calendar.getInstance();
+            //c.setTime(date);
+            //c.add(Calendar.MINUTE, 30);  // number of days to add
+            //date = c.getTime();  // dt is now the new date
+            $contadorPartidos++;
+            $m_Partido = new Partido();
+            $m_Partido->setFechaHora($date);
+            $m_Partido->setIdPartidoTorneo($contadorPartidos);
+            $this->agregar($m_Partido);
+        }
     }
 
     /**

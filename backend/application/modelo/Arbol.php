@@ -63,8 +63,7 @@ class Arbol extends Estructura
 
     public function getCantidadPartidos()
     {
-//        return $this->arbol->cantidad();
-        return 8;
+        return $this->arbol->cantidad();
     }
 
     /**

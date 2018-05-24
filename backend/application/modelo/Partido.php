@@ -176,6 +176,7 @@ class Partido
     {
         //SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         //return $dt1.format(this.getFechaHora());
+        return $this->fechaHora;
     }
 
     public function terminado()
