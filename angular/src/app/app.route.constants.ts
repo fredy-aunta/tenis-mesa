@@ -16,6 +16,7 @@ import {EditarTorneoComponent} from './_common/editar-torneo/editar-torneo.compo
 import {ConsultarPartidosComponent} from './_common/consultar-partidos/consultar-partidos.component';
 import {ConsultarPartidoComponent} from './_common/consultar-partido/consultar-partido.component';
 import {EditarPartidoComponent} from './_common/editar-partido/editar-partido.component';
+import {GraficasComponent} from './_common/graficas/graficas.component';
 
 export const AuthRoutes: Routes = [
   { path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full' },
@@ -107,6 +108,10 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'EditarTorneo/:id',
         component: EditarTorneoComponent
+      },
+      {
+        path: 'VerGraficas',
+        component: GraficasComponent
       }/*,
       {
         path: 'wizard',

@@ -40,6 +40,8 @@ import { IngresarResultadosComponent } from './arbitro/ingresar-resultados/ingre
 import { EditarPartidoComponent } from './_common/editar-partido/editar-partido.component';
 import {SortableModule} from 'ngx-bootstrap/sortable';
 import {CustomCookieService} from './_services/custom-cookie.service';
+import { GraficasComponent } from './_common/graficas/graficas.component';
+import {GraficasService} from './_services/graficas.service';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import {CustomCookieService} from './_services/custom-cookie.service';
     ConsultarPartidoComponent,
     ArbitroComponent,
     IngresarResultadosComponent,
-    EditarPartidoComponent
+    EditarPartidoComponent,
+    GraficasComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -115,7 +118,8 @@ import {CustomCookieService} from './_services/custom-cookie.service';
     FormsModule,
     ReactiveFormsModule,
     AlertService,
-    PartidoService
+    PartidoService,
+    GraficasService
   ],
   bootstrap: [AppComponent]
 })
