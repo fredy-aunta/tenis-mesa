@@ -18,6 +18,12 @@
                 </div>
               </div>
             </div>
+            <div>
+              <div *ngIf="jugadoresTorneo">
+                <h3 align="center">Jugadores por Torneo</h3>
+                <canvas id="jugadoresTorneo">{{ jugadoresTorneo }}</canvas>
+              </div>
+            </div>
           </div>
         </div>
       </div>

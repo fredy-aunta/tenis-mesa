@@ -58,7 +58,7 @@ class PartidoDB extends CI_Model
             $partido->setIdPartido($row->idPartido);
             $partido->setFechaHora($row->fechaHora);
             $partido->setIdPartidoTorneo($row->idPartidoTorneo);
-            
+
 
             if (!empty($row->resultados)) {
                 list($resultado1,$resultado2) = explode(' ',$row->resultados);

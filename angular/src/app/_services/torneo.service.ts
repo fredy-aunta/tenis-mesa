@@ -21,6 +21,16 @@ export class TorneoService {
     };
   }
 
+  getTorneos2(): Promise<Array<Torneo>> {
+    const url = 'http://dev.tenis-mesa.com/ConsultarTorneosCtrl/index2';
+    return this.http.get(url)
+      .toPromise()
+      .then(response => {
+          return response["torneos"] as Array<Torneo>;
+        }
+      );
+  }
+
   getTorneos(): Promise<Array<Torneo>> {
     const url = 'http://dev.tenis-mesa.com/ConsultarTorneosCtrl';
     return this.http.get(url)

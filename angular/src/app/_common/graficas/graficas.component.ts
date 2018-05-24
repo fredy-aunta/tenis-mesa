@@ -13,12 +13,16 @@ import {Partido} from '../../_model/Partido';
 export class GraficasComponent implements OnInit {
   tiposUsuario = [];
   fechaPartidos = [];
+  jugadoresTorneo = [];
   public arbi;
   public admi;
   public juga;
   public pendientes;
   public jugados;
   public fechaActual = new Date();
+  public torne;
+  public jugadores = [];
+  public torneos = [];
 
   constructor(private graficas: GraficasService) { }
 
@@ -101,10 +105,35 @@ export class GraficasComponent implements OnInit {
             responsive: true
           }
         })
-        }
+      })
 
+    this.graficas.graficaJugadoresTorneo()
+      .then( torneos => {
 
-      ).catch(response => console.error(response));
+        torneos.filter((torneo) => {
+          this.jugadores.push(torneo.cantidadJugadores) ;
+          this.torneos.push(torneo.nombre);
+        });
+
+        console.log(this.torne)
+
+        this.jugadoresTorneo = new Chart('jugadoresTorneo', {
+          type: 'line',
+          data: {
+            labels: this.torneos,
+            datasets: [{
+              label: 'Jugadores por Torneo',
+              backgroundColor: '#2EFE2E',
+              borderColor: '#00FFFF',
+              borderWidth: 1,
+              data: this.jugadores
+            }]
+          },
+          options: {
+            responsive: true
+          }
+        })
+      }).catch(response => console.error(response));
   }
 
 }
