@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^1.1.2",
     "animate.css": "^3.5.2",
     "bootstrap": "^3.3.7",
+    "chart.js": "^2.7.2",
     "circular-json": "^0.3.3",
     "core-js": "^2.4.1",
     "enhanced-resolve": "^3.3.0",

@@ -20,6 +20,7 @@ import {ArbitroRouterOutletComponent} from './arbitro/arbitro-router-outlet.comp
 import {ArbitroComponent} from './arbitro/arbitro.component';
 import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.component';
 import {JugadorComponent} from './jugador/jugador.component';
+import {GraficasComponent} from './_common/graficas/graficas.component';
 
 export const AuthRoutes: Routes = [
   {path: '', redirectTo: '/auth/iniciar-sesion', pathMatch: 'full'},
@@ -114,6 +115,10 @@ export const ProtectedRoutes: Routes = [
       {
         path: 'EditarTorneo/:id',
         component: EditarTorneoComponent
+      },
+      {
+        path: 'VerGraficas',
+        component: GraficasComponent
       }/*,
       {
         path: 'wizard',

@@ -43,6 +43,8 @@ import {CustomCookieService} from './_services/custom-cookie.service';
 import {ArbitroRouterOutletComponent} from './arbitro/arbitro-router-outlet.component';
 import { JugadorComponent } from './jugador/jugador.component';
 import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.component';
+import { GraficasComponent } from './_common/graficas/graficas.component';
+import {GraficasService} from './_services/graficas.service';
 
 
 @NgModule({
@@ -74,7 +76,8 @@ import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.comp
     ArbitroComponent,
     ArbitroRouterOutletComponent,
     JugadorComponent,
-    JugadorRouterOutletComponent
+    JugadorRouterOutletComponent,
+    GraficasComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -122,7 +125,8 @@ import {JugadorRouterOutletComponent} from './jugador/jugador-router-outlet.comp
     FormsModule,
     ReactiveFormsModule,
     AlertService,
-    PartidoService
+    PartidoService,
+    GraficasService
   ],
   bootstrap: [AppComponent]
 })

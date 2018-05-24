@@ -16,8 +16,8 @@ export class AuthenticationService {
   //
   private modules = {
     Administrador: {path: '/admin', cookieName: 'tenis-mesa-admin-module', defaultUrl: '/admin/home'},
-    Jugador: {path: '/jugador', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/jugador/home'},
-    Arbitro: {path: '/arbitro', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/arbitro/home'}
+    Jugador: {path: '/admin', cookieName: 'tenis-mesa-jugador-module', defaultUrl: '/admin/home'},
+    Arbitro: {path: '/admin', cookieName: 'tenis-mesa-arbitro-module', defaultUrl: '/admin/home'}
   };
   //
   // private loginSubject = new Subject<User>();

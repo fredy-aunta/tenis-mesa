@@ -48,6 +48,28 @@ class PartidoDB extends CI_Model
         }
     }
 
+    public function getAllPartidos2()
+    {
+        $query = $this->db->query("SELECT * from partido");
+
+        $partidos = array();
+        foreach ($query->result() as $row) {
+            $partido = new Partido();
+            $partido->setIdPartido($row->idPartido);
+            $partido->setFechaHora($row->fechaHora);
+            $partido->setIdPartidoTorneo($row->idPartidoTorneo);
+            
+
+            if (!empty($row->resultados)) {
+                list($resultado1,$resultado2) = explode(' ',$row->resultados);
+                $partido->setResultado1($resultado1);
+                $partido->setResultado2($resultado2);
+            }
+            $partidos[] = $partido;
+        }
+        return $partidos;
+    }
+
     public function getAllPartidos($idTorneo)
     {
         $query = $this->db->query("SELECT p.idPartido, p.fechaHora, p.idPartidoTorneo," .
