@@ -21,4 +21,12 @@ class ConsultarTorneosCtrl extends MY_Controller
         );
         $this->response($response, REST_Controller::HTTP_OK);
     }
+	
+	public function index2_get()
+    {
+        $response = array(
+            'torneos' => $this->torneoDB->getAllTorneos2()
+        );
+        $this->response($response, REST_Controller::HTTP_OK);
+    }
 }

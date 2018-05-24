@@ -24,7 +24,25 @@ class TorneoDB extends CI_Model
     {
         return 0;
     }
+	
+	public function getAllTorneos2()
+    {
+        $query = $this->db->query("SELECT * from torneo");
 
+        $torneos = array();
+        foreach ($query->result() as $row) {
+            $torneo = new Torneo();
+            $torneo->setIdTorneo($row->idTorneo);
+            $torneo->setNombre($row->nombre);
+            $estructura = FactoriaEstructura::getEstructura($row->idEstructura);
+			$torneo->setCantidadJugadores($row->cantidadJugadores);
+			$torneo->setCantidadMesas($row->cantidadMesas);
+			
+            $torneos[] = $torneo;
+        }
+        return $torneos;
+    }
+	
     public function getAllTorneos()
     {
         $torneos = array();
